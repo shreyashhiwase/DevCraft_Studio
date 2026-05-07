@@ -1,0 +1,90 @@
+<%# views/partials/navbar.ejs %>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-text">DevCraft<span class="brand-accent">Studio</span></span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <% if (currentUser) { %>
+        <% if (currentUser.role === 'admin') { %>
+          <a href="/admin/dashboard" class="nav-link <%= locals.title && locals.title.includes('Admin') ? 'active' : '' %>">Dashboard</a>
+          <a href="/admin/inquiries"  class="nav-link">Inquiries</a>
+          <a href="/admin/projects"   class="nav-link">Projects</a>
+          <a href="/admin/users"      class="nav-link">Users</a>
+          <a href="/admin/payments"   class="nav-link">Payments</a>
+        <% } else { %>
+          <a href="/dashboard"  class="nav-link">Dashboard</a>
+          <a href="/inquiries"  class="nav-link">My Inquiries</a>
+          <a href="/payments"   class="nav-link">Payments</a>
+        <% } %>
+
+        <!-- User avatar — click to toggle dropdown -->
+        <div class="nav-user" id="navUser">
+          <div class="user-avatar" id="userAvatarBtn" aria-haspopup="true" aria-expanded="false">
+            <%= currentUser.name.charAt(0).toUpperCase() %>
+          </div>
+          <div class="user-dropdown" id="userDropdown" role="menu">
+            <div class="user-dropdown-inner">
+              <div class="dropdown-header">
+                <strong><%= currentUser.name %></strong>
+                <span class="user-role-badge <%= currentUser.role %>"><%= currentUser.role %></span>
+              </div>
+              <div class="dropdown-divider"></div>
+              <a href="/auth/logout" class="dropdown-item logout" role="menuitem">Sign Out →</a>
+            </div>
+          </div>
+        </div>
+
+      <% } else { %>
+        <a href="/auth/login"    class="nav-link">Login</a>
+        <a href="/auth/register" class="nav-btn">Get Started</a>
+      <% } %>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // ── Mobile hamburger ──────────────────────────────
+  document.getElementById('navToggle')?.addEventListener('click', () => {
+    document.getElementById('navLinks')?.classList.toggle('open');
+  });
+
+  // ── User dropdown: click-based (no hover gap issue) ──
+  const avatarBtn  = document.getElementById('userAvatarBtn');
+  const dropdown   = document.getElementById('userDropdown');
+
+  if (avatarBtn && dropdown) {
+    // Toggle on avatar click
+    avatarBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle('open');
+      avatarBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Keep open while hovering anywhere inside nav-user
+    // (allows moving mouse from avatar → dropdown without it closing)
+    dropdown.addEventListener('click', (e) => {
+      e.stopPropagation(); // don't let clicks inside dropdown bubble to document
+    });
+
+    // Close when clicking anywhere outside
+    document.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+      avatarBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
+        avatarBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>

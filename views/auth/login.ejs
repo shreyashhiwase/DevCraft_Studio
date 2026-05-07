@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> — DevCraft Studio</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-mark">⚡</div>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your DevCraft Studio account</p>
+      </div>
+
+      <%- include('../partials/flash') %>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="alert alert-error" style="margin-bottom:20px;">
+          <span class="alert-icon">!</span>
+          <span><%= errors[0].msg %></span>
+        </div>
+      <% } %>
+
+      <form action="/auth/login" method="POST" novalidate>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email" id="email" name="email"
+            value="<%= formData.email || '' %>"
+            placeholder="you@example.com"
+            class="<%= errors && errors.some(e => e.path === 'email') ? 'input-error' : '' %>"
+            required autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password" id="password" name="password"
+            placeholder="Enter your password"
+            class="<%= errors && errors.some(e => e.path === 'password') ? 'input-error' : '' %>"
+            required autocomplete="current-password"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:8px;">
+          Sign In →
+        </button>
+      </form>
+
+      <div style="text-align:center; margin-top:24px; font-size:0.9rem; color:var(--text-muted);">
+        Don't have an account? <a href="/auth/register" style="color:var(--accent-blue); font-weight:600;">Create one free</a>
+      </div>
+
+      
+    </div>
+  </div>
+</body>
+</html>

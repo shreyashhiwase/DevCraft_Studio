@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="description" content="Professional project development services. Submit your project idea and we'll build it for you.">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <!-- Hero -->
+  <section class="landing-hero">
+    <div style="max-width:800px;">
+      <div class="hero-eyebrow">
+        <span>🚀</span>
+        <span>Professional Project Services</span>
+      </div>
+      <h1 class="hero-title">
+        We Build Your<br>
+        <span class="highlight">Dream Projects</span>
+      </h1>
+      <p class="hero-desc">
+        Submit your project idea, set your budget, and let our expert team bring it to life. From web apps to mobile solutions — we handle everything.
+      </p>
+      <div class="hero-cta">
+        <a href="/auth/register" class="btn btn-primary btn-lg">Get Started Free →</a>
+        <a href="#features" class="btn btn-secondary btn-lg">See What We Build</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div class="section-label">What We Offer</div>
+        <h2>Everything You Need</h2>
+        <p style="color:var(--text-muted); max-width:500px; margin:12px auto;">From initial inquiry to final delivery, we manage the entire development lifecycle for you.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Web Applications</h3>
+          <p>Full-stack web apps with modern frameworks. Responsive, fast, and scalable solutions for any business need.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile Apps</h3>
+          <p>Cross-platform mobile applications for iOS and Android. Native performance with React Native or Flutter.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>API Development</h3>
+          <p>RESTful and GraphQL APIs built for scale. Complete documentation and secure authentication included.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🗄️</div>
+          <h3>Database Design</h3>
+          <p>Optimized database architecture for SQL and NoSQL. Schema design, migrations, and performance tuning.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Real-time Chat Support</h3>
+          <p>Direct communication channel between you and our team throughout the entire project lifecycle.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Progress Tracking</h3>
+          <p>Live progress dashboard with milestones, status updates, and transparent project management.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section" style="background: var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div class="section-label">How It Works</div>
+        <h2>Simple 4-Step Process</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:32px; text-align:center;">
+        <% [
+          {step:'01', icon:'📋', title:'Submit Inquiry', desc:'Fill out our project request form with your requirements and budget.'},
+          {step:'02', icon:'✅', title:'Get Approved', desc:'We review your request and reach out to discuss details within 24 hours.'},
+          {step:'03', icon:'🏗️', title:'We Build It', desc:'Our team develops your project with regular progress updates.'},
+          {step:'04', icon:'🚀', title:'Delivery', desc:'Download your completed project files and leave a review.'}
+        ].forEach(item => { %>
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-blue); font-weight:700; letter-spacing:0.1em; margin-bottom:12px;"><%= item.step %></div>
+          <div style="font-size:2.5rem; margin-bottom:12px;"><%= item.icon %></div>
+          <h3 style="font-size:1rem; margin-bottom:8px;"><%= item.title %></h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);"><%= item.desc %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <h2>Ready to Start Your Project?</h2>
+      <p style="color:var(--text-muted); max-width:450px; margin:12px auto 36px;">Create a free account and submit your first project request today.</p>
+      <a href="/auth/register" class="btn btn-primary btn-lg">Create Free Account →</a>
+      <p style="margin-top:16px; font-size:0.85rem; color:var(--text-muted);">Already have an account? <a href="/auth/login">Sign in</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--text-primary); margin-bottom:8px;">⚡ DevCraft Studio</p>
+      <p>© <%= new Date().getFullYear() %> DevCraft Studio. Built with ❤️ for awesome clients.</p>
+    </div>
+  </footer>
+</body>
+</html>

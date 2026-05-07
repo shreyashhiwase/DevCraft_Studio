@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> — DevCraft Studio</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  <div class="dashboard-page">
+    <div class="dashboard-header">
+      <div class="dashboard-header-inner">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+          <span style="padding:4px 12px; background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.3); border-radius:100px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent-purple);">Admin Panel</span>
+        </div>
+        <h1>Control Center</h1>
+        <p>Platform overview and management</p>
+        <div class="dash-tabs">
+          <span class="dash-tab active">Overview</span>
+          <a href="/admin/inquiries" class="dash-tab">Inquiries <% if(stats.pendingInquiries > 0) { %><span style="background:var(--accent-red); color:#fff; border-radius:100px; padding:1px 7px; font-size:0.7rem; margin-left:4px;"><%= stats.pendingInquiries %></span><% } %></a>
+          <a href="/admin/projects" class="dash-tab">Projects</a>
+          <a href="/admin/users" class="dash-tab">Users</a>
+          <a href="/admin/payments" class="dash-tab">Revenue</a>
+          <a href="/admin/reviews" class="dash-tab">Reviews</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-body">
+      <%- include('../partials/flash') %>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card blue">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value"><%= stats.totalUsers %></div>
+          <div class="stat-label">Total Clients</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-icon">📁</div>
+          <div class="stat-value"><%= stats.totalProjects %></div>
+          <div class="stat-label">Total Projects</div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-icon">⚙️</div>
+          <div class="stat-value"><%= stats.inProgressProjects %></div>
+          <div class="stat-label">In Progress</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value"><%= stats.completedProjects %></div>
+          <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card cyan">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value">₹<%= stats.totalRevenue ? stats.totalRevenue.toLocaleString('en-IN') : '0' %></div>
+          <div class="stat-label">Total Revenue</div>
+        </div>
+        <div class="stat-card pink">
+          <div class="stat-icon">📋</div>
+          <div class="stat-value"><%= stats.pendingInquiries %></div>
+          <div class="stat-label">Pending Inquiries</div>
+        </div>
+      </div>
+
+      <!-- Charts & Recent Activity -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px;">
+        <!-- Revenue Chart -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">📈 Revenue (Last 6 Months)</span>
+          </div>
+          <canvas id="revenueChart" height="220"></canvas>
+        </div>
+
+        <!-- Project Status Pie -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">📊 Project Status</span>
+          </div>
+          <canvas id="statusChart" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Recent Activity Grid -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <!-- Recent Projects -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🏗️ Recent Projects</span>
+            <a href="/admin/projects" style="font-size:0.82rem; color:var(--accent-blue);">View all →</a>
+          </div>
+          <% if (recentProjects && recentProjects.length > 0) { %>
+            <% recentProjects.forEach(p => { %>
+              <a href="/admin/projects/<%= p._id %>" style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); text-decoration:none; transition:var(--transition);" onmouseover="this.style.paddingLeft='4px'" onmouseout="this.style.paddingLeft='0'">
+                <div style="width:38px; height:38px; background:var(--gradient-primary); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;">
+                  <%= p.category === 'web' ? '🌐' : p.category === 'mobile' ? '📱' : p.category === 'api' ? '⚡' : '💻' %>
+                </div>
+                <div style="flex:1; min-width:0;">
+                  <div style="font-size:0.88rem; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><%= p.title %></div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);"><%= p.user ? p.user.name : 'N/A' %></div>
+                </div>
+                <span class="badge badge-<%= p.status.replace(' ','-') %>" style="flex-shrink:0;"><%= p.status %></span>
+              </a>
+            <% }) %>
+          <% } else { %>
+            <div style="text-align:center; padding:32px 0; color:var(--text-muted);">No projects yet</div>
+          <% } %>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">👤 New Clients</span>
+            <a href="/admin/users" style="font-size:0.82rem; color:var(--accent-blue);">View all →</a>
+          </div>
+          <% if (recentUsers && recentUsers.length > 0) { %>
+            <% recentUsers.forEach(u => { %>
+              <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--border);">
+                <div style="width:38px; height:38px; background:var(--gradient-secondary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:1rem; color:#fff; flex-shrink:0;">
+                  <%= u.name.charAt(0).toUpperCase() %>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:0.88rem; font-weight:600; color:var(--text-primary);"><%= u.name %></div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);"><%= u.email %></div>
+                </div>
+                <div style="font-size:0.75rem; color:var(--text-muted); white-space:nowrap;">
+                  <%= new Date(u.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' }) %>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div style="text-align:center; padding:32px 0; color:var(--text-muted);">No clients yet</div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const monthlyData = <%- monthlyRevenue %> || [];
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    const labels = monthlyData.map(d => monthNames[d._id.month - 1] + ' ' + d._id.year);
+    const revenues = monthlyData.map(d => (d.total / 100).toFixed(0));
+
+    // Revenue Chart
+    new Chart(document.getElementById('revenueChart'), {
+      type: 'bar',
+      data: {
+        labels: labels.length ? labels : ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [{
+          label: 'Revenue (₹)',
+          data: revenues.length ? revenues : [0,0,0,0,0,0],
+          backgroundColor: 'rgba(99,179,237,0.2)',
+          borderColor: '#63b3ed',
+          borderWidth: 2,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#8888aa' } },
+          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#8888aa' } }
+        }
+      }
+    });
+
+    // Status Pie Chart
+    new Chart(document.getElementById('statusChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Pending', 'In Progress', 'Completed', 'Cancelled'],
+        datasets: [{
+          data: [<%= stats.totalProjects - stats.inProgressProjects - stats.completedProjects %>, <%= stats.inProgressProjects %>, <%= stats.completedProjects %>, 0],
+          backgroundColor: ['rgba(251,191,36,0.7)', 'rgba(99,179,237,0.7)', 'rgba(52,211,153,0.7)', 'rgba(248,113,113,0.7)'],
+          borderColor: 'transparent',
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#8888aa', padding: 16, font: { size: 12 } } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
