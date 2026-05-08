@@ -1,85 +1,50 @@
+// utils/email.js
+//
+// HOW IT WORKS:
+//   LOCAL  (NODE_ENV != production) → Gmail SMTP via Nodemailer  ✅
+//   RENDER (NODE_ENV = production)  → Resend HTTP API             ✅
+//
+// Why two providers?
+//   Render's free tier BLOCKS all outbound SMTP ports (25, 465, 587).
+//   Gmail SMTP cannot work on Render — period.
+//   Resend uses HTTPS (port 443) which is never blocked.
+//
+// Setup:
+//   Local  → keep your EMAIL_USER / EMAIL_PASS in .env
+//   Render → add RESEND_API_KEY in Render dashboard env vars
+//            Get free key at https://resend.com (3000 emails/month free)
+
 const nodemailer = require('nodemailer');
-const https      = require('https');   // built-in — no extra install needed
 
-// ─── Which provider? ──────────────────────────────────────────────────────
-// Uses Brevo if BREVO_API_KEY is set OR if running in production.
-// Falls back to Gmail SMTP for local development.
-const useBrevo = () =>
-  !!process.env.BREVO_API_KEY;
+// ─── Which provider to use ────────────────────────────────────────────────
+const useResend = () =>
+  process.env.NODE_ENV === 'production' || !!process.env.RESEND_API_KEY;
 
-// ─── Credential guards ────────────────────────────────────────────────────
+// ─── SMTP credential check (local) ────────────────────────────────────────
 const smtpReady = () => {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.warn('⚠️  Gmail SMTP: EMAIL_USER or EMAIL_PASS missing — email skipped.');
+  const missing = [];
+  if (!process.env.EMAIL_USER) missing.push('EMAIL_USER');
+  if (!process.env.EMAIL_PASS) missing.push('EMAIL_PASS');
+  if (missing.length) {
+    console.warn(`⚠️  SMTP: missing [${missing.join(', ')}] — email skipped.`);
     return false;
   }
   return true;
 };
 
-const brevoReady = () => {
-  if (!process.env.BREVO_API_KEY) {
-    console.warn('⚠️  Brevo: BREVO_API_KEY missing — email skipped.');
-    console.warn('   → Sign up free at https://app.brevo.com and add the key to Render env vars.');
-    return false;
-  }
-  if (!process.env.BREVO_SENDER_EMAIL) {
-    console.warn('⚠️  Brevo: BREVO_SENDER_EMAIL missing — email skipped.');
+// ─── Resend credential check (production) ─────────────────────────────────
+const resendReady = () => {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('⚠️  Resend: RESEND_API_KEY not set — email skipped.');
+    console.warn('   Get a free key at https://resend.com and add it to Render env vars.');
     return false;
   }
   return true;
 };
 
-// ─── Send via Brevo HTTPS API (Render / production) ───────────────────────
-const sendViaBrevo = ({ to, subject, html }) => {
-  return new Promise((resolve, reject) => {
-    const payload = JSON.stringify({
-      sender: {
-        name:  process.env.BREVO_SENDER_NAME  || 'DevCraft Studio',
-        email: process.env.BREVO_SENDER_EMAIL,
-      },
-      to: [{ email: to }],
-      subject,
-      htmlContent: html,
-    });
-
-    const options = {
-      hostname: 'api.brevo.com',
-      path:     '/v3/smtp/email',
-      method:   'POST',
-      headers: {
-        'Content-Type':   'application/json',
-        'api-key':        process.env.BREVO_API_KEY,
-        'Content-Length': Buffer.byteLength(payload),
-      },
-    };
-
-    const req = https.request(options, (res) => {
-      let body = '';
-      res.on('data', chunk => body += chunk);
-      res.on('end', () => {
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          const data = JSON.parse(body);
-          console.log(`📧 Brevo sent → ${to} [messageId: ${data.messageId}]`);
-          resolve(data);
-        } else {
-          reject(new Error(`Brevo API ${res.statusCode}: ${body}`));
-        }
-      });
-    });
-
-    req.on('error', reject);
-    req.setTimeout(15000, () => {
-      req.destroy();
-      reject(new Error('Brevo request timeout'));
-    });
-    req.write(payload);
-    req.end();
-  });
-};
-
-// ─── Send via Gmail SMTP (local development) ──────────────────────────────
-const sendViaSmtp = async ({ to, subject, html }) => {
-  const transporter = nodemailer.createTransport({
+// ─── Local SMTP transporter (Nodemailer + Gmail) ──────────────────────────
+const createSmtpTransporter = () =>
+  nodemailer.createTransport({
     host:   process.env.EMAIL_HOST || 'smtp.gmail.com',
     port:   parseInt(process.env.EMAIL_PORT) || 587,
     secure: false,
@@ -89,69 +54,82 @@ const sendViaSmtp = async ({ to, subject, html }) => {
     socketTimeout:     15000,
   });
 
-  const info = await transporter.sendMail({
-    from:    `"DevCraft Studio" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
-    to, subject, html,
-  });
-  console.log(`📧 Gmail SMTP sent → ${to} [id: ${info.messageId}]`);
+// ─── Send via Resend HTTP API (production / Render) ───────────────────────
+const sendViaResend = async ({ to, subject, html }) => {
+  // Dynamic import so the package is only loaded when needed
+  const { Resend } = require('resend');
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  const from = process.env.RESEND_FROM ||
+               process.env.EMAIL_FROM  ||
+               'DevCraft Studio <onboarding@resend.dev>';  // works without domain verification
+
+  const { data, error } = await resend.emails.send({ from, to, subject, html });
+
+  if (error) {
+    console.error('❌ Resend error:', error);
+    throw new Error(error.message);
+  }
+  console.log(`📧 Resend sent → ${to} [id: ${data?.id}]`);
 };
 
-// ─── Master send (never throws — email failure never crashes a request) ───
+// ─── Send via Nodemailer SMTP (local) ─────────────────────────────────────
+const sendViaSmtp = async ({ to, subject, html }) => {
+  const transporter = createSmtpTransporter();
+  const from = `"DevCraft Studio" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`;
+  const info  = await transporter.sendMail({ from, to, subject, html });
+  console.log(`📧 SMTP sent → ${to} [id: ${info.messageId}]`);
+};
+
+// ─── Master send function ─────────────────────────────────────────────────
 const sendEmail = async ({ to, subject, html }) => {
   try {
-    if (useBrevo()) {
-      if (!brevoReady()) return;
-      await sendViaBrevo({ to, subject, html });
+    if (useResend()) {
+      if (!resendReady()) return;
+      console.log(`📧 Using Resend API → ${to}`);
+      await sendViaResend({ to, subject, html });
     } else {
       if (!smtpReady()) return;
+      console.log(`📧 Using Gmail SMTP → ${to}`);
       await sendViaSmtp({ to, subject, html });
     }
   } catch (err) {
-    console.error(`❌ Email FAILED → ${to}`);
+    console.error(`❌ Email failed → ${to} | ${subject}`);
     console.error('   Reason:', err.message);
 
-    // Helpful hints
     if (err.message?.includes('EAUTH') || err.message?.includes('535')) {
-      console.error('   Gmail fix: use an App Password (not your login password).');
-      console.error('   Path: Google Account → Security → 2FA → App Passwords');
+      console.error('   Gmail fix: use an App Password, not your login password.');
+      console.error('   Path: Google Account → Security → 2-Step Verification → App Passwords');
     }
-    if (err.message?.includes('Brevo') || err.message?.includes('401')) {
-      console.error('   Brevo fix: check BREVO_API_KEY and BREVO_SENDER_EMAIL in Render env vars.');
-      console.error('   Sender email must be verified at: https://app.brevo.com → Senders & IP');
+    if (err.message?.includes('API key')) {
+      console.error('   Resend fix: check RESEND_API_KEY in your Render environment variables.');
     }
+    // Never re-throw — email failure should never crash a request
   }
 };
 
-// ─── Startup check ─────────────────────────────────────────────────────────
+// ─── Startup connection check ──────────────────────────────────────────────
 const verifyEmailConfig = async () => {
-  if (useBrevo()) {
-    if (!brevoReady()) return false;
-    console.log('✅ Email provider : Brevo HTTP API  (works on Render ✓)');
-    console.log(`   Sender email   : ${process.env.BREVO_SENDER_EMAIL}`);
+  if (useResend()) {
+    if (!resendReady()) return false;
+    console.log('✅ Email provider: Resend (HTTP API) — works on Render ✓');
     return true;
   } else {
     if (!smtpReady()) return false;
     try {
-      const t = nodemailer.createTransport({
-        host:  process.env.EMAIL_HOST || 'smtp.gmail.com',
-        port:  parseInt(process.env.EMAIL_PORT) || 587,
-        secure: false,
-        auth:  { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-        tls:   { rejectUnauthorized: false },
-      });
-      await t.verify();
-      console.log('✅ Email provider : Gmail SMTP  (local ✓)');
+      await createSmtpTransporter().verify();
+      console.log('✅ Email provider: Gmail SMTP — connected ✓');
       return true;
     } catch (err) {
       console.error('❌ Gmail SMTP failed:', err.message);
       if (err.code === 'EAUTH')
-        console.error('   Use a Gmail App Password, not your login password.');
+        console.error('   → Use a Gmail App Password (not your login password).');
       return false;
     }
   }
 };
 
-// ─── HTML base template ───────────────────────────────────────────────────
+// ─── Shared HTML template ──────────────────────────────────────────────────
 const base = (content, title) => `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -187,14 +165,14 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#07070f;color:#e2e8f0}
   <p style="margin-top:6px">If you didn't expect this email, you can safely ignore it.</p>
 </div></div></body></html>`;
 
-// ─── Email functions ──────────────────────────────────────────────────────
+// ─── 1. Welcome ────────────────────────────────────────────────────────────
 const sendWelcome = (user) => sendEmail({
   to: user.email,
   subject: '🎉 Welcome to DevCraft Studio!',
   html: base(`
     <span class="badge bw">👋 Welcome aboard</span>
     <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>
-    <p>Your account is ready! Submit project requests, track progress live, and chat directly with our dev team.</p>
+    <p>Your DevCraft Studio account is ready! Submit project requests, track progress live, and chat directly with our dev team.</p>
     <div class="ic">
       <h3>🚀 Get started in 3 steps</h3>
       <p>1. Submit a project inquiry with your requirements &amp; budget<br>
@@ -202,9 +180,10 @@ const sendWelcome = (user) => sendEmail({
          3. Track progress and chat with us anytime</p>
     </div>
     <a href="${process.env.APP_URL || 'http://localhost:3000'}/dashboard" class="btn">Go to Dashboard →</a>
-  `, 'Welcome'),
+  `, 'Welcome to DevCraft Studio'),
 });
 
+// ─── 2. Inquiry accepted ───────────────────────────────────────────────────
 const sendInquiryAccepted = (user, inquiry) => sendEmail({
   to: user.email,
   subject: `✅ Inquiry accepted — ${inquiry.title}`,
@@ -221,6 +200,7 @@ const sendInquiryAccepted = (user, inquiry) => sendEmail({
   `, 'Inquiry Accepted'),
 });
 
+// ─── 3. Project started ────────────────────────────────────────────────────
 const sendProjectStarted = (user, project) => sendEmail({
   to: user.email,
   subject: `🚀 Development started — ${project.title}`,
@@ -237,6 +217,7 @@ const sendProjectStarted = (user, project) => sendEmail({
   `, 'Project Started'),
 });
 
+// ─── 4. Project completed ──────────────────────────────────────────────────
 const sendProjectCompleted = (user, project) => sendEmail({
   to: user.email,
   subject: `🎉 Project complete — ${project.title}`,
@@ -252,21 +233,22 @@ const sendProjectCompleted = (user, project) => sendEmail({
   `, 'Project Completed'),
 });
 
+// ─── 5. Password reset ─────────────────────────────────────────────────────
 const sendPasswordReset = (user, resetURL) => sendEmail({
   to: user.email,
   subject: '🔐 Reset your DevCraft Studio password',
   html: base(`
     <span class="badge br">🔐 Password Reset</span>
     <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>
-    <p>We received a request to reset your password. This link expires in <strong style="color:#e2e8f0">30 minutes</strong>.</p>
+    <p>We received a request to reset your password. Click below — this link expires in <strong style="color:#e2e8f0">30 minutes</strong>.</p>
     <div class="ic">
       <h3>⚠️ Didn't request this?</h3>
       <p>If you didn't ask for a reset, ignore this email — your password won't change.</p>
     </div>
     <a href="${resetURL}" class="btn">Reset My Password →</a>
     <div class="divider"></div>
-    <p style="font-size:12px;color:#64748b;word-break:break-all">Or copy: ${resetURL}</p>
-  `, 'Reset Password'),
+    <p style="font-size:12px;color:#64748b;word-break:break-all">Or copy this link:<br>${resetURL}</p>
+  `, 'Reset Your Password'),
 });
 
 module.exports = {
