@@ -17,6 +17,7 @@ const setupSocket = require('./socket');
 connectDB();
 
 const app = express();
+app.set('trust proxy', 1);
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: { origin: '*', methods: ['GET', 'POST'] }
