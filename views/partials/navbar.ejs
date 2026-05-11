@@ -1,46 +1,93 @@
 <%# views/partials/navbar.ejs %>
 <nav class="navbar">
   <div class="nav-container">
+
     <a href="/" class="nav-brand">
       <span class="brand-icon">⚡</span>
       <span class="brand-text">DevCraft<span class="brand-accent">Studio</span></span>
     </a>
 
+    <!-- Desktop + Mobile links -->
     <div class="nav-links" id="navLinks">
-      <% if (currentUser) { %>
-        <% if (currentUser.role === 'admin') { %>
-          <a href="/admin/dashboard" class="nav-link <%= locals.title && locals.title.includes('Admin') ? 'active' : '' %>">Dashboard</a>
-          <a href="/admin/inquiries"  class="nav-link">Inquiries</a>
-          <a href="/admin/projects"   class="nav-link">Projects</a>
-          <a href="/admin/users"      class="nav-link">Users</a>
-          <a href="/admin/payments"   class="nav-link">Payments</a>
-        <% } else { %>
-          <a href="/dashboard"  class="nav-link">Dashboard</a>
-          <a href="/inquiries"  class="nav-link">My Inquiries</a>
-          <a href="/payments"   class="nav-link">Payments</a>
-        <% } %>
 
-        <!-- User avatar — click to toggle dropdown -->
+      <% if (currentUser) { %>
+
+        <%# ── Desktop nav links ── %>
+        <div class="nav-desktop-links">
+          <% if (currentUser.role === 'admin') { %>
+            <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+            <a href="/admin/inquiries"  class="nav-link">Inquiries</a>
+            <a href="/admin/projects"   class="nav-link">Projects</a>
+            <a href="/admin/users"      class="nav-link">Users</a>
+            <a href="/admin/payments"   class="nav-link">Payments</a>
+          <% } else { %>
+            <a href="/dashboard"  class="nav-link">Dashboard</a>
+            <a href="/inquiries"  class="nav-link">My Inquiries</a>
+            <a href="/payments"   class="nav-link">Payments</a>
+          <% } %>
+        </div>
+
+        <%# ── Desktop avatar dropdown ── %>
         <div class="nav-user" id="navUser">
-          <div class="user-avatar" id="userAvatarBtn" aria-haspopup="true" aria-expanded="false">
+          <div class="user-avatar" id="userAvatarBtn">
             <%= currentUser.name.charAt(0).toUpperCase() %>
           </div>
-          <div class="user-dropdown" id="userDropdown" role="menu">
+          <div class="user-dropdown" id="userDropdown">
             <div class="user-dropdown-inner">
               <div class="dropdown-header">
                 <strong><%= currentUser.name %></strong>
                 <span class="user-role-badge <%= currentUser.role %>"><%= currentUser.role %></span>
               </div>
               <div class="dropdown-divider"></div>
-              <a href="/auth/logout" class="dropdown-item logout" role="menuitem">Sign Out →</a>
+              <a href="/auth/logout" class="dropdown-item logout">Sign Out →</a>
             </div>
           </div>
         </div>
 
+        <%# ── Mobile nav menu (shown when hamburger clicked) ── %>
+        <div class="mobile-nav-menu">
+          <% if (currentUser.role === 'admin') { %>
+            <a href="/admin/dashboard" class="mobile-nav-link">📊 Dashboard</a>
+            <a href="/admin/inquiries"  class="mobile-nav-link">📋 Inquiries</a>
+            <a href="/admin/projects"   class="mobile-nav-link">🏗️ Projects</a>
+            <a href="/admin/users"      class="mobile-nav-link">👥 Users</a>
+            <a href="/admin/payments"   class="mobile-nav-link">💰 Payments</a>
+            <a href="/admin/reviews"    class="mobile-nav-link">⭐ Reviews</a>
+          <% } else { %>
+            <a href="/dashboard"  class="mobile-nav-link">📊 Dashboard</a>
+            <a href="/inquiries/new" class="mobile-nav-link">➕ New Request</a>
+            <a href="/inquiries"  class="mobile-nav-link">📋 My Inquiries</a>
+            <a href="/payments"   class="mobile-nav-link">💳 Payments</a>
+          <% } %>
+
+          <!-- Mobile user info + sign out -->
+          <div class="mobile-user-section">
+            <div class="mobile-user-info">
+              <div class="mobile-user-avatar">
+                <%= currentUser.name.charAt(0).toUpperCase() %>
+              </div>
+              <div>
+                <div class="mobile-user-name"><%= currentUser.name %></div>
+                <div class="mobile-user-email"><%= currentUser.email %></div>
+              </div>
+            </div>
+            <a href="/auth/logout" class="mobile-signout-btn">
+              Sign Out →
+            </a>
+          </div>
+        </div>
+
       <% } else { %>
-        <a href="/auth/login"    class="nav-link">Login</a>
-        <a href="/auth/register" class="nav-btn">Get Started</a>
+        <div class="nav-desktop-links">
+          <a href="/auth/login" class="nav-link">Login</a>
+          <a href="/auth/register" class="nav-btn">Get Started</a>
+        </div>
+        <div class="mobile-nav-menu">
+          <a href="/auth/login"    class="mobile-nav-link">🔑 Login</a>
+          <a href="/auth/register" class="mobile-nav-link mobile-nav-highlight">✨ Get Started Free</a>
+        </div>
       <% } %>
+
     </div>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -50,41 +97,35 @@
 </nav>
 
 <script>
-  // ── Mobile hamburger ──────────────────────────────
-  document.getElementById('navToggle')?.addEventListener('click', () => {
-    document.getElementById('navLinks')?.classList.toggle('open');
-  });
+// ── Hamburger toggle ──────────────────────────────────────────────────────
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+navToggle?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navLinks?.classList.toggle('mobile-open');
+  // Animate hamburger → X
+  navToggle.classList.toggle('active');
+});
 
-  // ── User dropdown: click-based (no hover gap issue) ──
-  const avatarBtn  = document.getElementById('userAvatarBtn');
-  const dropdown   = document.getElementById('userDropdown');
-
-  if (avatarBtn && dropdown) {
-    // Toggle on avatar click
-    avatarBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = dropdown.classList.toggle('open');
-      avatarBtn.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Keep open while hovering anywhere inside nav-user
-    // (allows moving mouse from avatar → dropdown without it closing)
-    dropdown.addEventListener('click', (e) => {
-      e.stopPropagation(); // don't let clicks inside dropdown bubble to document
-    });
-
-    // Close when clicking anywhere outside
-    document.addEventListener('click', () => {
-      dropdown.classList.remove('open');
-      avatarBtn.setAttribute('aria-expanded', 'false');
-    });
-
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        dropdown.classList.remove('open');
-        avatarBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
+// Close mobile menu on outside click
+document.addEventListener('click', (e) => {
+  if (!navLinks?.contains(e.target) && !navToggle?.contains(e.target)) {
+    navLinks?.classList.remove('mobile-open');
+    navToggle?.classList.remove('active');
   }
+});
+
+// ── Desktop dropdown: click-based ─────────────────────────────────────────
+const avatarBtn = document.getElementById('userAvatarBtn');
+const dropdown  = document.getElementById('userDropdown');
+if (avatarBtn && dropdown) {
+  avatarBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') dropdown.classList.remove('open');
+  });
+}
 </script>

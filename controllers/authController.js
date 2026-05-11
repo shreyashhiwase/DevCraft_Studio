@@ -2,9 +2,19 @@
 const crypto = require('crypto');
 const User   = require('../models/User');
 const { validationResult } = require('express-validator');
-const { sendWelcome, sendPasswordReset } = require('../utils/email');
+const {
+  sendWelcome,
+  sendPasswordReset,
+  sendVerificationEmail,
+} = require('../utils/email');
 
-// ─── REGISTER ─────────────────────────────────────────────────────────────
+// helpers
+const hashToken = (raw) => crypto.createHash('sha256').update(raw).digest('hex');
+const rawToken  = ()    => crypto.randomBytes(32).toString('hex');
+
+// ─────────────────────────────────────────────────────────────────────────
+// REGISTER — create account + send verification email (no auto-login)
+// ─────────────────────────────────────────────────────────────────────────
 const getRegister = (req, res) =>
   res.render('auth/register', { title: 'Create Account', errors: [], formData: {} });
 
@@ -16,21 +26,46 @@ const postRegister = async (req, res) => {
   const { name, email, password, phone } = req.body;
   try {
     const existing = await User.findOne({ email: email.toLowerCase() });
-    if (existing)
+    if (existing) {
+      // If already registered but not verified, offer to resend
+      if (!existing.isVerified) {
+        return res.render('auth/register', {
+          title: 'Create Account',
+          errors: [{ msg: 'Account exists but email not verified. <a href="/auth/resend-verification?email=' + encodeURIComponent(email) + '" style="color:var(--accent-blue)">Resend verification email →</a>' }],
+          formData: req.body
+        });
+      }
       return res.render('auth/register', {
         title: 'Create Account',
-        errors: [{ msg: 'An account with this email already exists' }],
+        errors: [{ msg: 'An account with this email already exists.' }],
         formData: req.body
       });
+    }
 
-    const user = await User.create({ name, email, password, phone });
-    req.session.userId   = user._id;
-    req.session.userRole = user.role;
+    // Generate verification token
+    const token       = rawToken();
+    const hashedTok   = hashToken(token);
+    const verifyURL   = `${process.env.APP_URL || 'http://localhost:3000'}/auth/verify-email/${token}`;
 
-    sendWelcome(user).catch(e => console.error('Welcome email:', e.message));
+    // Create user — NOT verified yet
+    const user = await User.create({
+      name, email, password, phone,
+      isVerified:         false,
+      emailVerifyToken:   hashedTok,
+      emailVerifyExpires: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
+    });
 
-    req.flash('success', `Welcome, ${user.name}! Your account has been created.`);
-    res.redirect('/dashboard');
+    // Send verification email (non-blocking)
+    sendVerificationEmail(user, verifyURL)
+      .catch(e => console.error('Verify email error:', e.message));
+
+    // Show "check your email" page — no session set yet
+    res.render('auth/check-email', {
+      title: 'Check Your Email',
+      email: user.email,
+      name:  user.name,
+    });
+
   } catch (err) {
     console.error('Registration error:', err);
     res.render('auth/register', {
@@ -41,7 +76,86 @@ const postRegister = async (req, res) => {
   }
 };
 
-// ─── LOGIN ─────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
+// VERIFY EMAIL — user clicks the link in their inbox
+// ─────────────────────────────────────────────────────────────────────────
+const verifyEmail = async (req, res) => {
+  const hashed = hashToken(req.params.token);
+  try {
+    const user = await User.findOne({
+      emailVerifyToken:   hashed,
+      emailVerifyExpires: { $gt: Date.now() },
+    }).select('+emailVerifyToken +emailVerifyExpires');
+
+    if (!user) {
+      return res.render('auth/verify-result', {
+        title:   'Verification Failed',
+        success: false,
+        message: 'This verification link is invalid or has expired.',
+      });
+    }
+
+    // Activate account
+    user.isVerified          = true;
+    user.emailVerifyToken    = undefined;
+    user.emailVerifyExpires  = undefined;
+    await user.save({ validateBeforeSave: false });
+
+    // Send welcome email now that they're verified
+    sendWelcome(user).catch(e => console.error('Welcome email error:', e.message));
+
+    res.render('auth/verify-result', {
+      title:   'Email Verified!',
+      success: true,
+      message: 'Your email has been verified. You can now sign in.',
+    });
+  } catch (err) {
+    console.error('Verify email error:', err);
+    res.render('auth/verify-result', {
+      title: 'Verification Failed', success: false,
+      message: 'Something went wrong. Please try again.',
+    });
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────
+// RESEND VERIFICATION EMAIL
+// ─────────────────────────────────────────────────────────────────────────
+const resendVerification = async (req, res) => {
+  const email = req.query.email || req.body.email;
+  try {
+    const user = await User.findOne({ email: email?.toLowerCase() })
+      .select('+emailVerifyToken +emailVerifyExpires');
+
+    if (!user || user.isVerified) {
+      return res.render('auth/check-email', {
+        title: 'Check Your Email', email, name: '',
+        alreadyVerified: user?.isVerified,
+      });
+    }
+
+    const token     = rawToken();
+    const hashed    = hashToken(token);
+    const verifyURL = `${process.env.APP_URL || 'http://localhost:3000'}/auth/verify-email/${token}`;
+
+    user.emailVerifyToken   = hashed;
+    user.emailVerifyExpires = Date.now() + 24 * 60 * 60 * 1000;
+    await user.save({ validateBeforeSave: false });
+
+    sendVerificationEmail(user, verifyURL)
+      .catch(e => console.error('Resend verify error:', e.message));
+
+    res.render('auth/check-email', { title: 'Check Your Email', email: user.email, name: user.name });
+  } catch (err) {
+    console.error('Resend verification error:', err);
+    req.flash('error', 'Failed to resend. Please try again.');
+    res.redirect('/auth/login');
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────
+// LOGIN
+// ─────────────────────────────────────────────────────────────────────────
 const getLogin = (req, res) =>
   res.render('auth/login', { title: 'Login', errors: [], formData: {} });
 
@@ -53,18 +167,29 @@ const postLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
+
     if (!user || !(await user.comparePassword(password)))
       return res.render('auth/login', {
         title: 'Login',
-        errors: [{ msg: 'Invalid email or password' }],
-        formData: req.body
+        errors: [{ msg: 'Invalid email or password.' }],
+        formData: req.body,
       });
 
     if (!user.isActive)
       return res.render('auth/login', {
         title: 'Login',
         errors: [{ msg: 'Your account has been deactivated. Contact support.' }],
-        formData: req.body
+        formData: req.body,
+      });
+
+    // Block unverified users (admins are auto-verified on seed)
+    if (!user.isVerified)
+      return res.render('auth/login', {
+        title: 'Login',
+        errors: [{
+          msg: `Email not verified. <a href="/auth/resend-verification?email=${encodeURIComponent(email)}" style="color:var(--accent-blue);font-weight:600;">Resend verification email →</a>`
+        }],
+        formData: req.body,
       });
 
     user.lastLogin = new Date();
@@ -80,142 +205,122 @@ const postLogin = async (req, res) => {
     res.render('auth/login', {
       title: 'Login',
       errors: [{ msg: 'Login failed. Please try again.' }],
-      formData: req.body
+      formData: req.body,
     });
   }
 };
 
-// ─── LOGOUT ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
+// LOGOUT
+// ─────────────────────────────────────────────────────────────────────────
 const logout = (req, res) =>
   req.session.destroy(() => res.redirect('/auth/login'));
 
-// ─── FORGOT PASSWORD ───────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
+// FORGOT PASSWORD
+// ─────────────────────────────────────────────────────────────────────────
 const getForgotPassword = (req, res) =>
   res.render('auth/forgot-password', { title: 'Forgot Password', error: null, success: null });
 
 const postForgotPassword = async (req, res) => {
   const { email } = req.body;
-  if (!email || !email.trim())
+  const successMsg = "If that email is registered and verified, you'll receive a reset link shortly.";
+
+  if (!email?.trim())
     return res.render('auth/forgot-password', {
-      title: 'Forgot Password', success: null,
-      error: 'Please enter your email address.'
+      title: 'Forgot Password', success: null, error: 'Please enter your email address.',
     });
 
   try {
     const user = await User.findOne({ email: email.toLowerCase().trim() });
-
-    // Always show success — never reveal if email exists (security best practice)
-    const successMsg = "If that email is registered, you'll receive a reset link shortly. Check your inbox (and spam folder).";
-
-    if (!user) {
-      // Don't reveal that email doesn't exist
+    if (!user || !user.isVerified)
       return res.render('auth/forgot-password', { title: 'Forgot Password', error: null, success: successMsg });
-    }
 
-    // Generate a secure random token (raw) — we store the HASHED version
-    const rawToken    = crypto.randomBytes(32).toString('hex');
-    const hashedToken = crypto.createHash('sha256').update(rawToken).digest('hex');
+    const token     = rawToken();
+    const hashed    = hashToken(token);
+    const resetURL  = `${process.env.APP_URL || 'http://localhost:3000'}/auth/reset-password/${token}`;
 
-    user.resetPasswordToken   = hashedToken;
-    user.resetPasswordExpires = Date.now() + 30 * 60 * 1000; // 30 minutes
+    user.resetPasswordToken   = hashed;
+    user.resetPasswordExpires = Date.now() + 30 * 60 * 1000;
     await user.save({ validateBeforeSave: false });
 
-    const resetURL = `${process.env.APP_URL || 'http://localhost:3000'}/auth/reset-password/${rawToken}`;
-    console.log(`🔐 Reset URL for ${user.email}: ${resetURL}`);
-
-    await sendPasswordReset(user, resetURL)
+    sendPasswordReset(user, resetURL)
       .catch(e => console.error('Reset email error:', e.message));
 
     res.render('auth/forgot-password', { title: 'Forgot Password', error: null, success: successMsg });
   } catch (err) {
     console.error('Forgot password error:', err);
     res.render('auth/forgot-password', {
-      title: 'Forgot Password', success: null,
-      error: 'Something went wrong. Please try again.'
+      title: 'Forgot Password', success: null, error: 'Something went wrong. Please try again.',
     });
   }
 };
 
-// ─── RESET PASSWORD ────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
+// RESET PASSWORD
+// ─────────────────────────────────────────────────────────────────────────
 const getResetPassword = async (req, res) => {
-  const { token } = req.params;
-  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
-
+  const hashed = hashToken(req.params.token);
   try {
     const user = await User.findOne({
-      resetPasswordToken:   hashedToken,
-      resetPasswordExpires: { $gt: Date.now() }   // not expired
-    }).select('+resetPasswordToken +resetPasswordExpires');
-
+      resetPasswordToken:   hashed,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
     if (!user)
       return res.render('auth/reset-password', {
-        title: 'Reset Password',
-        token: null, error: 'This reset link is invalid or has expired. Please request a new one.',
-        success: null
+        title: 'Reset Password', token: null, error: 'Link is invalid or expired.', success: null,
       });
-
-    res.render('auth/reset-password', {
-      title: 'Reset Password', token, error: null, success: null
-    });
+    res.render('auth/reset-password', { title: 'Reset Password', token: req.params.token, error: null, success: null });
   } catch (err) {
-    console.error('Get reset page error:', err);
     res.render('auth/reset-password', {
-      title: 'Reset Password', token: null,
-      error: 'Something went wrong. Please try again.', success: null
+      title: 'Reset Password', token: null, error: 'Something went wrong.', success: null,
     });
   }
 };
 
 const postResetPassword = async (req, res) => {
-  const { token } = req.params;
   const { password, confirmPassword } = req.body;
-  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+  const hashed = hashToken(req.params.token);
 
-  // Validate
   if (!password || password.length < 6)
     return res.render('auth/reset-password', {
-      title: 'Reset Password', token,
-      error: 'Password must be at least 6 characters.', success: null
+      title: 'Reset Password', token: req.params.token, error: 'Minimum 6 characters.', success: null,
     });
-
   if (password !== confirmPassword)
     return res.render('auth/reset-password', {
-      title: 'Reset Password', token,
-      error: 'Passwords do not match.', success: null
+      title: 'Reset Password', token: req.params.token, error: 'Passwords do not match.', success: null,
     });
 
   try {
     const user = await User.findOne({
-      resetPasswordToken:   hashedToken,
-      resetPasswordExpires: { $gt: Date.now() }
+      resetPasswordToken:   hashed,
+      resetPasswordExpires: { $gt: Date.now() },
     }).select('+password +resetPasswordToken +resetPasswordExpires');
 
     if (!user)
       return res.render('auth/reset-password', {
-        title: 'Reset Password', token: null,
-        error: 'Reset link is invalid or has expired. Please request a new one.', success: null
+        title: 'Reset Password', token: null, error: 'Link is invalid or expired.', success: null,
       });
 
-    // Set new password (pre-save hook will hash it)
     user.password             = password;
     user.resetPasswordToken   = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
 
-    req.flash('success', '✅ Password reset successfully! Please log in with your new password.');
+    req.flash('success', '✅ Password reset! Please sign in.');
     res.redirect('/auth/login');
   } catch (err) {
     console.error('Reset password error:', err);
     res.render('auth/reset-password', {
-      title: 'Reset Password', token,
-      error: 'Failed to reset password. Please try again.', success: null
+      title: 'Reset Password', token: req.params.token, error: 'Failed to reset. Try again.', success: null,
     });
   }
 };
 
 module.exports = {
   getRegister, postRegister,
+  verifyEmail, resendVerification,
   getLogin, postLogin, logout,
   getForgotPassword, postForgotPassword,
-  getResetPassword, postResetPassword
+  getResetPassword, postResetPassword,
 };

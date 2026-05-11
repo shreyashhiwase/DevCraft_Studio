@@ -1,3 +1,27 @@
+// utils/email.js
+//
+// ┌─────────────────────────────────────────────────────────────┐
+// │  LOCAL   → Gmail SMTP (Nodemailer)  — already works ✅      │
+// │  RENDER  → Brevo HTTP API           — no domain needed ✅   │
+// └─────────────────────────────────────────────────────────────┘
+//
+// WHY BREVO ON RENDER?
+//   Render blocks all outbound SMTP ports (25, 465, 587) on free tier.
+//   Gmail SMTP will NEVER work on Render — it's a hard network block.
+//   Brevo uses HTTPS (port 443) which is never blocked anywhere.
+//   Brevo free plan: 300 emails/day, 9000/month — NO domain needed,
+//   just verify your email address once in the Brevo dashboard.
+//
+// SETUP (one-time, ~5 minutes):
+//   1. Go to https://app.brevo.com  →  Sign up free
+//   2. Settings → Senders & IP → Add your Gmail as a Sender
+//   3. Verify it via the email Brevo sends you
+//   4. Settings → SMTP & API → API Keys → Generate an API key
+//   5. Add to Render dashboard → Environment:
+//        BREVO_API_KEY     = xkeysib-xxxxxxxxxxxxxxxx
+//        BREVO_SENDER_NAME = DevCraft Studio
+//        BREVO_SENDER_EMAIL= your_gmail@gmail.com   ← must be verified in Brevo
+
 const nodemailer = require('nodemailer');
 const https      = require('https');   // built-in — no extra install needed
 
@@ -277,3 +301,20 @@ module.exports = {
   sendProjectCompleted,
   sendPasswordReset,
 };
+
+// ─── 6. Email Verification ────────────────────────────────────────────────
+const sendVerificationEmail = (user, verifyURL) => sendEmail({
+  to: user.email,
+  subject: '📧 Verify your DevCraft Studio email',
+  html: base(`
+    <span class="badge bi">📧 Verify Email</span>
+    <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>
+    <p>Thanks for signing up! Please verify your email address to activate your account. This link expires in <strong style="color:#e2e8f0">24 hours</strong>.</p>
+    <a href="${verifyURL}" class="btn">Verify My Email →</a>
+    <div class="divider"></div>
+    <p style="font-size:12px;color:#64748b;word-break:break-all">Or copy this link:<br>${verifyURL}</p>
+    <p style="font-size:12px;color:#64748b;margin-top:12px">Didn't sign up? You can safely ignore this email.</p>
+  `, 'Verify Your Email'),
+});
+
+module.exports.sendVerificationEmail = sendVerificationEmail;
