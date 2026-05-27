@@ -74,7 +74,17 @@ body::before {
   z-index: -1;
 }
 
-a { color: var(--accent-blue); text-decoration: none; transition: var(--transition); }
+/* ── Smooth theme switching on all colour properties ── */
+html { transition: background-color 0.25s ease; }
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow, fill, stroke;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+/* Things that must NOT colour-transition (shapes, sizes, opacity) */
+.progress-fill, canvas, .modal-overlay, .nav-toggle span { transition: none !important; }
+
+a { color: var(--accent-blue); text-decoration: none; transition: color 0.2s ease; }
 a:hover { color: var(--accent-cyan); }
 
 img { max-width: 100%; display: block; }
@@ -122,7 +132,7 @@ p { color: var(--text-secondary); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 0;          /* no gap — items sit flush */
 }
 
 .nav-brand {
@@ -166,6 +176,24 @@ p { color: var(--text-secondary); }
   transition: var(--transition);
 }
 .nav-btn:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: var(--shadow-glow); color: #fff; }
+
+/* Right-side controls: nav-links + theme toggle sit flush together */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Guest auth buttons on LEFT side of navbar */
+.nav-guest-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (max-width: 768px) {
+  /* Hide left-side buttons on mobile — mobile menu handles them */
+  .nav-guest-left { display: none; }
+}
 
 .nav-user { position: relative; cursor: pointer; }
 .user-avatar {
@@ -1160,3 +1188,146 @@ tbody tr:hover { background: rgba(255,255,255,0.02); }
   .projects-grid { grid-template-columns: 1fr; }
   .card { padding: 20px; }
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE  — toggled by adding class "light" to <html>
+   ══════════════════════════════════════════════════════════════ */
+html.light {
+  --bg-primary:    #f0f2f8;
+  --bg-secondary:  #e6e9f2;
+  --bg-card:       #ffffff;
+  --bg-card-hover: #f8f9fc;
+  --bg-elevated:   #eceef5;
+  --border:        rgba(0,0,0,0.09);
+  --border-accent: rgba(37,99,235,0.3);
+
+  --text-primary:   #0f1117;
+  --text-secondary: #374151;
+  --text-muted:     #6b7280;
+
+  --accent-blue:   #2563eb;
+  --accent-purple: #7c3aed;
+  --accent-cyan:   #0891b2;
+  --accent-green:  #059669;
+  --accent-red:    #dc2626;
+  --accent-orange: #d97706;
+  --accent-pink:   #db2777;
+
+  --gradient-primary:   linear-gradient(135deg, #2563eb, #7c3aed);
+  --gradient-secondary: linear-gradient(135deg, #0891b2, #2563eb);
+  --shadow-sm:  0 2px 8px  rgba(0,0,0,0.08);
+  --shadow-md:  0 8px 32px rgba(0,0,0,0.12);
+  --shadow-lg:  0 24px 64px rgba(0,0,0,0.14);
+  --shadow-glow:0 0 40px   rgba(37,99,235,0.12);
+}
+
+/* Light grid texture */
+html.light body::before {
+  background-image:
+    linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+}
+
+/* Light navbar */
+html.light .navbar {
+  background: rgba(240,242,248,0.9);
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+
+/* Light nav links */
+html.light .nav-link  { color: #374151; }
+html.light .nav-link:hover, html.light .nav-link.active {
+  background: #eceef5; color: #0f1117;
+}
+
+/* Light inputs */
+html.light input,
+html.light select,
+html.light textarea {
+  background: #f8f9fc;
+  border-color: rgba(0,0,0,0.12);
+  color: #0f1117;
+}
+html.light input::placeholder,
+html.light textarea::placeholder { color: #9ca3af; }
+html.light input:focus,
+html.light select:focus,
+html.light textarea:focus {
+  background: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* Light tables */
+html.light thead tr   { background: #eceef5; }
+html.light th         { color: #6b7280; }
+html.light td         { border-bottom-color: rgba(0,0,0,0.06); color: #374151; }
+html.light tbody tr:hover { background: rgba(0,0,0,0.02); }
+
+/* Light dashboard header */
+html.light .dashboard-header { background: #e6e9f2; border-bottom-color: rgba(0,0,0,0.08); }
+
+/* Light auth card */
+html.light .auth-card  { box-shadow: 0 8px 40px rgba(0,0,0,0.10); }
+
+/* Light badges — keep their colours but lighten bg */
+html.light .badge-pending     { background: rgba(217,119,6,0.12); }
+html.light .badge-in-progress { background: rgba(37,99,235,0.12); }
+html.light .badge-completed   { background: rgba(5,150,105,0.12); }
+html.light .badge-cancelled   { background: rgba(220,38,38,0.12); }
+
+/* Light alert */
+html.light .alert-success { background: rgba(5,150,105,0.1); border-color: rgba(5,150,105,0.3); }
+html.light .alert-error   { background: rgba(220,38,38,0.1);  border-color: rgba(220,38,38,0.3); }
+
+/* Light chat */
+html.light .chat-header,
+html.light .chat-input-area { background: #eceef5; border-color: rgba(0,0,0,0.08); }
+html.light .chat-input      { background: #f0f2f8; border-color: rgba(0,0,0,0.1); color:#0f1117; }
+html.light .message-bubble  { background: #eceef5; border-color: rgba(0,0,0,0.08); color:#0f1117; }
+html.light .message.own .message-bubble {
+  background: rgba(37,99,235,0.1);
+  border-color: rgba(37,99,235,0.2);
+}
+
+/* Light mobile nav */
+html.light .nav-links        { background: #f0f2f8; border-color: rgba(0,0,0,0.08); }
+html.light .mobile-nav-link  { color: #374151; border-color: rgba(0,0,0,0.06); }
+html.light .mobile-nav-link:hover { background: #eceef5; color: #0f1117; }
+html.light .mobile-user-section { background: #eceef5; border-top-color: rgba(37,99,235,0.3); }
+
+/* Light scrollbar */
+html.light ::-webkit-scrollbar-track { background: #f0f2f8; }
+html.light ::-webkit-scrollbar-thumb { background: #d1d5db; }
+html.light ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+/* Light page wrapper */
+html.light .page-wrapper { background: #f0f2f8; }
+html.light .landing-hero::before {
+  background: radial-gradient(ellipse, rgba(37,99,235,0.07) 0%, transparent 70%);
+}
+
+/* ── Theme Toggle Button ──────────────────────────────────────── */
+.theme-toggle {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  user-select: none;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s !important;
+}
+.theme-toggle:hover {
+  border-color: var(--accent-blue);
+  transform: scale(1.1) rotate(15deg);
+}
+/* Show moon in dark mode, sun in light mode */
+.theme-toggle .t-dark  { display: block; }
+.theme-toggle .t-light { display: none;  }
+html.light .theme-toggle .t-dark  { display: none;  }
+html.light .theme-toggle .t-light { display: block; }
