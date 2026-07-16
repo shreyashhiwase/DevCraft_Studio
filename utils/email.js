@@ -58,7 +58,7 @@ const sendViaBrevo = ({ to, subject, html }) => {
   return new Promise((resolve, reject) => {
     const payload = JSON.stringify({
       sender: {
-        name:  process.env.BREVO_SENDER_NAME  || 'DevCraft Studio',
+        name:  process.env.BREVO_SENDER_NAME  || 'StackifyX',
         email: process.env.BREVO_SENDER_EMAIL,
       },
       to: [{ email: to }],
@@ -114,7 +114,7 @@ const sendViaSmtp = async ({ to, subject, html }) => {
   });
 
   const info = await transporter.sendMail({
-    from:    `"DevCraft Studio" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
+    from:    `"StackifyX" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
     to, subject, html,
   });
   console.log(`📧 Gmail SMTP sent → ${to} [id: ${info.messageId}]`);
@@ -204,21 +204,21 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#07070f;color:#e2e8f0}
 .ftr strong{color:#63b3ed}
 </style></head>
 <body><div class="wrap">
-<div class="hdr"><h1>⚡ DevCraft Studio</h1><p>Your Personal Project Service Platform</p></div>
+<div class="hdr"><h1>⚡ StackifyX</h1><p>Your Personal Project Service Platform</p></div>
 <div class="bdy">${content}</div>
 <div class="ftr">
-  <p>© ${new Date().getFullYear()} <strong>DevCraft Studio</strong>. All rights reserved.</p>
+  <p>© ${new Date().getFullYear()} <strong>StackifyX</strong>. All rights reserved.</p>
   <p style="margin-top:6px">If you didn't expect this email, you can safely ignore it.</p>
 </div></div></body></html>`;
 
 // ─── Email functions ──────────────────────────────────────────────────────
 const sendWelcome = (user) => sendEmail({
   to: user.email,
-  subject: '🎉 Welcome to DevCraft Studio!',
+  subject: '🎉 Welcome to StackifyX!',
   html: base(`
     <span class="badge bw">👋 Welcome aboard</span>
     <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>
-    <p>Your account is ready! Submit project requests, track progress live, and chat directly with our dev team.</p>
+    <p>Your account is ready! Submit project requests, track progress live, and chat directly with our StackifyX team.</p>
     <div class="ic">
       <h3>🚀 Get started in 3 steps</h3>
       <p>1. Submit a project inquiry with your requirements &amp; budget<br>
@@ -278,7 +278,7 @@ const sendProjectCompleted = (user, project) => sendEmail({
 
 const sendPasswordReset = (user, resetURL) => sendEmail({
   to: user.email,
-  subject: '🔐 Reset your DevCraft Studio password',
+  subject: '🔐 Reset your StackifyX password',
   html: base(`
     <span class="badge br">🔐 Password Reset</span>
     <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>
@@ -305,7 +305,7 @@ module.exports = {
 // ─── 6. Email Verification ────────────────────────────────────────────────
 const sendVerificationEmail = (user, verifyURL) => sendEmail({
   to: user.email,
-  subject: '📧 Verify your DevCraft Studio email',
+  subject: '📧 Verify your StackifyX email',
   html: base(`
     <span class="badge bi">📧 Verify Email</span>
     <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>

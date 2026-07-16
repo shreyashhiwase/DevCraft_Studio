@@ -83,7 +83,7 @@ app.use('/',     require('./routes/reviews'));
 app.get('/', (req, res) => {
   if (req.session.userId)
     return res.redirect(req.session.userRole === 'admin' ? '/admin/dashboard' : '/dashboard');
-  res.render('landing', { title: 'DevCraft Studio - Professional Project Services' });
+  res.render('landing', { title: 'StackifyX - Professional Project Services' });
 });
 
 // 404
@@ -126,7 +126,7 @@ server.listen(PORT, async () => {
   await seedAdmin();
   const { verifyEmailConfig } = require('./utils/email');
   await verifyEmailConfig();
-  console.log(`\n🚀 DevCraft Studio → http://localhost:${PORT}`);
+  console.log(`\n🚀 StackifyX → http://localhost:${PORT}`);
   console.log(`   Environment : ${process.env.NODE_ENV || 'development'}`);
   console.log(`   Trust proxy : ${isProduction ? 'ON (Render mode)' : 'OFF (local mode)'}\n`);
 });
