@@ -147,6 +147,20 @@ p { color: var(--text-secondary); }
   flex-shrink: 0;
 }
 
+/* Real logo image */
+.brand-logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease !important;
+  /* White background so logo shows on dark navbar */
+  background: #fff;
+  padding: 2px;
+}
+.nav-brand:hover .brand-logo-img { transform: scale(1.08) rotate(-4deg); }
+
 .brand-icon { font-size: 1.4rem; }
 .brand-accent { color: var(--accent-blue); }
 
@@ -1331,3 +1345,18 @@ html.light .landing-hero::before {
 .theme-toggle .t-light { display: none;  }
 html.light .theme-toggle .t-dark  { display: none;  }
 html.light .theme-toggle .t-light { display: block; }
+
+/* ── Auth page logo image ─────────────────────────────────── */
+.auth-logo-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #fff;
+  padding: 4px;
+  margin: 0 auto 20px;
+  display: block;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.25);
+  transition: transform 0.2s ease !important;
+}
+.auth-logo-img:hover { transform: scale(1.05); }
