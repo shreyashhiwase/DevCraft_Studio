@@ -64,7 +64,7 @@ app.use(attachUser);
 app.use((req, res, next) => {
   res.locals.successMsg = req.flash('success');
   res.locals.errorMsg   = req.flash('error');
-  res.locals.appName    = 'DevCraft Studio';
+  res.locals.appName    = 'StackifyX';
   next();
 });
 

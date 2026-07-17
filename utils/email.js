@@ -19,7 +19,7 @@
 //   4. Settings → SMTP & API → API Keys → Generate an API key
 //   5. Add to Render dashboard → Environment:
 //        BREVO_API_KEY     = xkeysib-xxxxxxxxxxxxxxxx
-//        BREVO_SENDER_NAME = DevCraft Studio
+//        BREVO_SENDER_NAME = StackifyX
 //        BREVO_SENDER_EMAIL= your_gmail@gmail.com   ← must be verified in Brevo
 
 const nodemailer = require('nodemailer');

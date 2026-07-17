@@ -1,4 +1,4 @@
-# ⚡ DevCraft Studio — Project Service Platform
+# ⚡ StackifyX — Project Service Platform
 
 A complete production-ready personal project service platform built with **Node.js, Express, MongoDB, and EJS**. Clients submit project requests, you manage and deliver them — all in one place.
 
