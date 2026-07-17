@@ -204,7 +204,11 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#07070f;color:#e2e8f0}
 .ftr strong{color:#63b3ed}
 </style></head>
 <body><div class="wrap">
-<div class="hdr"><h1>⚡ StackifyX</h1><p>Your Personal Project Service Platform</p></div>
+<div class="hdr">
+<img src="https://devcraft-studio.onrender.com/stackifyx-logo.jpg" alt="StackifyX" style="width:52px;height:52px;border-radius:12px;background:#fff;padding:3px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
+<h1>StackifyX</h1>
+<p>Your Personal Project Service Platform</p>
+</div>
 <div class="bdy">${content}</div>
 <div class="ftr">
   <p>© ${new Date().getFullYear()} <strong>StackifyX</strong>. All rights reserved.</p>
