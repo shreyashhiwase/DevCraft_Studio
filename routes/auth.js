@@ -67,5 +67,58 @@ router.get('/google/callback',
   }
 );
 
+// ── Google OAuth ──────────────────────────────────────────────────────────
+// Step 1 — redirect user to Google consent screen
+router.get('/google',
+  ensureGuest,
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    prompt: 'select_account',   // always show account picker
+  })
+);
+
+// Step 2 — Google redirects back here after user consents
+router.get('/google/callback',
+  // Use custom callback so WE handle errors — not passport's default 500 crash
+  (req, res, next) => {
+    passport.authenticate('google', (err, user, info) => {
+      // ── Hard error (DB crash, network issue, etc.) ──────────────────
+      if (err) {
+        console.error('Google OAuth callback error:', err.message);
+        req.flash('error', 'Google sign-in failed due to a server error. Please try again.');
+        return res.redirect('/auth/login');
+      }
+
+      // ── Soft failure (no email, cancelled, etc.) ────────────────────
+      if (!user) {
+        const msg = info?.message || 'Google sign-in was cancelled or failed.';
+        console.warn('Google OAuth: no user returned —', msg);
+        req.flash('error', msg);
+        return res.redirect('/auth/login');
+      }
+
+      // ── Block inactive accounts ─────────────────────────────────────
+      if (!user.isActive) {
+        req.flash('error', 'Your account has been deactivated. Contact support.');
+        return res.redirect('/auth/login');
+      }
+
+      // ── Set our own session variables (same format as local login) ──
+      req.session.userId   = user._id;
+      req.session.userRole = user.role;
+
+      // Also log in via passport (populates req.user for passport middleware)
+      req.logIn(user, (loginErr) => {
+        if (loginErr) {
+          console.error('req.logIn error:', loginErr.message);
+          // Session is already set above — safe to continue
+        }
+        req.flash('success', `Welcome${user.authProvider === 'google' ? ' via Google' : ''}, ${user.name}! 🎉`);
+        return res.redirect(user.role === 'admin' ? '/admin/dashboard' : '/dashboard');
+      });
+
+    })(req, res, next);
+  }
+);
 
 module.exports = router;

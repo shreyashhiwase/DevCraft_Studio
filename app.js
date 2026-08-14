@@ -59,12 +59,14 @@ const sessionMiddleware = session({
 
 app.use(sessionMiddleware);
 
+// ─── FLASH (must come before passport so flash works in OAuth callback) ──────
+app.use(flash());
+
 // ─── PASSPORT ─────────────────────────────────────────────────────────────────
 app.use(passport.initialize());
 app.use(passport.session());
 
 // ─── FLASH + LOCALS ───────────────────────────────────────────────────────
-app.use(flash());
 app.use(attachUser);
 app.use((req, res, next) => {
   res.locals.successMsg = req.flash('success');
