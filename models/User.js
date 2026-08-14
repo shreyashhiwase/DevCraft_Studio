@@ -12,6 +12,11 @@ const UserSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true },
   lastLogin:{ type: Date },
 
+  // ── Google OAuth ─────────────────────────────────────────────
+  googleId:    { type: String, unique: true, sparse: true }, // sparse = nulls not indexed
+  googleAvatar:{ type: String },                             // profile picture URL from Google
+  authProvider:{ type: String, enum: ['local','google'], default: 'local' },
+
   // ── Email verification ───────────────────────────────
   isVerified:          { type: Boolean, default: false },
   emailVerifyToken:    { type: String, select: false },

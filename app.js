@@ -10,6 +10,7 @@ const flash        = require('connect-flash');
 const methodOverride = require('method-override');
 
 const connectDB    = require('./config/db');
+const passport     = require('./config/passport');
 const { attachUser } = require('./middleware/auth');
 const setupSocket  = require('./socket');
 
@@ -58,6 +59,10 @@ const sessionMiddleware = session({
 
 app.use(sessionMiddleware);
 
+// ─── PASSPORT ─────────────────────────────────────────────────────────────────
+app.use(passport.initialize());
+app.use(passport.session());
+
 // ─── FLASH + LOCALS ───────────────────────────────────────────────────────
 app.use(flash());
 app.use(attachUser);
@@ -65,6 +70,8 @@ app.use((req, res, next) => {
   res.locals.successMsg = req.flash('success');
   res.locals.errorMsg   = req.flash('error');
   res.locals.appName    = 'StackifyX';
+  res.locals.linkedinURL    = process.env.LINKEDIN_URL    || '';
+  res.locals.googleEnabled  = !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
   next();
 });
 
