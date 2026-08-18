@@ -92,7 +92,11 @@ app.use('/',     require('./routes/reviews'));
 app.get('/', (req, res) => {
   if (req.session.userId)
     return res.redirect(req.session.userRole === 'admin' ? '/admin/dashboard' : '/dashboard');
-  res.render('landing', { title: 'StackifyX - Professional Project Services' });
+  // isLanding tells the navbar to show section anchor links (Services, Process, etc.)
+  res.render('landing', { 
+    title: 'StackifyX — We Build Digital Products That Move Businesses Forward',
+    isLanding: true,
+   });
 });
 
 // 404
