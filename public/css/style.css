@@ -140,11 +140,12 @@ p { color: var(--text-secondary); }
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-primary);
   text-decoration: none;
   flex-shrink: 0;
+  letter-spacing: -0.03em;
 }
 
 /* Real logo image */
@@ -163,6 +164,30 @@ p { color: var(--text-secondary); }
 
 .brand-icon { font-size: 1.4rem; }
 .brand-accent { color: var(--accent-blue); }
+
+/* LinkedIn + other nav icon buttons */
+.nav-icon-btn {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s !important;
+}
+.nav-icon-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-blue);
+  background: var(--bg-elevated);
+  transform: translateY(-1px);
+}
+.linkedin-btn:hover {
+  color: #0a66c2;
+  border-color: #0a66c2;
+  background: rgba(10,102,194,0.1);
+}
 
 .nav-links {
   display: flex;

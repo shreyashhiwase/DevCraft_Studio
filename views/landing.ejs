@@ -6,474 +6,438 @@
   <link rel="icon" type="image/jpeg" href="/stackifyx-logo.jpg">
   <script>if(localStorage.getItem('devcraft-theme')==='light')document.documentElement.classList.add('light');</script>
   <title>StackifyX — We Build Digital Products That Move Businesses Forward</title>
-  <meta name="description" content="From websites and web applications to custom software and mobile apps, StackifyX turns your ideas into reliable, scalable digital products.">
-  <!-- Preload Syne font so hero title renders correctly on first paint -->
+  <meta name="description" content="From websites and web apps to custom software and mobile apps, StackifyX turns your ideas into reliable, scalable digital products.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <style>
-    /* ═══════════════════════════════════════════════
-       LANDING PAGE STYLES
-    ═══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   LANDING PAGE — Full redesign matching StackifyX screenshot
+══════════════════════════════════════════════════════════════ */
 
-    /* Sections */
-    .lp-section { padding: 96px 0; }
-    .lp-section-sm { padding: 64px 0; }
+/* CSS Variables override for landing — light-first design */
+.lp { --lp-text: var(--text-primary); --lp-muted: var(--text-muted); }
 
-    /* Section label */
-    .lp-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 16px; border-radius: 100px;
-      background: rgba(99,179,237,0.08);
-      border: 1px solid rgba(99,179,237,0.2);
-      font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--accent-blue); margin-bottom: 20px;
-    }
-    html.light .lp-label {
-      background: rgba(37,99,235,0.07);
-      border-color: rgba(37,99,235,0.2);
-    }
+/* Smooth section scroll */
+html { scroll-behavior: smooth; }
 
-    /* ── HERO ───────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      padding: calc(var(--nav-height) + 80px) 0 80px;
-      display: flex; align-items: center;
-      position: relative; overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute; pointer-events: none; z-index: 0;
-    }
-    .hero-glow-1 {
-      top: 10%; left: -5%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(99,179,237,0.07) 0%, transparent 70%);
-    }
-    .hero-glow-2 {
-      bottom: 5%; right: -5%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
-    }
-    .hero-inner {
-      position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
-    }
-    .hero-title {
-      font-family: 'Syne', var(--font-display), sans-serif; /* explicit — prevents fallback font */
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-    }
-    .hero-title .grad {
-      font-family: inherit;
-      font-weight: 800;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      /* Fallback for browsers that don't support bg-clip */
-      color: var(--accent-blue);
-    }
-    .hero-desc {
-      font-size: 1.05rem; color: var(--text-muted);
-      line-height: 1.75; margin-bottom: 36px;
-      max-width: 480px;
-    }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
-    .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .hero-tag {
-      padding: 5px 14px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 0.78rem; font-weight: 600;
-      color: var(--text-muted);
-    }
+/* ── Utilities ──────────────────────────────────────────────── */
+.lp-container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+.lp-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 100px;
+  background: rgba(99,179,237,0.1); border: 1px solid rgba(99,179,237,0.25);
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 16px;
+}
+.lp-section { padding: 88px 0; }
+.lp-section-alt {
+  padding: 88px 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.section-center { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+.section-center h2 { font-family:'Syne',sans-serif; font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:12px; }
+.section-center p  { font-size:1rem; color:var(--text-muted); line-height:1.75; }
 
-    /* Dashboard mockup */
-    .hero-mockup {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: visible; /* was 'hidden' — was clipping the revenue chart */
-      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-      animation: floatY 4s ease-in-out infinite;
-    }
-    /* Inner body can scroll on small screens but never clips */
-    .mockup-body {
-      padding: 20px;
-      overflow: visible;
-    }
-    html.light .hero-mockup { box-shadow: 0 32px 80px rgba(0,0,0,0.12); }
-    @keyframes floatY {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-10px); }
-    }
-    .mockup-bar {
-      padding: 12px 16px;
-      background: var(--bg-elevated);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .mockup-title {
-      font-size: 0.8rem; font-weight: 600;
-      color: var(--text-muted); margin-left: 4px;
-    }
-    /* mockup-body defined above */
-    .mockup-stat-row {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 10px; margin-bottom: 18px;
-    }
-    .mockup-stat {
-      background: var(--bg-elevated);
-      border-radius: 10px; padding: 12px;
-      border: 1px solid var(--border);
-    }
-    .mockup-stat-val {
-      font-family: var(--font-display);
-      font-size: 1.3rem; font-weight: 800;
-      color: var(--text-primary); line-height: 1;
-    }
-    .mockup-stat-lbl { font-size: 0.68rem; color: var(--text-muted); margin-top: 3px; }
-    .mockup-project {
-      background: var(--bg-elevated);
-      border-radius: 10px; padding: 12px 14px;
-      border: 1px solid var(--border);
-      margin-bottom: 8px;
-    }
-    .mockup-proj-top {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 8px;
-    }
-    .mockup-proj-name {
-      font-size: 0.82rem; font-weight: 600; color: var(--text-primary);
-    }
-    .mockup-prog-bar {
-      height: 5px; background: var(--bg-card);
-      border-radius: 3px; overflow: hidden; margin-bottom: 5px;
-    }
-    .mockup-prog-fill {
-      height: 100%; border-radius: 3px;
-      background: var(--gradient-primary);
-    }
-    .mockup-prog-lbl {
-      display: flex; justify-content: space-between;
-      font-size: 0.65rem; color: var(--text-muted);
-    }
+/* ── HERO ───────────────────────────────────────────────────── */
+.hero {
+  padding: calc(var(--nav-height) + 72px) 0 72px;
+  min-height: 100vh; display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+.hero-bg-glow {
+  position: absolute; pointer-events: none; z-index: 0;
+  border-radius: 50%;
+}
+.hero-glow-1 { top:-10%;left:-5%; width:600px;height:600px;
+  background:radial-gradient(circle,rgba(99,179,237,0.07) 0%,transparent 70%); }
+.hero-glow-2 { bottom:0;right:-5%; width:500px;height:500px;
+  background:radial-gradient(circle,rgba(167,139,250,0.06) 0%,transparent 70%); }
 
-    /* ── CREDIBILITY STRIP ──────────────────────── */
-    .cred-strip {
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg-secondary);
-    }
-    html.light .cred-strip { background: #eceef5; }
-    .cred-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    .cred-item {
-      display: flex; align-items: flex-start; gap: 12px;
-    }
-    .cred-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      background: rgba(99,179,237,0.1);
-      border: 1px solid rgba(99,179,237,0.2);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent-blue);
-    }
-    .cred-title {
-      font-size: 0.88rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 2px;
-    }
-    .cred-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+.hero-grid {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: 56px; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px; border-radius: 100px;
+  background: rgba(99,179,237,0.09); border: 1px solid rgba(99,179,237,0.22);
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+  font-weight: 800; line-height: 1.08;
+  letter-spacing: -0.03em; color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.hero-title .grad {
+  font-family: inherit; font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; max-width: 440px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 100px;
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+}
+.hero-tag::before { content:''; width:7px;height:7px;border-radius:50%;background:var(--accent-blue); }
 
-    /* ── STATS BAR ──────────────────────────────── */
-    .stats-bar {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg); overflow: hidden;
-    }
-    .stats-bar-item {
-      background: var(--bg-card);
-      padding: 32px 24px; text-align: center;
-    }
-    .stats-bar-num {
-      font-family: var(--font-display);
-      font-size: 2.4rem; font-weight: 800;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; line-height: 1; margin-bottom: 6px;
-    }
-    .stats-bar-lbl { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+/* Dashboard mockup */
+.mockup-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 32px 72px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
+  animation: floatY 5s ease-in-out infinite;
+}
+html.light .mockup-wrap { box-shadow: 0 24px 64px rgba(37,99,235,0.1), 0 1px 4px rgba(0,0,0,0.08); }
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-    /* ── SERVICES ───────────────────────────────── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      cursor: default;
-    }
-    .service-card:hover {
-      border-color: var(--border-accent);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    .svc-icon {
-      width: 48px; height: 48px;
-      background: rgba(99,179,237,0.1);
-      border: 1px solid rgba(99,179,237,0.2);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent-blue);
-      margin-bottom: 18px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .service-card:hover .svc-icon {
-      background: rgba(99,179,237,0.18);
-      border-color: rgba(99,179,237,0.4);
-    }
-    .svc-title {
-      font-family: var(--font-display);
-      font-size: 1rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 8px;
-    }
-    .svc-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+.mockup-topbar {
+  background: var(--bg-elevated); border-bottom: 1px solid var(--border);
+  padding: 10px 16px; display: flex; align-items: center; justify-content: space-between;
+}
+.mockup-dots { display:flex; gap:6px; }
+.mockup-dot { width:9px;height:9px;border-radius:50%; }
+.mockup-user {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.75rem; font-weight: 600; color: var(--text-primary);
+}
+.mockup-avatar-sm {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--gradient-primary);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.6rem;font-weight:800;color:#fff;
+}
+.mockup-body { padding: 16px; }
+.mockup-greeting { font-size:0.72rem;color:var(--text-muted);margin-bottom:2px; }
+.mockup-title-sm { font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:var(--text-primary);margin-bottom:14px; }
 
-    /* ── PROCESS ────────────────────────────────── */
-    .process-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
-      position: relative;
-    }
-    .process-grid::before {
-      content: '';
-      position: absolute; top: 28px; left: 10%; right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
-    }
-    .process-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      text-align: center;
-      position: relative; z-index: 1;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .process-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
-    .process-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--gradient-primary);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-mono); font-size: 1rem; font-weight: 700;
-      color: #fff; margin: 0 auto 18px;
-      box-shadow: 0 8px 24px rgba(99,179,237,0.3);
-    }
-    .process-title {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 8px;
-    }
-    .process-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+.mockup-stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px; }
+.mockup-stat-card {
+  background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:10px;
+}
+.mockup-stat-num { font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);line-height:1; }
+.mockup-stat-lbl { font-size:0.6rem;color:var(--text-muted);margin-top:3px;font-weight:500; }
+.mockup-stat-trend { font-size:0.58rem;color:var(--accent-green);font-weight:600;margin-top:2px; }
 
-    /* ── WHY US ─────────────────────────────────── */
-    .why-grid {
-      display: grid; grid-template-columns: repeat(2,1fr); gap: 20px;
-    }
-    .why-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      display: flex; gap: 20px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .why-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
-    .why-num {
-      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;
-      color: var(--accent-blue); opacity: 0.7;
-      min-width: 28px; padding-top: 2px;
-    }
-    .why-title {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 8px;
-    }
-    .why-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+.mockup-two-col { display:grid;grid-template-columns:1.3fr 1fr;gap:10px; }
+.mockup-panel {
+  background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:12px;
+}
+.mockup-panel-title { font-size:0.7rem;font-weight:700;color:var(--text-primary);margin-bottom:10px; }
+.mockup-proj-item { margin-bottom:8px; }
+.mockup-proj-name { font-size:0.68rem;font-weight:600;color:var(--text-primary);margin-bottom:4px; }
+.mockup-proj-bar { height:4px;background:var(--bg-card);border-radius:2px;overflow:hidden;margin-bottom:2px; }
+.mockup-proj-fill { height:100%;border-radius:2px;background:var(--gradient-primary); }
+.mockup-proj-meta { display:flex;justify-content:space-between;font-size:0.58rem;color:var(--text-muted); }
+.mockup-activity-item {
+  display:flex;align-items:flex-start;gap:6px;padding:4px 0;
+  border-bottom:1px solid var(--border);
+}
+.mockup-activity-item:last-child{border-bottom:none;}
+.mockup-act-dot { width:6px;height:6px;border-radius:50%;background:var(--accent-blue);margin-top:3px;flex-shrink:0; }
+.mockup-act-text { font-size:0.62rem;color:var(--text-secondary);line-height:1.4; }
+.mockup-act-time { font-size:0.58rem;color:var(--text-muted);margin-top:1px; }
 
-    /* ── INDUSTRIES ─────────────────────────────── */
-    .industries-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 14px;
-    }
-    .industry-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px 18px;
-      display: flex; align-items: center; gap: 12px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .industry-card:hover {
-      border-color: var(--border-accent);
-      background: var(--bg-card-hover);
-    }
-    .industry-icon {
-      width: 36px; height: 36px; flex-shrink: 0;
-      background: var(--bg-elevated);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent-blue);
-    }
-    .industry-name {
-      font-size: 0.88rem; font-weight: 600; color: var(--text-primary);
-    }
+/* ── CRED STRIP ─────────────────────────────────────────────── */
+.cred-strip { padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-secondary); }
+.cred-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:20px; }
+.cred-item { display:flex;align-items:center;gap:12px; }
+.cred-icon-wrap {
+  width:38px;height:38px;flex-shrink:0;
+  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
+}
+.cred-title { font-size:0.85rem;font-weight:700;color:var(--text-primary);margin-bottom:2px; }
+.cred-desc  { font-size:0.74rem;color:var(--text-muted);line-height:1.35; }
 
-    /* ── CTA ────────────────────────────────────── */
-    .cta-box {
-      position: relative; overflow: hidden;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 80px 64px;
-      text-align: center;
-    }
-    .cta-glow-1 {
-      position: absolute; top: -60px; left: -60px;
-      width: 300px; height: 300px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(99,179,237,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-glow-2 {
-      position: absolute; bottom: -60px; right: -60px;
-      width: 300px; height: 300px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      margin-bottom: 16px; position: relative; z-index: 1;
-    }
-    .cta-desc {
-      font-size: 1.05rem; color: var(--text-muted);
-      max-width: 520px; margin: 0 auto 36px;
-      line-height: 1.75; position: relative; z-index: 1;
-    }
-    .cta-btns {
-      display: flex; gap: 14px; justify-content: center;
-      flex-wrap: wrap; position: relative; z-index: 1;
-    }
+/* ── SERVICES ───────────────────────────────────────────────── */
+.svc-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:28px; }
+.svc-card {
+  padding:0;display:flex;align-items:flex-start;gap:16px;
+}
+.svc-icon-wrap {
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-blue);transition:background 0.2s,border-color 0.2s;
+}
+.svc-card:hover .svc-icon-wrap { background:rgba(99,179,237,0.16);border-color:rgba(99,179,237,0.4); }
+.svc-title { font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:6px; }
+.svc-desc  { font-size:0.83rem;color:var(--text-muted);line-height:1.65; }
 
-    /* ── FOOTER ─────────────────────────────────── */
-    .lp-footer {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      padding: 64px 0 32px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 48px;
-    }
-    .footer-brand-desc {
-      font-size: 0.88rem; color: var(--text-muted);
-      line-height: 1.7; margin: 14px 0 20px;
-      max-width: 260px;
-    }
-    .footer-col-title {
-      font-size: 0.72rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--text-muted); margin-bottom: 16px;
-    }
-    .footer-link {
-      display: block; font-size: 0.88rem;
-      color: var(--text-secondary); text-decoration: none;
-      padding: 4px 0; transition: color 0.15s;
-    }
-    .footer-link:hover { color: var(--accent-blue); }
-    .footer-bottom {
-      padding-top: 24px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-bottom p { font-size: 0.82rem; color: var(--text-muted); }
+/* ── PORTFOLIO ──────────────────────────────────────────────── */
+.portfolio-header { display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:8px; }
+.portfolio-sub { font-size:0.88rem;color:var(--text-muted);margin-bottom:40px; }
+.portfolio-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+.portfolio-card {
+  background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;cursor:pointer;
+}
+.portfolio-card:hover { transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--border-accent); }
+.portfolio-img {
+  width:100%;height:180px;object-fit:cover;background:var(--bg-elevated);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  position:relative;
+}
+.portfolio-img-placeholder {
+  width:100%;height:180px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.portfolio-body { padding:20px; }
+.portfolio-name { font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px; }
+.portfolio-desc { font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;line-height:1.55; }
+.portfolio-tags { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px; }
+.portfolio-tag {
+  padding:3px 10px;border-radius:100px;background:var(--bg-elevated);
+  border:1px solid var(--border);font-size:0.72rem;color:var(--text-muted);
+  font-family:var(--font-mono);font-weight:500;
+}
+.portfolio-link { font-size:0.82rem;font-weight:700;color:var(--accent-blue);text-decoration:none;transition:color 0.15s; }
+.portfolio-link:hover { color:var(--accent-purple); }
 
-    /* ── RESPONSIVE ──────────────────────────────── */
-    @media (max-width: 1024px) {
-      .hero-inner    { grid-template-columns: 1fr; gap: 48px; }
-      .hero-mockup   { max-width: 560px; margin: 0 auto; animation: none; }
-      .services-grid { grid-template-columns: repeat(2,1fr); }
-      .process-grid  { grid-template-columns: repeat(2,1fr); }
-      .process-grid::before { display: none; }
-      .why-grid      { grid-template-columns: 1fr; }
-      .industries-grid { grid-template-columns: repeat(2,1fr); }
-      .footer-grid   { grid-template-columns: 1fr 1fr; }
-      .cred-grid     { grid-template-columns: repeat(2,1fr); }
-      .stats-bar     { grid-template-columns: repeat(2,1fr); }
-      .cta-box       { padding: 56px 32px; }
-    }
-    @media (max-width: 640px) {
-      .lp-section    { padding: 64px 0; }
-      .services-grid { grid-template-columns: 1fr; }
-      .process-grid  { grid-template-columns: 1fr; }
-      .industries-grid { grid-template-columns: repeat(2,1fr); }
-      .footer-grid   { grid-template-columns: 1fr; gap: 32px; }
-      .stats-bar     { grid-template-columns: repeat(2,1fr); }
-      .cta-box       { padding: 48px 24px; }
-      .cta-btns      { flex-direction: column; align-items: center; }
-    }
-  </style>
+/* ── PROCESS ────────────────────────────────────────────────── */
+.process-flow {
+  display:grid;grid-template-columns:repeat(4,1fr);
+  align-items:start;gap:0;position:relative;
+}
+.process-step { text-align:center;padding:0 16px;position:relative; }
+.process-step:not(:last-child)::after {
+  content:'→';
+  position:absolute;right:-14px;top:18px;
+  font-size:1rem;color:var(--border-accent);line-height:1;
+}
+.process-icon-wrap {
+  width:44px;height:44px;margin:0 auto 14px;
+  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-blue);
+}
+.process-num-lbl { font-family:var(--font-mono);font-size:0.65rem;font-weight:700;color:var(--accent-blue);opacity:0.7;margin-bottom:4px; }
+.process-title { font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--text-primary);margin-bottom:6px; }
+.process-desc  { font-size:0.8rem;color:var(--text-muted);line-height:1.6; }
+
+/* ── WHY US ─────────────────────────────────────────────────── */
+.why-layout { display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:start; }
+.why-left-title { font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:16px; }
+.why-left-title span { color:var(--accent-blue); }
+.why-left-desc { font-size:0.9rem;color:var(--text-muted);line-height:1.75;margin-bottom:28px; }
+.why-features { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px; }
+.why-feat {
+  background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
+  padding:18px 14px;text-align:center;transition:border-color 0.2s,transform 0.2s;
+}
+.why-feat:hover { border-color:var(--border-accent);transform:translateY(-2px); }
+.why-feat-icon {
+  width:40px;height:40px;margin:0 auto 10px;
+  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-blue);
+}
+.why-feat-title { font-size:0.78rem;font-weight:700;color:var(--text-primary);margin-bottom:4px; }
+.why-feat-desc  { font-size:0.72rem;color:var(--text-muted);line-height:1.5; }
+
+/* Stats row under why-features */
+.stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:20px; }
+.stats-item { text-align:center; }
+.stats-num {
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  background:var(--gradient-primary);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px;
+}
+.stats-lbl { font-size:0.8rem;color:var(--text-muted);font-weight:500; }
+
+/* ── TESTIMONIALS ───────────────────────────────────────────── */
+.testi-wrap {
+  position:relative;overflow:hidden;
+}
+.testi-track { display:flex;transition:transform 0.5s ease; }
+.testi-slide {
+  min-width:100%;
+  display:flex;align-items:center;gap:48px;
+  padding:0 60px;
+}
+.testi-quote-icon {
+  font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;
+  color:var(--accent-blue);opacity:0.3;line-height:0.7;
+  flex-shrink:0;align-self:flex-start;
+}
+.testi-left { flex-shrink:0; }
+.testi-left-title { font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;line-height:1.15;margin-bottom:0; }
+.testi-content { flex:1; }
+.testi-text { font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:20px; }
+.testi-author { display:flex;align-items:center;gap:12px; }
+.testi-avatar {
+  width:44px;height:44px;border-radius:50%;background:var(--gradient-primary);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0;
+}
+.testi-name { font-weight:700;font-size:0.9rem;color:var(--text-primary); }
+.testi-role { font-size:0.78rem;color:var(--text-muted); }
+.testi-stars { display:flex;gap:2px;margin-top:4px; }
+.testi-star { font-size:0.9rem;color:var(--accent-orange); }
+.testi-nav {
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:36px;height:36px;border-radius:50%;
+  background:var(--bg-elevated);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--text-secondary);font-size:1rem;
+  transition:background 0.2s,border-color 0.2s;z-index:10;
+}
+.testi-nav:hover { background:var(--accent-blue);border-color:var(--accent-blue);color:#fff; }
+.testi-prev { left:8px; }
+.testi-next { right:8px; }
+.testi-outer {
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:20px;padding:48px 0;position:relative;overflow:hidden;
+}
+.testi-dots { display:flex;justify-content:center;gap:8px;margin-top:24px; }
+.testi-dot {
+  width:8px;height:8px;border-radius:50%;
+  background:var(--border);cursor:pointer;transition:background 0.2s;
+}
+.testi-dot.active { background:var(--accent-blue); }
+
+/* ── CTA ────────────────────────────────────────────────────── */
+.cta-section {
+  padding:80px 0;
+  background:linear-gradient(135deg,#1a3a6b 0%,#2563eb 40%,#7c3aed 100%);
+  position:relative;overflow:hidden;
+}
+html.light .cta-section {
+  background:linear-gradient(135deg,#1e40af 0%,#2563eb 45%,#7c3aed 100%);
+}
+.cta-glow {
+  position:absolute;pointer-events:none;border-radius:50%;
+  background:rgba(255,255,255,0.05);
+}
+.cta-glow-1 { width:400px;height:400px;top:-150px;left:-100px; }
+.cta-glow-2 { width:300px;height:300px;bottom:-100px;right:-50px; }
+.cta-inner {
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:40px;flex-wrap:wrap;
+}
+.cta-left { flex:1;min-width:300px; }
+.cta-title { font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-0.02em; }
+.cta-desc  { font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.7; }
+.cta-right { display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0; }
+.btn-cta-primary {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;background:#fff;border-radius:var(--radius-sm);
+  color:#1e40af;font-weight:700;font-size:0.95rem;text-decoration:none;
+  transition:transform 0.15s,box-shadow 0.15s;white-space:nowrap;
+}
+.btn-cta-primary:hover { transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.2);color:#1e40af; }
+.btn-cta-secondary {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);
+  border-radius:var(--radius-sm);color:#fff;font-weight:600;font-size:0.95rem;
+  text-decoration:none;transition:background 0.15s;white-space:nowrap;
+}
+.btn-cta-secondary:hover { background:rgba(255,255,255,0.2);color:#fff; }
+.cta-rocket { font-size:2.5rem;display:inline-block;animation:rocketFloat 2s ease-in-out infinite; }
+@keyframes rocketFloat { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-6px) rotate(5deg)} }
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.lp-footer {
+  background:#0d1117;
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:64px 0 32px;
+}
+html.light .lp-footer { background:#111827; }
+.footer-grid { display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px; }
+.footer-brand-name { font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:10px; }
+.footer-brand-desc { font-size:0.83rem;color:#64748b;line-height:1.7;margin-bottom:20px;max-width:220px; }
+.footer-socials { display:flex;gap:8px; }
+.footer-social {
+  width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;
+  color:#64748b;text-decoration:none;transition:background 0.15s,color 0.15s,border-color 0.15s;
+}
+.footer-social:hover { background:rgba(99,179,237,0.15);border-color:rgba(99,179,237,0.3);color:#63b3ed; }
+.footer-col-title { font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:16px; }
+.footer-link {
+  display:block;font-size:0.85rem;color:#64748b;text-decoration:none;
+  padding:4px 0;transition:color 0.15s;
+}
+.footer-link:hover { color:#e2e8f0; }
+.footer-bottom {
+  padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+}
+.footer-bottom p { font-size:0.8rem;color:#475569; }
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-grid       { grid-template-columns:1fr;gap:48px; }
+  .mockup-wrap     { max-width:540px;margin:0 auto;animation:none; }
+  .svc-grid        { grid-template-columns:repeat(2,1fr); }
+  .portfolio-grid  { grid-template-columns:repeat(2,1fr); }
+  .why-layout      { grid-template-columns:1fr; }
+  .why-features    { grid-template-columns:repeat(3,1fr); }
+  .footer-grid     { grid-template-columns:repeat(2,1fr); }
+  .cred-grid       { grid-template-columns:repeat(2,1fr); }
+  .process-flow    { grid-template-columns:repeat(2,1fr);gap:24px; }
+  .process-step::after { display:none; }
+  .cta-inner       { flex-direction:column;text-align:center; }
+  .cta-right       { align-items:center; }
+}
+@media(max-width:640px){
+  .lp-section { padding:64px 0; }
+  .svc-grid   { grid-template-columns:1fr; }
+  .portfolio-grid { grid-template-columns:1fr; }
+  .why-features   { grid-template-columns:repeat(2,1fr); }
+  .stats-row      { grid-template-columns:repeat(2,1fr); }
+  .footer-grid    { grid-template-columns:1fr 1fr; }
+  .testi-slide    { flex-direction:column;padding:0 24px;gap:20px; }
+  .mockup-two-col { grid-template-columns:1fr; }
+  .mockup-stats-row { grid-template-columns:repeat(2,1fr); }
+}
+</style>
 </head>
-<body>
+<body class="lp">
 <%- include('partials/navbar') %>
 
-<!-- ═══════════════════════ HERO ═══════════════════════════════ -->
+<!-- ══════════════════════ HERO ══════════════════════════════ -->
 <section class="hero">
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
-  <div class="container">
-    <div class="hero-inner">
+  <div class="hero-bg-glow hero-glow-1"></div>
+  <div class="hero-bg-glow hero-glow-2"></div>
+  <div class="lp-container">
+    <div class="hero-grid">
 
-      <!-- Left: copy -->
+      <!-- Left copy -->
       <div>
-        <div class="lp-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Digital Product Studio
+        <div class="hero-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Professional Project Services
         </div>
-
         <h1 class="hero-title">
           We Build Digital Products<br>
-          That <span class="grad">Move Businesses</span><br>
-          Forward.
+          That Move<br>
+          <span class="grad">Businesses Forward.</span>
         </h1>
-
         <p class="hero-desc">
           From websites and web applications to custom software and mobile apps,
           StackifyX turns your ideas into reliable, scalable digital products.
         </p>
-
         <div class="hero-btns">
           <a href="/auth/register" class="btn btn-primary btn-lg">Start a Project →</a>
-          <a href="#services" class="btn btn-secondary btn-lg">View Our Work</a>
+          <a href="#portfolio"     class="btn btn-secondary btn-lg">View Our Work</a>
         </div>
-
         <div class="hero-tags">
           <span class="hero-tag">Web Development</span>
           <span class="hero-tag">Mobile Apps</span>
@@ -484,57 +448,101 @@
 
       <!-- Right: dashboard mockup -->
       <div>
-        <div class="hero-mockup">
-          <div class="mockup-bar">
-            <div class="mockup-dot" style="background:#ff5f57;"></div>
-            <div class="mockup-dot" style="background:#febc2e;"></div>
-            <div class="mockup-dot" style="background:#28c840;"></div>
-            <span class="mockup-title">StackifyX — Project Dashboard</span>
+        <div class="mockup-wrap">
+          <!-- Top bar -->
+          <div class="mockup-topbar">
+            <div class="mockup-dots">
+              <div class="mockup-dot" style="background:#ff5f57;"></div>
+              <div class="mockup-dot" style="background:#febc2e;"></div>
+              <div class="mockup-dot" style="background:#28c840;"></div>
+            </div>
+            <div class="mockup-user">
+              <div class="mockup-avatar-sm">S</div>
+              StackifyX Team
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <span style="font-size:0.65rem;color:var(--accent-blue);font-weight:600;">Dashboard ↗</span>
           </div>
+
           <div class="mockup-body">
-            <!-- Stats row -->
-            <div class="mockup-stat-row">
-              <div class="mockup-stat">
-                <div class="mockup-stat-val" style="color:var(--accent-blue);">12</div>
-                <div class="mockup-stat-lbl">Active Projects</div>
+            <div class="mockup-greeting">Wellcome back,</div>
+            <div class="mockup-title-sm">StackifyX Team 👋</div>
+
+            <!-- Stats -->
+            <div class="mockup-stats-row">
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-num">24</div>
+                <div class="mockup-stat-lbl">Total Projects</div>
+                <div class="mockup-stat-trend">↑ 4.05%</div>
               </div>
-              
-              <div class="mockup-stat">
-                <div class="mockup-stat-val" style="color:var(--accent-green);">8</div>
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-num" style="color:var(--accent-blue);">8</div>
+                <div class="mockup-stat-lbl">In Progress</div>
+                <div class="mockup-stat-trend">↑ 1.9%</div>
+              </div>
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-num" style="color:var(--accent-green);">16</div>
                 <div class="mockup-stat-lbl">Completed</div>
-              </div> 
-            </div>
-
-            <!-- Project cards -->
-            <div class="mockup-project">
-              <div class="mockup-proj-top">
-                <span class="mockup-proj-name">E-Commerce Platform</span>
-                <span class="badge badge-in-progress" style="font-size:0.6rem;padding:2px 8px;">In Progress</span>
+                <div class="mockup-stat-trend">↑ 144%</div>
               </div>
-              <div class="mockup-prog-bar"><div class="mockup-prog-fill" style="width:75%;"></div></div>
-              <div class="mockup-prog-lbl"><span>75% complete</span><span>Due 30 Jun</span></div>
-            </div>
-
-            <div class="mockup-project">
-              <div class="mockup-proj-top">
-                <span class="mockup-proj-name">Hospital Management App</span>
-                <span class="badge badge-in-progress" style="font-size:0.6rem;padding:2px 8px;">In Progress</span>
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-num" style="color:var(--accent-purple);">18</div>
+                <div class="mockup-stat-lbl">Happy Clients</div>
+                <div class="mockup-stat-trend">↑ 22%</div>
               </div>
-              <div class="mockup-prog-bar"><div class="mockup-prog-fill" style="width:45%;"></div></div>
-              <div class="mockup-prog-lbl"><span>45% complete</span><span>Due 15 Jul</span></div>
             </div>
 
-            <div class="mockup-project">
-              <div class="mockup-proj-top">
-                <span class="mockup-proj-name">Restaurant Booking System</span>
-                <span class="badge badge-completed" style="font-size:0.6rem;padding:2px 8px;">Completed</span>
+            <!-- Progress + Activity -->
+            <div class="mockup-two-col">
+              <div class="mockup-panel">
+                <div class="mockup-panel-title">Project Progress</div>
+                <div class="mockup-proj-item">
+                  <div class="mockup-proj-name">StackifyX Platform</div>
+                  <div class="mockup-proj-bar"><div class="mockup-proj-fill" style="width:80%;"></div></div>
+                  <div class="mockup-proj-meta"><span>80%</span></div>
+                </div>
+                <div class="mockup-proj-item">
+                  <div class="mockup-proj-name">Healthcare Platform</div>
+                  <div class="mockup-proj-bar"><div class="mockup-proj-fill" style="width:60%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
+                  <div class="mockup-proj-meta"><span>60%</span></div>
+                </div>
+                <div class="mockup-proj-item">
+                  <div class="mockup-proj-name">TRUSTLEX.AJ</div>
+                  <div class="mockup-proj-bar"><div class="mockup-proj-fill" style="width:40%;background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div></div>
+                  <div class="mockup-proj-meta"><span>40%</span></div>
+                </div>
               </div>
-              <div class="mockup-prog-bar"><div class="mockup-prog-fill" style="width:100%;"></div></div>
-              <div class="mockup-prog-lbl"><span>Delivered ✓</span><span>₹45,000</span></div>
-            </div>
-
-            <!-- Mini chart placeholder -->
-            
+              <div class="mockup-panel">
+                <div class="mockup-panel-title">Activity</div>
+                <div class="mockup-activity-item">
+                  <div class="mockup-act-dot"></div>
+                  <div>
+                    <div class="mockup-act-text">New project inquiry</div>
+                    <div class="mockup-act-time">2 min ago</div>
+                  </div>
+                </div>
+                <div class="mockup-activity-item">
+                  <div class="mockup-act-dot" style="background:var(--accent-green);"></div>
+                  <div>
+                    <div class="mockup-act-text">Design system updated</div>
+                    <div class="mockup-act-time">1 hr ago</div>
+                  </div>
+                </div>
+                <div class="mockup-activity-item">
+                  <div class="mockup-act-dot" style="background:var(--accent-purple);"></div>
+                  <div>
+                    <div class="mockup-act-text">Milestone completed</div>
+                    <div class="mockup-act-time">3 hrs ago</div>
+                  </div>
+                </div>
+                <div class="mockup-activity-item">
+                  <div class="mockup-act-dot" style="background:var(--accent-orange);"></div>
+                  <div>
+                    <div class="mockup-act-text">New client registered</div>
+                    <div class="mockup-act-time">5 hrs ago</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -544,302 +552,467 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ CREDIBILITY STRIP ══════════════════ -->
+<!-- ══════════════════════ CRED STRIP ════════════════════════ -->
 <div class="cred-strip">
-  <div class="container">
+  <div class="lp-container">
     <div class="cred-grid">
       <div class="cred-item">
-        <div class="cred-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <div class="cred-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
         </div>
         <div>
           <div class="cred-title">Custom Solutions</div>
-          <div class="cred-desc">Built around your business requirements</div>
+          <div class="cred-desc">Built around your business</div>
         </div>
       </div>
       <div class="cred-item">
-        <div class="cred-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="cred-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <div>
           <div class="cred-title">Modern Technology</div>
-          <div class="cred-desc">Scalable, secure architecture</div>
+          <div class="cred-desc">Scalable and future-ready</div>
         </div>
       </div>
       <div class="cred-item">
-        <div class="cred-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <div class="cred-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
         <div>
           <div class="cred-title">Transparent Process</div>
-          <div class="cred-desc">Track your project at every milestone</div>
+          <div class="cred-desc">Clear communication at every step</div>
         </div>
       </div>
       <div class="cred-item">
-        <div class="cred-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="cred-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <div>
           <div class="cred-title">Ongoing Support</div>
-          <div class="cred-desc">We're here long after launch</div>
+          <div class="cred-desc">We're here after launch</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════ STATS BAR ══════════════════════════ -->
-<section class="lp-section-sm">
-  <div class="container">
-    <div class="stats-bar">
-      <div class="stats-bar-item">
-        <div class="stats-bar-num">10+</div>
-        <div class="stats-bar-lbl">Projects Delivered</div>
-      </div>
-      <div class="stats-bar-item">
-        <div class="stats-bar-num">5+</div>
-        <div class="stats-bar-lbl">Technologies</div>
-      </div>
-      <div class="stats-bar-item">
-        <div class="stats-bar-num">100%</div>
-        <div class="stats-bar-lbl">Client Satisfaction</div>
-      </div>
-      <div class="stats-bar-item">
-        <div class="stats-bar-num">24h</div>
-        <div class="stats-bar-lbl">Response Time</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SERVICES ═══════════════════════════ -->
+<!-- ══════════════════════ SERVICES ══════════════════════════ -->
 <section class="lp-section" id="services">
-  <div class="container">
-    <div style="text-align:center;max-width:580px;margin:0 auto 56px;">
-      <div class="lp-label">What We Build</div>
-      <h2 style="margin-bottom:14px;">From Idea to Production</h2>
-      <p style="color:var(--text-muted);font-size:1rem;line-height:1.7;">
-        Everything you need to design, build, launch, and scale your digital product.
-      </p>
+  <div class="lp-container">
+    <div class="section-center">
+      <div class="lp-label">What We Offer</div>
+      <h2>From Idea to Production</h2>
+      <p>Everything you need to design, build, launch, and scale your digital product.</p>
     </div>
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="svc-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <div class="svc-title">Web Applications</div>
-        <div class="svc-desc">Full-stack web apps with modern frameworks. Responsive, fast, and built to scale for any business need.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        </div>
-        <div class="svc-title">Mobile Apps</div>
-        <div class="svc-desc">Cross-platform mobile applications for iOS and Android. Native performance with modern frameworks.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <div class="svc-title">API Development</div>
-        <div class="svc-desc">RESTful and GraphQL APIs built for scale. Complete documentation and secure authentication included.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-        </div>
-        <div class="svc-title">Database Design</div>
-        <div class="svc-desc">Optimised database architecture for SQL and NoSQL. Schema design, migrations, and performance tuning.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <div class="svc-title">Client Collaboration</div>
-        <div class="svc-desc">Stay connected with our team through real-time project communication, file sharing, and live updates.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <div class="svc-title">Project Management</div>
-        <div class="svc-desc">Milestone tracking, progress dashboards, and transparent delivery — you're always in the loop.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ PROCESS ════════════════════════════ -->
-<section class="lp-section" id="process" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div style="text-align:center;max-width:560px;margin:0 auto 56px;">
-      <div class="lp-label">How It Works</div>
-      <h2 style="margin-bottom:14px;">How We Turn Ideas Into Products</h2>
-      <p style="color:var(--text-muted);font-size:1rem;line-height:1.7;">
-        A clear, structured process so you always know what's happening and what comes next.
-      </p>
-    </div>
-    <div class="process-grid">
-      <div class="process-card">
-        <div class="process-num">01</div>
-        <div class="process-title">Discover</div>
-        <div class="process-desc">Tell us about your idea, requirements, and business goals. We listen carefully before we write a single line of code.</div>
-      </div>
-      <div class="process-card">
-        <div class="process-num">02</div>
-        <div class="process-title">Plan</div>
-        <div class="process-desc">We define scope, technology stack, timeline, and milestones. You get a clear picture of what we're building and when.</div>
-      </div>
-      <div class="process-card">
-        <div class="process-num">03</div>
-        <div class="process-title">Build</div>
-        <div class="process-desc">Our team designs and develops your product with regular updates, real-time chat, and milestone tracking.</div>
-      </div>
-      <div class="process-card">
-        <div class="process-num">04</div>
-        <div class="process-title">Launch</div>
-        <div class="process-desc">We deploy your product to production and provide ongoing support. We don't disappear after delivery.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ WHY US ═════════════════════════════ -->
-<section class="lp-section" id="why-us">
-  <div class="container">
-    <div style="text-align:center;max-width:560px;margin:0 auto 56px;">
-      <div class="lp-label">Why StackifyX</div>
-      <h2 style="margin-bottom:14px;">Why Businesses Choose Us</h2>
-      <p style="color:var(--text-muted);font-size:1rem;line-height:1.7;">
-        We're not a generic agency. We're a focused team that cares about shipping products that actually work.
-      </p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-num">01</div>
         <div>
-          <div class="why-title">Built Around Your Business</div>
-          <div class="why-desc">We don't force your business into a template. Every product we build is designed around your actual workflows, users, and goals.</div>
+          <div class="svc-title">Web Applications</div>
+          <div class="svc-desc">Full-stack web apps using modern frameworks. Fast, secure, and scalable solutions.</div>
         </div>
       </div>
-      <div class="why-card">
-        <div class="why-num">02</div>
+      <div class="svc-card">
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
         <div>
-          <div class="why-title">Transparent Development</div>
-          <div class="why-desc">Track milestones, review progress, and communicate with our team in real-time. You're never left wondering what's happening.</div>
+          <div class="svc-title">Mobile Apps</div>
+          <div class="svc-desc">Cross-platform mobile applications for iOS and Android. Native performance with React Native or Flutter.</div>
         </div>
       </div>
-      <div class="why-card">
-        <div class="why-num">03</div>
+      <div class="svc-card">
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
         <div>
-          <div class="why-title">Scalable Architecture</div>
-          <div class="why-desc">We build with future growth, security, and maintainability in mind. Your product won't need a full rewrite in two years.</div>
+          <div class="svc-title">API Development</div>
+          <div class="svc-desc">RESTful and GraphQL APIs built for scale. Secure, well-documented, and easy to integrate.</div>
         </div>
       </div>
-      <div class="why-card">
-        <div class="why-num">04</div>
+      <div class="svc-card">
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
         <div>
-          <div class="why-title">Development to Deployment</div>
-          <div class="why-desc">We don't stop at writing code. We help take your product from local development to production — and stay on for support.</div>
+          <div class="svc-title">Database Design</div>
+          <div class="svc-desc">Optimised database architecture for SQL and NoSQL. Schema design, migrations, and performance tuning.</div>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <div class="svc-title">Client Collaboration</div>
+          <div class="svc-desc">Real-time communication and updates throughout the project lifecycle. You're always in the loop.</div>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div>
+          <div class="svc-title">Project Management</div>
+          <div class="svc-desc">Milestones, timeline tracking, and transparent project management from start to finish.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ INDUSTRIES ════════════════════════ -->
-<section class="lp-section-sm" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:40px;">
-      <div class="lp-label">Industries</div>
-      <h2 style="margin-bottom:10px;">Solutions Across Industries</h2>
-      <p style="color:var(--text-muted);">We build for businesses of all sizes and sectors.</p>
+<!-- ══════════════════════ PORTFOLIO ═════════════════════════ -->
+<section class="lp-section lp-section-alt" id="portfolio">
+  <div class="lp-container">
+    <div class="portfolio-header">
+      <div>
+        <div class="lp-label">Selected Work</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0;">What We've Built</h2>
+      </div>
+      <a href="/auth/register" style="font-size:0.88rem;font-weight:700;color:var(--accent-blue);">View All Projects →</a>
     </div>
-    <div class="industries-grid">
-      <%
-        const industries = [
-          { name:'Healthcare',    icon:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'},
-          { name:'E-Commerce',    icon:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>'},
-          { name:'Education',     icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'},
-          { name:'Hospitality',   icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'},
-          { name:'Legal',         icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-          { name:'Startups',      icon:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'},
-          { name:'Small Business',icon:'<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>'},
-          { name:'Professional',  icon:'<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>'},
-        ];
-      %>
-      <% industries.forEach(ind => { %>
-        <div class="industry-card">
-          <div class="industry-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <%- ind.icon %>
-            </svg>
+    <p class="portfolio-sub">Real products. Real solutions. Built for real business needs.</p>
+    <div class="portfolio-grid">
+
+      <!-- Project 1 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img-placeholder" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);">
+          <div style="text-align:center;padding:20px;">
+            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#63b3ed;margin-bottom:8px;">StackifyX Platform</div>
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
+              <span style="padding:3px 10px;background:rgba(99,179,237,0.2);border-radius:4px;font-size:0.65rem;color:#63b3ed;">Dashboard</span>
+              <span style="padding:3px 10px;background:rgba(167,139,250,0.2);border-radius:4px;font-size:0.65rem;color:#a78bfa;">Projects</span>
+            </div>
+            <div style="margin-top:16px;width:80%;height:6px;background:rgba(99,179,237,0.3);border-radius:3px;margin-left:auto;margin-right:auto;overflow:hidden;">
+              <div style="width:80%;height:100%;background:#63b3ed;border-radius:3px;"></div>
+            </div>
           </div>
-          <div class="industry-name"><%= ind.name %></div>
         </div>
-      <% }) %>
+        <div class="portfolio-body">
+          <div class="portfolio-name">StackifyX Platform</div>
+          <div class="portfolio-desc">Project service &amp; management platform for clients and teams.</div>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Node.js</span>
+            <span class="portfolio-tag">MongoDB</span>
+            <span class="portfolio-tag">Express</span>
+            <span class="portfolio-tag">EJS</span>
+          </div>
+          <a href="/auth/register" class="portfolio-link">View Case Study →</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img-placeholder" style="background:linear-gradient(135deg,#0d2818 0%,#1a4731 50%,#0d2818 100%);">
+          <div style="text-align:center;padding:20px;">
+            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#34d399;margin-bottom:8px;">Healthcare Platform</div>
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
+              <span style="padding:3px 10px;background:rgba(52,211,153,0.2);border-radius:4px;font-size:0.65rem;color:#34d399;">Web App</span>
+              <span style="padding:3px 10px;background:rgba(52,211,153,0.15);border-radius:4px;font-size:0.65rem;color:#34d399;">Healthcare</span>
+            </div>
+            <div style="margin-top:16px;display:flex;gap:4px;justify-content:center;">
+              <% [60,80,45,90,55].forEach(h => { %>
+                <div style="width:14px;height:<%= h*0.5 %>px;background:rgba(52,211,153,0.5);border-radius:2px 2px 0 0;align-self:flex-end;"></div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-name">Healthcare Platform</div>
+          <div class="portfolio-desc">Healthcare management and digital services platform.</div>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Web App</span>
+            <span class="portfolio-tag">MongoDB</span>
+            <span class="portfolio-tag">Node.js</span>
+            <span class="portfolio-tag">Chart.js</span>
+          </div>
+          <a href="/auth/register" class="portfolio-link">View Case Study →</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="portfolio-card">
+        <div class="portfolio-img-placeholder" style="background:linear-gradient(135deg,#1a0a2e 0%,#2d1454 50%,#1a0a2e 100%);">
+          <div style="text-align:center;padding:20px;">
+            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#a78bfa;margin-bottom:8px;">TRUSTLEX.AJ</div>
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
+              <span style="padding:3px 10px;background:rgba(167,139,250,0.2);border-radius:4px;font-size:0.65rem;color:#a78bfa;">Legal Tech</span>
+              <span style="padding:3px 10px;background:rgba(167,139,250,0.15);border-radius:4px;font-size:0.65rem;color:#a78bfa;">SaaS</span>
+            </div>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 20px;">
+              <% ['#a78bfa','rgba(167,139,250,0.6)','rgba(167,139,250,0.3)'].forEach(c => { %>
+                <div style="height:8px;background:<%= c %>;border-radius:2px;"></div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-name">TRUSTLEX.AJ</div>
+          <div class="portfolio-desc">Legal consultation platform connecting clients with advocates.</div>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Node.js</span>
+            <span class="portfolio-tag">Express</span>
+            <span class="portfolio-tag">MongoDB</span>
+            <span class="portfolio-tag">EJS</span>
+          </div>
+          <a href="/auth/register" class="portfolio-link">View Case Study →</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CTA ════════════════════════════════ -->
-<section class="lp-section" id="contact">
-  <div class="container" style="max-width:900px;">
-    <div class="cta-box">
-      <div class="cta-glow-1"></div>
-      <div class="cta-glow-2"></div>
-      <div class="lp-label" style="display:inline-flex;">Ready to Build?</div>
-      <h2 class="cta-title">Have an Idea?<br>Let's Build It.</h2>
-      <p class="cta-desc">
-        Tell us what you're trying to build. We'll help you turn your idea into a
-        reliable, scalable digital product — from first commit to production.
-      </p>
-      <div class="cta-btns">
-        <a href="/auth/register" class="btn btn-primary btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Start Your Project →
-        </a>
-        <% if (locals.linkedinURL) { %>
-          <a href="<%= locals.linkedinURL %>" target="_blank" class="btn btn-secondary btn-lg">
-            Talk to Our Team
-          </a>
-        <% } else { %>
-          <a href="/auth/login" class="btn btn-secondary btn-lg">Sign In</a>
-        <% } %>
+<!-- ══════════════════════ PROCESS ════════════════════════════ -->
+<section class="lp-section" id="process">
+  <div class="lp-container">
+    <div class="section-center">
+      <div class="lp-label">Technologies We Work With</div>
+      <h2>How We Turn Ideas Into Products</h2>
+    </div>
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="process-num-lbl">01</div>
+        <div class="process-title">Discover</div>
+        <div class="process-desc">We understand your idea, requirements and goals.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="process-num-lbl">02</div>
+        <div class="process-title">Plan</div>
+        <div class="process-desc">We define scope, technology, timeline and milestones.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="process-num-lbl">03</div>
+        <div class="process-title">Build</div>
+        <div class="process-desc">Our team designs and develops your product.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+        </div>
+        <div class="process-num-lbl">04</div>
+        <div class="process-title">Launch</div>
+        <div class="process-desc">We deploy your product and provide ongoing support.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ FOOTER ════════════════════════════ -->
+<!-- ══════════════════════ WHY US ════════════════════════════ -->
+<section class="lp-section lp-section-alt" id="why-us">
+  <div class="lp-container">
+    <div class="why-layout">
+
+      <!-- Left -->
+      <div>
+        <div class="lp-label">Why Businesses Choose StackifyX</div>
+        <h2 class="why-left-title">Your Success is<br><span>Our Mission</span></h2>
+        <p class="why-left-desc">
+          We combine technology, creativity, and strategy to build digital products
+          that help businesses grow.
+        </p>
+        <a href="/auth/register" class="btn btn-primary">Learn More About Us →</a>
+      </div>
+
+      <!-- Right -->
+      <div>
+        <div class="why-features">
+          <div class="why-feat">
+            <div class="why-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="why-feat-title">Built Around You</div>
+            <div class="why-feat-desc">Custom solutions tailored to your business goals.</div>
+          </div>
+          <div class="why-feat">
+            <div class="why-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="why-feat-title">Transparent &amp; Clear</div>
+            <div class="why-feat-desc">You're updated at every step of the journey.</div>
+          </div>
+          <div class="why-feat">
+            <div class="why-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="why-feat-title">Scalable &amp; Secure</div>
+            <div class="why-feat-desc">We build with performance, security and scalability in mind.</div>
+          </div>
+          <div class="why-feat">
+            <div class="why-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            </div>
+            <div class="why-feat-title">Launch Fast</div>
+            <div class="why-feat-desc">Well-prioritised roadmap for your deepest digital product.</div>
+          </div>
+          <div class="why-feat">
+            <div class="why-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="why-feat-title">Support That Cares</div>
+            <div class="why-feat-desc">We're here to support you even after launch.</div>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="stats-row">
+          <div class="stats-item">
+            <div class="stats-num">10+</div>
+            <div class="stats-lbl">Projects Delivered</div>
+          </div>
+          <div class="stats-item">
+            <div class="stats-num">5+</div>
+            <div class="stats-lbl">Technologies</div>
+          </div>
+          <div class="stats-item">
+            <div class="stats-num">18+</div>
+            <div class="stats-lbl">Happy Clients</div>
+          </div>
+          <div class="stats-item">
+            <div class="stats-num">99%</div>
+            <div class="stats-lbl">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TESTIMONIALS ══════════════════════ -->
+<section class="lp-section" id="testimonials">
+  <div class="lp-container">
+    <div class="testi-outer">
+      <div class="testi-nav testi-prev" onclick="testiPrev()">‹</div>
+      <div class="testi-nav testi-next" onclick="testiNext()">›</div>
+
+      <div class="testi-wrap" id="testiWrap">
+        <div class="testi-track" id="testiTrack">
+
+          <!-- Slide 1 -->
+          <div class="testi-slide">
+            <div class="testi-left">
+              <div class="testi-quote-icon">"</div>
+              <div class="testi-left-title">Trusted by<br>Businesses</div>
+            </div>
+            <div class="testi-content">
+              <p class="testi-text">
+                "StackifyX delivered our project beyond our expectations. The team is professional,
+                communicative, and truly cares about the success of our product. Highly recommended
+                for anyone looking for a reliable development partner."
+              </p>
+              <div class="testi-author">
+                <div class="testi-avatar">A</div>
+                <div>
+                  <div class="testi-name">Adv. Ashish Ade</div>
+                  <div class="testi-role">Founder, TRUSTLEX.AJ</div>
+                  <div class="testi-stars">
+                    <span class="testi-star">★</span><span class="testi-star">★</span>
+                    <span class="testi-star">★</span><span class="testi-star">★</span>
+                    <span class="testi-star">★</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="testi-slide">
+            <div class="testi-left">
+              <div class="testi-quote-icon">"</div>
+              <div class="testi-left-title">Trusted by<br>Businesses</div>
+            </div>
+            <div class="testi-content">
+              <p class="testi-text">
+                "Working with StackifyX was a great experience from start to finish. They understood
+                our vision immediately and delivered a product that exceeded what we had imagined.
+                The real-time progress tracking kept us informed throughout."
+              </p>
+              <div class="testi-author">
+                <div class="testi-avatar" style="background:linear-gradient(135deg,#34d399,#059669);">P</div>
+                <div>
+                  <div class="testi-name">Priya Shah</div>
+                  <div class="testi-role">CEO, MedCare Solutions</div>
+                  <div class="testi-stars">
+                    <span class="testi-star">★</span><span class="testi-star">★</span>
+                    <span class="testi-star">★</span><span class="testi-star">★</span>
+                    <span class="testi-star">★</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="testi-dots" id="testiDots">
+        <div class="testi-dot active" onclick="testiGo(0)"></div>
+        <div class="testi-dot" onclick="testiGo(1)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CTA ════════════════════════════════ -->
+<section class="cta-section" id="contact">
+  <div class="cta-glow cta-glow-1"></div>
+  <div class="cta-glow cta-glow-2"></div>
+  <div class="lp-container">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <h2 class="cta-title">Have an Idea? Let's Build It.</h2>
+        <p class="cta-desc">Tell us what you're trying to build. We'll help you turn your idea into a reliable digital product.</p>
+      </div>
+      <div class="cta-right">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+          <a href="/auth/register" class="btn-cta-primary">Start a Project →</a>
+          <% if (locals.linkedinURL) { %>
+            <a href="<%= locals.linkedinURL %>" target="_blank" class="btn-cta-secondary">Talk to Our Team</a>
+          <% } else { %>
+            <a href="/auth/login" class="btn-cta-secondary">Sign In</a>
+          <% } %>
+          <div class="cta-rocket">🚀</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ════════════════════════════ -->
 <footer class="lp-footer">
-  <div class="container">
+  <div class="lp-container">
     <div class="footer-grid">
 
       <!-- Brand -->
       <div>
-        <a href="/" class="nav-brand" style="margin-bottom:14px;display:inline-flex;">
-          <img src="/stackifyx-logo.jpg" alt="StackifyX" class="brand-logo-img">
-          <span class="brand-text">Stackify<span class="brand-accent">X</span></span>
-        </a>
-        <p class="footer-brand-desc">
-          We build digital products that help businesses grow. From idea to production — we're with you every step.
-        </p>
-        <div style="display:flex;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <img src="/stackifyx-logo.jpg" alt="StackifyX" style="width:30px;height:30px;border-radius:7px;background:#fff;padding:2px;object-fit:contain;">
+          <span class="footer-brand-name">StackifyX</span>
+        </div>
+        <p class="footer-brand-desc">We build digital products that help businesses grow.</p>
+        <div class="footer-socials">
           <% if (locals.linkedinURL) { %>
-            <a href="<%= locals.linkedinURL %>" target="_blank" class="nav-icon-btn linkedin-btn" title="LinkedIn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.987V9h3.112v1.561h.046c.434-.82 1.491-1.684 3.067-1.684 3.279 0 3.884 2.159 3.884 4.966v6.609zM5.337 7.433a1.801 1.801 0 110-3.602 1.8 1.8 0 010 3.602zm1.557 13.019H3.78V9h3.114v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="<%= locals.linkedinURL %>" target="_blank" class="footer-social" title="LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.987V9h3.112v1.561h.046c.434-.82 1.491-1.684 3.067-1.684 3.279 0 3.884 2.159 3.884 4.966v6.609zM5.337 7.433a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zm1.557 13.019H3.78V9h3.114v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
           <% } %>
-          <a href="mailto:contact@stackifyx.com" class="nav-icon-btn" title="Email us">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="#" class="footer-social" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/stackifyx?utm_source=qr&igsh=dHBiZXBudWZ4eHQy" class="footer-social" title="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
         </div>
       </div>
@@ -857,32 +1030,66 @@
       <!-- Company -->
       <div>
         <div class="footer-col-title">Company</div>
-        <a href="#why-us"  class="footer-link">About</a>
-        <a href="#process" class="footer-link">Our Process</a>
-        <a href="#contact" class="footer-link">Contact</a>
-        <a href="/auth/register" class="footer-link">Start a Project</a>
+        <a href="#why-us"   class="footer-link">About Us</a>
+        <a href="#portfolio" class="footer-link">Our Work</a>
+        <a href="#process"  class="footer-link">Process</a>
+        <a href="#contact"  class="footer-link">Contact Us</a>
+        <a href="#"         class="footer-link">Careers</a>
       </div>
 
-      <!-- Account -->
+      <!-- Resources -->
       <div>
-        <div class="footer-col-title">Account</div>
-        <a href="/auth/login"    class="footer-link">Login</a>
-        <a href="/auth/register" class="footer-link">Register</a>
-        <a href="/dashboard"     class="footer-link">Dashboard</a>
-        <div class="footer-col-title" style="margin-top:20px;">Legal</div>
+        <div class="footer-col-title">Resources</div>
+        <a href="#" class="footer-link">Blog</a>
+        <a href="#" class="footer-link">FAQ</a>
         <a href="#" class="footer-link">Privacy Policy</a>
-        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Terms &amp; Conditions</a>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <a href="mailto:stackifyx@gmail.com" class="footer-link" style="display:flex;align-items:center;gap:6px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          stackifyx@gmail.com
+        </a>
+        <a href="tel:+918830268379" class="footer-link" style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 5.55 5.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          +91 88302 68379
+        </a>
+        <a href="https://shorturl.at/mfEfu" class="footer-link" style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          India
+        </a>
       </div>
 
     </div>
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <p>© <%= new Date().getFullYear() %> StackifyX. All rights reserved.</p>
-      <p>Built with ❤️ for modern businesses.</p>
+      <p>© 2026 StackifyX. All rights reserved.</p>
+      <p>Made with ❤️ by StackifyX</p>
     </div>
   </div>
 </footer>
 
+<script>
+// Testimonials slider
+let testiCurrent = 0;
+const slides = document.querySelectorAll('.testi-slide');
+const dots   = document.querySelectorAll('.testi-dot');
+const track  = document.getElementById('testiTrack');
+
+function testiGo(idx) {
+  testiCurrent = idx;
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+}
+function testiNext() { testiGo((testiCurrent + 1) % slides.length); }
+function testiPrev() { testiGo((testiCurrent - 1 + slides.length) % slides.length); }
+
+// Auto-advance every 5s
+setInterval(testiNext, 5000);
+</script>
 </body>
 </html>
