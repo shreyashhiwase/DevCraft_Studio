@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /chat/
+Disallow: /inquiries/
+Disallow: /payments/
+Disallow: /projects/
+Disallow: /reviews/
+
+Sitemap: https://stackifyx.onrender.com/sitemap.xml

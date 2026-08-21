@@ -1,9 +1,9 @@
 // app.js
 require('dotenv').config();
-const express= require('express');
-const http= require('http');
-const socketIO= require('socket.io');
-const path= require('path');
+const express      = require('express');
+const http         = require('http');
+const socketIO     = require('socket.io');
+const path         = require('path');
 const session      = require('express-session');
 const MongoStore   = require('connect-mongo');
 const flash        = require('connect-flash');
@@ -64,14 +64,14 @@ app.use(flash());
 
 // ─── PASSPORT ─────────────────────────────────────────────────────────────────
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session());   // reads req.session.passport set by serializeUser
 
-// ─── FLASH + LOCALS ───────────────────────────────────────────────────────
+// ─── LOCALS (after passport so req.user is available) ─────────────────────────
 app.use(attachUser);
 app.use((req, res, next) => {
   res.locals.successMsg = req.flash('success');
   res.locals.errorMsg   = req.flash('error');
-  res.locals.appName    = 'StackifyX';
+  res.locals.appName     = 'StackifyX';
   res.locals.linkedinURL    = process.env.LINKEDIN_URL    || '';
   res.locals.googleEnabled  = !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
   next();
@@ -88,15 +88,28 @@ app.use('/',     require('./routes/payments'));
 app.use('/',     require('./routes/chat'));
 app.use('/',     require('./routes/reviews'));
 
+// Sitemap
+app.get('/sitemap.xml', (req, res) => {
+  const base = process.env.APP_URL || 'https://stackifyx.onrender.com';
+  const now  = new Date().toISOString().split('T')[0];
+  res.header('Content-Type','application/xml');
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${base}/</loc><lastmod>${now}</lastmod><priority>1.0</priority></url>
+  <url><loc>${base}/auth/login</loc><lastmod>${now}</lastmod><priority>0.6</priority></url>
+  <url><loc>${base}/auth/register</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>
+</urlset>`);
+});
+
 // Landing
 app.get('/', (req, res) => {
   if (req.session.userId)
     return res.redirect(req.session.userRole === 'admin' ? '/admin/dashboard' : '/dashboard');
   // isLanding tells the navbar to show section anchor links (Services, Process, etc.)
-  res.render('landing', { 
+  res.render('landing', {
     title: 'StackifyX — We Build Digital Products That Move Businesses Forward',
     isLanding: true,
-   });
+  });
 });
 
 // 404
@@ -117,12 +130,12 @@ const seedAdmin = async () => {
     if (!exists) {
       await User.create({
         name:       process.env.ADMIN_NAME     || 'Admin',
-        email:      process.env.ADMIN_EMAIL    || 'admin@devcraft.com',
+        email:      process.env.ADMIN_EMAIL    || 'admin@stackifyx.com',
         password:   process.env.ADMIN_PASSWORD || 'Admin@123456',
         role:       'admin',
         isVerified: true,   // admin never needs email verification
       });
-      console.log('✅ Admin created:', process.env.ADMIN_EMAIL || 'admin@devcraft.com');
+      console.log('✅ Admin created:', process.env.ADMIN_EMAIL || 'admin@stackifyx.com');
     } else if (!exists.isVerified) {
       // Fix existing admin if isVerified was not set
       await User.findByIdAndUpdate(exists._id, { isVerified: true });

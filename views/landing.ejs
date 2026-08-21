@@ -5,542 +5,537 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/jpeg" href="/stackifyx-logo.jpg">
   <script>if(localStorage.getItem('devcraft-theme')==='light')document.documentElement.classList.add('light');</script>
-  <title>StackifyX — We Build Digital Products That Move Businesses Forward</title>
-  <meta name="description" content="From websites and web apps to custom software and mobile apps, StackifyX turns your ideas into reliable, scalable digital products.">
+
+  <!-- SEO -->
+  <title>StackifyX — Digital Product & Software Development Company</title>
+  <meta name="description" content="StackifyX builds fast, secure and scalable websites, web applications, mobile apps and custom software. Transparent development from start to finish.">
+  <meta name="keywords" content="web development, mobile app development, custom software, digital product studio, Node.js, React, MongoDB, API development">
+  <link rel="canonical" href="<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>">
+  <meta property="og:title"       content="StackifyX — Digital Product & Software Development Company">
+  <meta property="og:description" content="We build fast, secure and scalable websites, web applications, mobile apps and custom software with a transparent development experience.">
+  <meta property="og:image"       content="<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/stackifyx-logo.jpg">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="StackifyX — Digital Product & Software Development">
+  <meta name="twitter:description" content="We build fast, secure and scalable digital products.">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/#organization",
+        "name": "StackifyX",
+        "url": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>",
+        "logo": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/stackifyx-logo.jpg",
+        "description": "StackifyX builds websites, web applications, mobile apps and custom software for businesses.",
+        "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+        "sameAs": ["<%= locals.linkedinURL || '' %>"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/#website",
+        "url": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>",
+        "name": "StackifyX",
+        "publisher": { "@id": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/#organization" }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+
   <style>
-/* ══════════════════════════════════════════════════════════════
-   LANDING PAGE — Full redesign matching StackifyX screenshot
-══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   LANDING PAGE — StackifyX Premium
+═══════════════════════════════════════════════════════════ */
+.lp-wrap { font-family:'Manrope',sans-serif; }
+.lp-c    { max-width:1200px;margin:0 auto;padding:0 28px; }
+.lp-section { padding:96px 0; }
+.lp-section-alt { padding:96px 0;background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
 
-/* CSS Variables override for landing — light-first design */
-.lp { --lp-text: var(--text-primary); --lp-muted: var(--text-muted); }
-
-/* Smooth section scroll */
-html { scroll-behavior: smooth; }
-
-/* ── Utilities ──────────────────────────────────────────────── */
-.lp-container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-.lp-label {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 14px; border-radius: 100px;
-  background: rgba(99,179,237,0.1); border: 1px solid rgba(99,179,237,0.25);
-  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 16px;
+/* Label pill */
+.lp-pill {
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:100px;margin-bottom:18px;
+  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);
+  font-size:0.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.1em;color:var(--accent-blue);
 }
-.lp-section { padding: 88px 0; }
-.lp-section-alt {
-  padding: 88px 0;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.section-center { text-align: center; max-width: 600px; margin: 0 auto 56px; }
-.section-center h2 { font-family:'Syne',sans-serif; font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:12px; }
-.section-center p  { font-size:1rem; color:var(--text-muted); line-height:1.75; }
+html.light .lp-pill { background:rgba(37,99,235,0.07); }
 
-/* ── HERO ───────────────────────────────────────────────────── */
+/* Section heading block */
+.lp-heading { max-width:620px; }
+.lp-heading.center { margin:0 auto;text-align:center; }
+.lp-heading h2 {
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(1.75rem,3vw,2.6rem);
+  font-weight:800;letter-spacing:-0.03em;
+  color:var(--text-primary);margin-bottom:14px;line-height:1.15;
+}
+.lp-heading p { font-size:1rem;color:var(--text-muted);line-height:1.75; }
+
+/* ── HERO ──────────────────────────────────────────────── */
 .hero {
-  padding: calc(var(--nav-height) + 72px) 0 72px;
-  min-height: 100vh; display: flex; align-items: center;
-  position: relative; overflow: hidden;
+  padding:calc(var(--nav-height) + 80px) 0 80px;
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;
 }
-.hero-bg-glow {
-  position: absolute; pointer-events: none; z-index: 0;
-  border-radius: 50%;
+.hero-glow {
+  position:absolute;pointer-events:none;border-radius:50%;z-index:0;
 }
-.hero-glow-1 { top:-10%;left:-5%; width:600px;height:600px;
-  background:radial-gradient(circle,rgba(99,179,237,0.07) 0%,transparent 70%); }
-.hero-glow-2 { bottom:0;right:-5%; width:500px;height:500px;
-  background:radial-gradient(circle,rgba(167,139,250,0.06) 0%,transparent 70%); }
+.hero-glow-a { top:-5%;left:-8%;width:700px;height:700px;
+  background:radial-gradient(circle,rgba(37,99,235,0.07) 0%,transparent 65%); }
+.hero-glow-b { bottom:-10%;right:-5%;width:550px;height:550px;
+  background:radial-gradient(circle,rgba(124,58,237,0.06) 0%,transparent 65%); }
 
 .hero-grid {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: 1fr 1.1fr;
-  gap: 56px; align-items: center;
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;
 }
+
 .hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 5px 14px; border-radius: 100px;
-  background: rgba(99,179,237,0.09); border: 1px solid rgba(99,179,237,0.22);
-  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 24px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:100px;margin-bottom:28px;
+  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.22);
+  font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--accent-blue);
 }
-.hero-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
-  font-weight: 800; line-height: 1.08;
-  letter-spacing: -0.03em; color: var(--text-primary);
-  margin-bottom: 20px;
+.hero-h1 {
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(2.4rem,4.5vw,3.6rem);
+  font-weight:800;line-height:1.08;letter-spacing:-0.035em;
+  color:var(--text-primary);margin-bottom:22px;
 }
-.hero-title .grad {
-  font-family: inherit; font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+.hero-h1 .grad {
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.hero-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; max-width: 440px; }
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
-.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-desc {
+  font-size:1.05rem;color:var(--text-muted);line-height:1.8;
+  margin-bottom:36px;max-width:460px;font-weight:400;
+}
+.hero-btns { display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px; }
+.hero-tags { display:flex;flex-wrap:wrap;gap:8px; }
 .hero-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 14px; border-radius: 100px;
-  background: var(--bg-elevated); border: 1px solid var(--border);
-  font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+  display:inline-flex;align-items:center;gap:7px;padding:6px 14px;
+  border-radius:100px;background:var(--bg-elevated);border:1px solid var(--border);
+  font-size:0.78rem;font-weight:600;color:var(--text-muted);
 }
-.hero-tag::before { content:''; width:7px;height:7px;border-radius:50%;background:var(--accent-blue); }
+.hero-tag svg { flex-shrink:0;color:var(--accent-blue); }
 
 /* Dashboard mockup */
-.mockup-wrap {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 32px 72px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
-  animation: floatY 5s ease-in-out infinite;
-}
-html.light .mockup-wrap { box-shadow: 0 24px 64px rgba(37,99,235,0.1), 0 1px 4px rgba(0,0,0,0.08); }
-@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-
-.mockup-topbar {
-  background: var(--bg-elevated); border-bottom: 1px solid var(--border);
-  padding: 10px 16px; display: flex; align-items: center; justify-content: space-between;
-}
-.mockup-dots { display:flex; gap:6px; }
-.mockup-dot { width:9px;height:9px;border-radius:50%; }
-.mockup-user {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.75rem; font-weight: 600; color: var(--text-primary);
-}
-.mockup-avatar-sm {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--gradient-primary);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.6rem;font-weight:800;color:#fff;
-}
-.mockup-body { padding: 16px; }
-.mockup-greeting { font-size:0.72rem;color:var(--text-muted);margin-bottom:2px; }
-.mockup-title-sm { font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:var(--text-primary);margin-bottom:14px; }
-
-.mockup-stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px; }
-.mockup-stat-card {
-  background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:10px;
-}
-.mockup-stat-num { font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);line-height:1; }
-.mockup-stat-lbl { font-size:0.6rem;color:var(--text-muted);margin-top:3px;font-weight:500; }
-.mockup-stat-trend { font-size:0.58rem;color:var(--accent-green);font-weight:600;margin-top:2px; }
-
-.mockup-two-col { display:grid;grid-template-columns:1.3fr 1fr;gap:10px; }
-.mockup-panel {
-  background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:12px;
-}
-.mockup-panel-title { font-size:0.7rem;font-weight:700;color:var(--text-primary);margin-bottom:10px; }
-.mockup-proj-item { margin-bottom:8px; }
-.mockup-proj-name { font-size:0.68rem;font-weight:600;color:var(--text-primary);margin-bottom:4px; }
-.mockup-proj-bar { height:4px;background:var(--bg-card);border-radius:2px;overflow:hidden;margin-bottom:2px; }
-.mockup-proj-fill { height:100%;border-radius:2px;background:var(--gradient-primary); }
-.mockup-proj-meta { display:flex;justify-content:space-between;font-size:0.58rem;color:var(--text-muted); }
-.mockup-activity-item {
-  display:flex;align-items:flex-start;gap:6px;padding:4px 0;
-  border-bottom:1px solid var(--border);
-}
-.mockup-activity-item:last-child{border-bottom:none;}
-.mockup-act-dot { width:6px;height:6px;border-radius:50%;background:var(--accent-blue);margin-top:3px;flex-shrink:0; }
-.mockup-act-text { font-size:0.62rem;color:var(--text-secondary);line-height:1.4; }
-.mockup-act-time { font-size:0.58rem;color:var(--text-muted);margin-top:1px; }
-
-/* ── CRED STRIP ─────────────────────────────────────────────── */
-.cred-strip { padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-secondary); }
-.cred-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:20px; }
-.cred-item { display:flex;align-items:center;gap:12px; }
-.cred-icon-wrap {
-  width:38px;height:38px;flex-shrink:0;
-  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
-  border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
-}
-.cred-title { font-size:0.85rem;font-weight:700;color:var(--text-primary);margin-bottom:2px; }
-.cred-desc  { font-size:0.74rem;color:var(--text-muted);line-height:1.35; }
-
-/* ── SERVICES ───────────────────────────────────────────────── */
-.svc-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:28px; }
-.svc-card {
-  padding:0;display:flex;align-items:flex-start;gap:16px;
-}
-.svc-icon-wrap {
-  width:44px;height:44px;flex-shrink:0;
-  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
-  border-radius:11px;display:flex;align-items:center;justify-content:center;
-  color:var(--accent-blue);transition:background 0.2s,border-color 0.2s;
-}
-.svc-card:hover .svc-icon-wrap { background:rgba(99,179,237,0.16);border-color:rgba(99,179,237,0.4); }
-.svc-title { font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:6px; }
-.svc-desc  { font-size:0.83rem;color:var(--text-muted);line-height:1.65; }
-
-/* ── PORTFOLIO ──────────────────────────────────────────────── */
-.portfolio-header { display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:8px; }
-.portfolio-sub { font-size:0.88rem;color:var(--text-muted);margin-bottom:40px; }
-.portfolio-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
-.portfolio-card {
-  background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
-  overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;cursor:pointer;
-}
-.portfolio-card:hover { transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--border-accent); }
-.portfolio-img {
-  width:100%;height:180px;object-fit:cover;background:var(--bg-elevated);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  position:relative;
-}
-.portfolio-img-placeholder {
-  width:100%;height:180px;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-}
-.portfolio-body { padding:20px; }
-.portfolio-name { font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px; }
-.portfolio-desc { font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;line-height:1.55; }
-.portfolio-tags { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px; }
-.portfolio-tag {
-  padding:3px 10px;border-radius:100px;background:var(--bg-elevated);
-  border:1px solid var(--border);font-size:0.72rem;color:var(--text-muted);
-  font-family:var(--font-mono);font-weight:500;
-}
-.portfolio-link { font-size:0.82rem;font-weight:700;color:var(--accent-blue);text-decoration:none;transition:color 0.15s; }
-.portfolio-link:hover { color:var(--accent-purple); }
-
-/* ── PROCESS ────────────────────────────────────────────────── */
-.process-flow {
-  display:grid;grid-template-columns:repeat(4,1fr);
-  align-items:start;gap:0;position:relative;
-}
-.process-step { text-align:center;padding:0 16px;position:relative; }
-.process-step:not(:last-child)::after {
-  content:'→';
-  position:absolute;right:-14px;top:18px;
-  font-size:1rem;color:var(--border-accent);line-height:1;
-}
-.process-icon-wrap {
-  width:44px;height:44px;margin:0 auto 14px;
-  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
-  border-radius:11px;display:flex;align-items:center;justify-content:center;
-  color:var(--accent-blue);
-}
-.process-num-lbl { font-family:var(--font-mono);font-size:0.65rem;font-weight:700;color:var(--accent-blue);opacity:0.7;margin-bottom:4px; }
-.process-title { font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--text-primary);margin-bottom:6px; }
-.process-desc  { font-size:0.8rem;color:var(--text-muted);line-height:1.6; }
-
-/* ── WHY US ─────────────────────────────────────────────────── */
-.why-layout { display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:start; }
-.why-left-title { font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:16px; }
-.why-left-title span { color:var(--accent-blue); }
-.why-left-desc { font-size:0.9rem;color:var(--text-muted);line-height:1.75;margin-bottom:28px; }
-.why-features { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px; }
-.why-feat {
-  background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
-  padding:18px 14px;text-align:center;transition:border-color 0.2s,transform 0.2s;
-}
-.why-feat:hover { border-color:var(--border-accent);transform:translateY(-2px); }
-.why-feat-icon {
-  width:40px;height:40px;margin:0 auto 10px;
-  background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.2);
-  border-radius:10px;display:flex;align-items:center;justify-content:center;
-  color:var(--accent-blue);
-}
-.why-feat-title { font-size:0.78rem;font-weight:700;color:var(--text-primary);margin-bottom:4px; }
-.why-feat-desc  { font-size:0.72rem;color:var(--text-muted);line-height:1.5; }
-
-/* Stats row under why-features */
-.stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:20px; }
-.stats-item { text-align:center; }
-.stats-num {
-  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
-  background:var(--gradient-primary);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px;
-}
-.stats-lbl { font-size:0.8rem;color:var(--text-muted);font-weight:500; }
-
-/* ── TESTIMONIALS ───────────────────────────────────────────── */
-.testi-wrap {
-  position:relative;overflow:hidden;
-}
-.testi-track { display:flex;transition:transform 0.5s ease; }
-.testi-slide {
-  min-width:100%;
-  display:flex;align-items:center;gap:48px;
-  padding:0 60px;
-}
-.testi-quote-icon {
-  font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;
-  color:var(--accent-blue);opacity:0.3;line-height:0.7;
-  flex-shrink:0;align-self:flex-start;
-}
-.testi-left { flex-shrink:0; }
-.testi-left-title { font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;line-height:1.15;margin-bottom:0; }
-.testi-content { flex:1; }
-.testi-text { font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:20px; }
-.testi-author { display:flex;align-items:center;gap:12px; }
-.testi-avatar {
-  width:44px;height:44px;border-radius:50%;background:var(--gradient-primary);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0;
-}
-.testi-name { font-weight:700;font-size:0.9rem;color:var(--text-primary); }
-.testi-role { font-size:0.78rem;color:var(--text-muted); }
-.testi-stars { display:flex;gap:2px;margin-top:4px; }
-.testi-star { font-size:0.9rem;color:var(--accent-orange); }
-.testi-nav {
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:36px;height:36px;border-radius:50%;
-  background:var(--bg-elevated);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:var(--text-secondary);font-size:1rem;
-  transition:background 0.2s,border-color 0.2s;z-index:10;
-}
-.testi-nav:hover { background:var(--accent-blue);border-color:var(--accent-blue);color:#fff; }
-.testi-prev { left:8px; }
-.testi-next { right:8px; }
-.testi-outer {
+.dash-mockup {
   background:var(--bg-card);border:1px solid var(--border);
-  border-radius:20px;padding:48px 0;position:relative;overflow:hidden;
+  border-radius:18px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.04);
+  animation:floatY 5s ease-in-out infinite;
 }
-.testi-dots { display:flex;justify-content:center;gap:8px;margin-top:24px; }
-.testi-dot {
-  width:8px;height:8px;border-radius:50%;
-  background:var(--border);cursor:pointer;transition:background 0.2s;
+html.light .dash-mockup { box-shadow:0 24px 64px rgba(37,99,235,0.1),0 1px 4px rgba(0,0,0,0.08); }
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.dm-topbar {
+  background:var(--bg-elevated);border-bottom:1px solid var(--border);
+  padding:10px 18px;display:flex;align-items:center;justify-content:space-between;
 }
-.testi-dot.active { background:var(--accent-blue); }
+.dm-dots { display:flex;gap:6px; }
+.dm-dot  { width:10px;height:10px;border-radius:50%; }
+.dm-user { display:flex;align-items:center;gap:8px;font-size:0.75rem;font-weight:700;color:var(--text-primary); }
+.dm-av   { width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;color:#fff; }
+.dm-body { padding:18px; }
+.dm-greet{ font-size:0.7rem;color:var(--text-muted);margin-bottom:2px; }
+.dm-title{ font-family:'Manrope',sans-serif;font-size:0.88rem;font-weight:800;color:var(--text-primary);margin-bottom:16px; }
+.dm-stats{ display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px; }
+.dm-stat { background:var(--bg-elevated);border:1px solid var(--border);border-radius:9px;padding:10px 8px; }
+.dm-sval { font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);line-height:1; }
+.dm-slbl { font-size:0.58rem;color:var(--text-muted);margin-top:3px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em; }
+.dm-strd { font-size:0.58rem;font-weight:700;margin-top:3px; }
+.dm-cols { display:grid;grid-template-columns:1.4fr 1fr;gap:10px; }
+.dm-panel{ background:var(--bg-elevated);border:1px solid var(--border);border-radius:9px;padding:12px; }
+.dm-ptitle{ font-size:0.68rem;font-weight:800;color:var(--text-primary);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em; }
+.dm-proj { margin-bottom:9px; }
+.dm-pname{ font-size:0.68rem;font-weight:600;color:var(--text-primary);margin-bottom:4px; }
+.dm-pbar { height:4px;background:var(--bg-card);border-radius:2px;overflow:hidden;margin-bottom:2px; }
+.dm-pfill{ height:100%;border-radius:2px; }
+.dm-pmeta{ font-size:0.58rem;color:var(--text-muted);display:flex;justify-content:space-between; }
+.dm-act  { display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid var(--border); }
+.dm-act:last-child{border-bottom:none;}
+.dm-adot { width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0; }
+.dm-atxt { font-size:0.62rem;color:var(--text-secondary);line-height:1.4; }
+.dm-atime{ font-size:0.56rem;color:var(--text-muted);margin-top:2px; }
 
-/* ── CTA ────────────────────────────────────────────────────── */
-.cta-section {
-  padding:80px 0;
-  background:linear-gradient(135deg,#1a3a6b 0%,#2563eb 40%,#7c3aed 100%);
+/* ── CRED STRIP ────────────────────────────────────────── */
+.cred-strip { padding:28px 0;background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.cred-grid  { display:grid;grid-template-columns:repeat(4,1fr);gap:24px; }
+.cred-item  { display:flex;align-items:flex-start;gap:14px; }
+.cred-icon  {
+  width:42px;height:42px;flex-shrink:0;border-radius:11px;
+  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.18);
+  display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
+}
+.cred-title{ font-size:0.9rem;font-weight:700;color:var(--text-primary);margin-bottom:3px; }
+.cred-desc { font-size:0.78rem;color:var(--text-muted);line-height:1.45; }
+
+/* ── SERVICES ──────────────────────────────────────────── */
+.svc-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+.svc-card {
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:16px;padding:28px;
+  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s!important;
+}
+.svc-card:hover { border-color:var(--border-accent);transform:translateY(-4px);box-shadow:0 16px 48px rgba(37,99,235,0.1); }
+.svc-icon {
+  width:48px;height:48px;border-radius:12px;margin-bottom:20px;
+  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.18);
+  display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
+  transition:background 0.2s,border-color 0.2s!important;
+}
+.svc-card:hover .svc-icon { background:rgba(37,99,235,0.15);border-color:rgba(37,99,235,0.35); }
+.svc-title{ font-family:'Manrope',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:8px; }
+.svc-desc { font-size:0.84rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px; }
+.svc-link { font-size:0.82rem;font-weight:700;color:var(--accent-blue);display:inline-flex;align-items:center;gap:4px;transition:gap 0.15s!important; }
+.svc-card:hover .svc-link { gap:8px; }
+
+/* ── PORTFOLIO ─────────────────────────────────────────── */
+.port-header { display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:8px; }
+.port-sub    { font-size:0.9rem;color:var(--text-muted);margin-bottom:44px; }
+.port-grid   { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+.port-card   {
+  background:var(--bg-card);border:1px solid var(--border);border-radius:18px;
+  overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s!important;
+}
+.port-card:hover { transform:translateY(-5px);box-shadow:0 20px 56px rgba(0,0,0,0.2);border-color:var(--border-accent); }
+.port-img {
+  width:100%;height:190px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.port-body  { padding:22px; }
+.port-name  { font-family:'Manrope',sans-serif;font-size:1rem;font-weight:800;color:var(--text-primary);margin-bottom:5px; }
+.port-desc  { font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;line-height:1.55; }
+.port-tags  { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px; }
+.port-tag   { padding:3px 10px;border-radius:100px;background:var(--bg-elevated);border:1px solid var(--border);font-size:0.7rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace; }
+.port-link  { font-size:0.82rem;font-weight:700;color:var(--accent-blue);display:inline-flex;align-items:center;gap:5px;transition:gap 0.15s!important; }
+.port-card:hover .port-link { gap:9px; }
+
+/* ── PROCESS ───────────────────────────────────────────── */
+.proc-grid {
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;
+}
+.proc-step {
+  padding:36px 28px;text-align:center;position:relative;
+  border-right:1px solid var(--border);transition:background 0.2s!important;
+}
+.proc-step:last-child{border-right:none;}
+.proc-step:hover{background:var(--bg-elevated);}
+.proc-icon {
+  width:52px;height:52px;margin:0 auto 16px;
+  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-blue);
+}
+.proc-num  { font-family:'JetBrains Mono',monospace;font-size:0.65rem;font-weight:700;color:var(--accent-blue);opacity:0.7;margin-bottom:6px;letter-spacing:0.05em; }
+.proc-title{ font-family:'Manrope',sans-serif;font-size:1rem;font-weight:800;color:var(--text-primary);margin-bottom:8px; }
+.proc-desc { font-size:0.82rem;color:var(--text-muted);line-height:1.65; }
+.proc-arr  {
+  position:absolute;right:-1px;top:50%;transform:translateY(-50%);
+  width:24px;height:24px;background:var(--bg-elevated);border:1px solid var(--border);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-blue);z-index:2;
+}
+.proc-step:last-child .proc-arr{display:none;}
+
+/* ── WHY US ────────────────────────────────────────────── */
+.why-grid  { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+.why-card  {
+  background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px;
+  transition:border-color 0.2s,transform 0.2s!important;
+}
+.why-card:hover { border-color:var(--border-accent);transform:translateY(-3px); }
+.why-icon  {
+  width:44px;height:44px;border-radius:12px;margin-bottom:16px;
+  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.18);
+  display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
+}
+.why-title { font-family:'Manrope',sans-serif;font-size:0.95rem;font-weight:800;color:var(--text-primary);margin-bottom:8px; }
+.why-desc  { font-size:0.82rem;color:var(--text-muted);line-height:1.65; }
+
+/* ── TECH STRIP ────────────────────────────────────────── */
+.tech-strip { display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:40px; }
+.tech-badge {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:12px;
+  background:var(--bg-card);border:1px solid var(--border);
+  font-size:0.84rem;font-weight:700;color:var(--text-secondary);
+  transition:border-color 0.15s,color 0.15s,transform 0.15s!important;
+}
+.tech-badge:hover { border-color:var(--border-accent);color:var(--accent-blue);transform:translateY(-2px); }
+
+/* ── ABOUT ─────────────────────────────────────────────── */
+.about-grid { display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center; }
+.about-checklist { margin-top:24px;display:flex;flex-direction:column;gap:12px; }
+.about-check {
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:0.88rem;color:var(--text-secondary);line-height:1.6;
+}
+.about-check-icon {
+  width:22px;height:22px;flex-shrink:0;background:rgba(37,99,235,0.1);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-blue);margin-top:1px;
+}
+.about-visual {
+  background:var(--bg-card);border:1px solid var(--border);border-radius:20px;
+  padding:36px;position:relative;overflow:hidden;
+}
+.about-vis-item {
+  display:flex;align-items:center;gap:14px;padding:16px;
+  background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;
+  transition:border-color 0.15s!important;
+}
+.about-vis-item:hover { border-color:var(--border-accent); }
+.about-vis-icon {
+  width:40px;height:40px;flex-shrink:0;border-radius:10px;
+  background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);
+  display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
+}
+.about-vis-title { font-size:0.88rem;font-weight:700;color:var(--text-primary);margin-bottom:2px; }
+.about-vis-sub   { font-size:0.75rem;color:var(--text-muted); }
+
+/* ── INDUSTRIES ────────────────────────────────────────── */
+.ind-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
+.ind-card {
+  background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
+  padding:20px 16px;display:flex;align-items:center;gap:12px;
+  transition:border-color 0.15s,background 0.15s,transform 0.15s!important;
+}
+.ind-card:hover { border-color:var(--border-accent);background:var(--bg-elevated);transform:translateY(-2px); }
+.ind-icon {
+  width:36px;height:36px;flex-shrink:0;border-radius:9px;
+  background:var(--bg-elevated);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;color:var(--accent-blue);
+}
+.ind-name  { font-size:0.86rem;font-weight:700;color:var(--text-primary); }
+
+
+/* ── CTA ───────────────────────────────────────────────── */
+.cta-box {
+  background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 45%,#7c3aed 100%);
+  border-radius:28px;padding:80px 64px;text-align:center;
   position:relative;overflow:hidden;
 }
-html.light .cta-section {
-  background:linear-gradient(135deg,#1e40af 0%,#2563eb 45%,#7c3aed 100%);
+.cta-glow-1 { position:absolute;top:-80px;left:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,0.05);pointer-events:none; }
+.cta-glow-2 { position:absolute;bottom:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none; }
+.cta-title {
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;
+  color:#fff;margin-bottom:14px;letter-spacing:-0.025em;position:relative;z-index:1;
 }
-.cta-glow {
-  position:absolute;pointer-events:none;border-radius:50%;
-  background:rgba(255,255,255,0.05);
+.cta-desc  { font-size:1rem;color:rgba(255,255,255,0.78);max-width:520px;margin:0 auto 36px;line-height:1.75;position:relative;z-index:1; }
+.cta-btns  { display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1; }
+.cta-btn-p {
+  display:inline-flex;align-items:center;gap:8px;padding:14px 28px;
+  background:#fff;border-radius:10px;color:#1e40af;font-weight:700;font-size:0.93rem;
+  text-decoration:none;transition:transform 0.15s,box-shadow 0.15s!important;
 }
-.cta-glow-1 { width:400px;height:400px;top:-150px;left:-100px; }
-.cta-glow-2 { width:300px;height:300px;bottom:-100px;right:-50px; }
-.cta-inner {
-  position:relative;z-index:1;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:40px;flex-wrap:wrap;
+.cta-btn-p:hover { transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.25);color:#1e40af; }
+.cta-btn-s {
+  display:inline-flex;align-items:center;gap:8px;padding:13px 28px;
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);
+  border-radius:10px;color:#fff;font-weight:600;font-size:0.93rem;
+  text-decoration:none;transition:background 0.15s!important;
 }
-.cta-left { flex:1;min-width:300px; }
-.cta-title { font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-0.02em; }
-.cta-desc  { font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.7; }
-.cta-right { display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0; }
-.btn-cta-primary {
-  display:inline-flex;align-items:center;gap:8px;
-  padding:14px 28px;background:#fff;border-radius:var(--radius-sm);
-  color:#1e40af;font-weight:700;font-size:0.95rem;text-decoration:none;
-  transition:transform 0.15s,box-shadow 0.15s;white-space:nowrap;
-}
-.btn-cta-primary:hover { transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.2);color:#1e40af; }
-.btn-cta-secondary {
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 28px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);
-  border-radius:var(--radius-sm);color:#fff;font-weight:600;font-size:0.95rem;
-  text-decoration:none;transition:background 0.15s;white-space:nowrap;
-}
-.btn-cta-secondary:hover { background:rgba(255,255,255,0.2);color:#fff; }
-.cta-rocket { font-size:2.5rem;display:inline-block;animation:rocketFloat 2s ease-in-out infinite; }
-@keyframes rocketFloat { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-6px) rotate(5deg)} }
+.cta-btn-s:hover { background:rgba(255,255,255,0.2);color:#fff; }
 
-/* ── FOOTER ─────────────────────────────────────────────────── */
-.lp-footer {
-  background:#0d1117;
-  border-top:1px solid rgba(255,255,255,0.06);
-  padding:64px 0 32px;
+/* ── FOOTER ────────────────────────────────────────────── */
+.lp-footer { background:#0a0e17;border-top:1px solid rgba(255,255,255,0.06);padding:72px 0 32px; }
+.foot-grid { display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px; }
+.foot-logo-row { display:flex;align-items:center;gap:10px;margin-bottom:12px; }
+.foot-brand-name { font-family:'Manrope',sans-serif;font-size:1.1rem;font-weight:800;color:#f8fafc; }
+.foot-brand-accent { color:#63b3ed; }
+.foot-desc { font-size:0.84rem;color:#64748b;line-height:1.75;margin-bottom:22px;max-width:230px; }
+.foot-socials { display:flex;gap:8px; }
+.foot-social {
+  width:34px;height:34px;border-radius:9px;border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;
+  color:#64748b;text-decoration:none;transition:background 0.15s,border-color 0.15s,color 0.15s!important;
 }
-html.light .lp-footer { background:#111827; }
-.footer-grid { display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px; }
-.footer-brand-name { font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:10px; }
-.footer-brand-desc { font-size:0.83rem;color:#64748b;line-height:1.7;margin-bottom:20px;max-width:220px; }
-.footer-socials { display:flex;gap:8px; }
-.footer-social {
-  width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;
-  color:#64748b;text-decoration:none;transition:background 0.15s,color 0.15s,border-color 0.15s;
-}
-.footer-social:hover { background:rgba(99,179,237,0.15);border-color:rgba(99,179,237,0.3);color:#63b3ed; }
-.footer-col-title { font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:16px; }
-.footer-link {
-  display:block;font-size:0.85rem;color:#64748b;text-decoration:none;
-  padding:4px 0;transition:color 0.15s;
-}
-.footer-link:hover { color:#e2e8f0; }
-.footer-bottom {
+.foot-social:hover { background:rgba(37,99,235,0.2);border-color:rgba(37,99,235,0.4);color:#93c5fd; }
+.foot-col-title { font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:#94a3b8;margin-bottom:18px; }
+.foot-link { display:flex;align-items:center;gap:6px;font-size:0.84rem;color:#64748b;text-decoration:none;padding:4px 0;transition:color 0.15s!important; }
+.foot-link:hover { color:#e2e8f0; }
+.foot-bottom {
   padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
 }
-.footer-bottom p { font-size:0.8rem;color:#475569; }
+.foot-bottom p { font-size:0.78rem;color:#475569; }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────── */
-@media(max-width:1024px){
-  .hero-grid       { grid-template-columns:1fr;gap:48px; }
-  .mockup-wrap     { max-width:540px;margin:0 auto;animation:none; }
-  .svc-grid        { grid-template-columns:repeat(2,1fr); }
-  .portfolio-grid  { grid-template-columns:repeat(2,1fr); }
-  .why-layout      { grid-template-columns:1fr; }
-  .why-features    { grid-template-columns:repeat(3,1fr); }
-  .footer-grid     { grid-template-columns:repeat(2,1fr); }
-  .cred-grid       { grid-template-columns:repeat(2,1fr); }
-  .process-flow    { grid-template-columns:repeat(2,1fr);gap:24px; }
-  .process-step::after { display:none; }
-  .cta-inner       { flex-direction:column;text-align:center; }
-  .cta-right       { align-items:center; }
+/* ── RESPONSIVE ────────────────────────────────────────── */
+@media(max-width:1100px){
+  .hero-grid   { grid-template-columns:1fr;gap:52px; }
+  .dash-mockup { max-width:580px;margin:0 auto;animation:none; }
+  .svc-grid    { grid-template-columns:repeat(2,1fr); }
+  .port-grid   { grid-template-columns:repeat(2,1fr); }
+  .proc-grid   { grid-template-columns:repeat(2,1fr);border-radius:16px; }
+  .proc-step   { border-right:none;border-bottom:1px solid var(--border); }
+  .proc-step:nth-child(odd)  { border-right:1px solid var(--border); }
+  .proc-step:last-child,.proc-step:nth-last-child(2) { border-bottom:none; }
+  .proc-arr    { display:none; }
+  .why-grid    { grid-template-columns:repeat(2,1fr); }
+  .about-grid  { grid-template-columns:1fr; }
+  .ind-grid    { grid-template-columns:repeat(2,1fr); }
+  .foot-grid   { grid-template-columns:repeat(2,1fr); }
+  .cred-grid   { grid-template-columns:repeat(2,1fr); }
+  .dm-stats    { grid-template-columns:repeat(2,1fr); }
+  .dm-cols     { grid-template-columns:1fr; }
 }
 @media(max-width:640px){
-  .lp-section { padding:64px 0; }
+  .lp-section,.lp-section-alt { padding:64px 0; }
   .svc-grid   { grid-template-columns:1fr; }
-  .portfolio-grid { grid-template-columns:1fr; }
-  .why-features   { grid-template-columns:repeat(2,1fr); }
-  .stats-row      { grid-template-columns:repeat(2,1fr); }
-  .footer-grid    { grid-template-columns:1fr 1fr; }
-  .testi-slide    { flex-direction:column;padding:0 24px;gap:20px; }
-  .mockup-two-col { grid-template-columns:1fr; }
-  .mockup-stats-row { grid-template-columns:repeat(2,1fr); }
+  .port-grid  { grid-template-columns:1fr; }
+  .why-grid   { grid-template-columns:1fr; }
+  .ind-grid   { grid-template-columns:repeat(2,1fr); }
+  .foot-grid  { grid-template-columns:1fr 1fr; }
+  .cta-box    { padding:52px 24px; }
+  .cta-btns   { flex-direction:column;align-items:center; }
 }
 </style>
 </head>
-<body class="lp">
+
+<body class="lp-wrap">
 <%- include('partials/navbar') %>
 
-<!-- ══════════════════════ HERO ══════════════════════════════ -->
-<section class="hero">
-  <div class="hero-bg-glow hero-glow-1"></div>
-  <div class="hero-bg-glow hero-glow-2"></div>
-  <div class="lp-container">
+<!-- ════════════════════════ HERO ════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-glow hero-glow-a"></div>
+  <div class="hero-glow hero-glow-b"></div>
+  <div class="lp-c">
     <div class="hero-grid">
 
-      <!-- Left copy -->
+      <!-- Left -->
       <div>
         <div class="hero-eyebrow">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Professional Project Services
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Digital Product Studio
         </div>
-        <h1 class="hero-title">
-          We Build Digital Products<br>
-          That Move<br>
-          <span class="grad">Businesses Forward.</span>
+        <h1 class="hero-h1">
+          Turn Your Ideas Into<br>
+          <span class="grad">Digital Products.</span>
         </h1>
         <p class="hero-desc">
-          From websites and web applications to custom software and mobile apps,
-          StackifyX turns your ideas into reliable, scalable digital products.
+          We build fast, secure and scalable websites, web applications,
+          mobile apps and custom software with a transparent development
+          experience from start to finish.
         </p>
         <div class="hero-btns">
-          <a href="/auth/register" class="btn btn-primary btn-lg">Start a Project →</a>
-          <a href="#portfolio"     class="btn btn-secondary btn-lg">View Our Work</a>
+          <a href="/auth/register" class="btn btn-primary btn-lg" aria-label="Start your project">
+            Start Your Project
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#portfolio" class="btn btn-secondary btn-lg">View Our Work →</a>
         </div>
         <div class="hero-tags">
-          <span class="hero-tag">Web Development</span>
-          <span class="hero-tag">Mobile Apps</span>
-          <span class="hero-tag">Custom Software</span>
-          <span class="hero-tag">API Development</span>
+          <span class="hero-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Web Development
+          </span>
+          <span class="hero-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Mobile Apps
+          </span>
+          <span class="hero-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Custom Software
+          </span>
+          <span class="hero-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            AI & Automation
+          </span>
         </div>
       </div>
 
-      <!-- Right: dashboard mockup -->
+      <!-- Right: Dashboard mockup -->
       <div>
-        <div class="mockup-wrap">
-          <!-- Top bar -->
-          <div class="mockup-topbar">
-            <div class="mockup-dots">
-              <div class="mockup-dot" style="background:#ff5f57;"></div>
-              <div class="mockup-dot" style="background:#febc2e;"></div>
-              <div class="mockup-dot" style="background:#28c840;"></div>
+        <div class="dash-mockup" role="img" aria-label="StackifyX project dashboard preview">
+          <div class="dm-topbar">
+            <div class="dm-dots">
+              <div class="dm-dot" style="background:#ff5f57;"></div>
+              <div class="dm-dot" style="background:#febc2e;"></div>
+              <div class="dm-dot" style="background:#28c840;"></div>
             </div>
-            <div class="mockup-user">
-              <div class="mockup-avatar-sm">S</div>
-              StackifyX Team
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <div class="dm-user">
+              <div class="dm-av">S</div>
+              StackifyX Dashboard
             </div>
-            <span style="font-size:0.65rem;color:var(--accent-blue);font-weight:600;">Dashboard ↗</span>
+            <span style="font-size:0.65rem;color:var(--accent-blue);font-weight:700;">LIVE</span>
           </div>
-
-          <div class="mockup-body">
-            <div class="mockup-greeting">Wellcome back,</div>
-            <div class="mockup-title-sm">StackifyX Team 👋</div>
-
-            <!-- Stats -->
-            <div class="mockup-stats-row">
-              <div class="mockup-stat-card">
-                <div class="mockup-stat-num">24</div>
-                <div class="mockup-stat-lbl">Total Projects</div>
-                <div class="mockup-stat-trend">↑ 4.05%</div>
+          <div class="dm-body">
+            <div class="dm-greet">Welcome back,</div>
+            <div class="dm-title">StackifyX Team ✦</div>
+            <div class="dm-stats">
+              <div class="dm-stat">
+                <div class="dm-sval" style="color:var(--accent-blue);">12</div>
+                <div class="dm-slbl">Projects</div>
+                <div class="dm-strd" style="color:var(--accent-green);">Active</div>
               </div>
-              <div class="mockup-stat-card">
-                <div class="mockup-stat-num" style="color:var(--accent-blue);">8</div>
-                <div class="mockup-stat-lbl">In Progress</div>
-                <div class="mockup-stat-trend">↑ 1.9%</div>
+              <div class="dm-stat">
+                <div class="dm-sval" style="color:var(--accent-orange);">5</div>
+                <div class="dm-slbl">In Progress</div>
+                <div class="dm-strd" style="color:var(--accent-orange);">Building</div>
               </div>
-              <div class="mockup-stat-card">
-                <div class="mockup-stat-num" style="color:var(--accent-green);">16</div>
-                <div class="mockup-stat-lbl">Completed</div>
-                <div class="mockup-stat-trend">↑ 144%</div>
+              <div class="dm-stat">
+                <div class="dm-sval" style="color:var(--accent-green);">7</div>
+                <div class="dm-slbl">Completed</div>
+                <div class="dm-strd" style="color:var(--accent-green);">Delivered</div>
               </div>
-              <div class="mockup-stat-card">
-                <div class="mockup-stat-num" style="color:var(--accent-purple);">18</div>
-                <div class="mockup-stat-lbl">Happy Clients</div>
-                <div class="mockup-stat-trend">↑ 22%</div>
+              <div class="dm-stat">
+                <div class="dm-sval" style="color:var(--accent-purple);">3</div>
+                <div class="dm-slbl">Inquiries</div>
+                <div class="dm-strd" style="color:var(--text-muted);">Pending</div>
               </div>
             </div>
-
-            <!-- Progress + Activity -->
-            <div class="mockup-two-col">
-              <div class="mockup-panel">
-                <div class="mockup-panel-title">Project Progress</div>
-                <div class="mockup-proj-item">
-                  <div class="mockup-proj-name">StackifyX Platform</div>
-                  <div class="mockup-proj-bar"><div class="mockup-proj-fill" style="width:80%;"></div></div>
-                  <div class="mockup-proj-meta"><span>80%</span></div>
+            <div class="dm-cols">
+              <div class="dm-panel">
+                <div class="dm-ptitle">Project Progress</div>
+                <div class="dm-proj">
+                  <div class="dm-pname">StackifyX Platform</div>
+                  <div class="dm-pbar"><div class="dm-pfill" style="width:80%;background:linear-gradient(90deg,#2563eb,#7c3aed);"></div></div>
+                  <div class="dm-pmeta"><span>80% complete</span><span style="color:var(--accent-blue);">In Progress</span></div>
                 </div>
-                <div class="mockup-proj-item">
-                  <div class="mockup-proj-name">Healthcare Platform</div>
-                  <div class="mockup-proj-bar"><div class="mockup-proj-fill" style="width:60%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
-                  <div class="mockup-proj-meta"><span>60%</span></div>
+                <div class="dm-proj">
+                  <div class="dm-pname">Healthcare Platform</div>
+                  <div class="dm-pbar"><div class="dm-pfill" style="width:60%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
+                  <div class="dm-pmeta"><span>60% complete</span><span style="color:var(--accent-green);">On Track</span></div>
                 </div>
-                <div class="mockup-proj-item">
-                  <div class="mockup-proj-name">TRUSTLEX.AJ</div>
-                  <div class="mockup-proj-bar"><div class="mockup-proj-fill" style="width:40%;background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div></div>
-                  <div class="mockup-proj-meta"><span>40%</span></div>
+                <div class="dm-proj">
+                  <div class="dm-pname">TRUSTLEX.AJ</div>
+                  <div class="dm-pbar"><div class="dm-pfill" style="width:40%;background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div></div>
+                  <div class="dm-pmeta"><span>40% complete</span><span style="color:var(--accent-orange);">Planning</span></div>
                 </div>
               </div>
-              <div class="mockup-panel">
-                <div class="mockup-panel-title">Activity</div>
-                <div class="mockup-activity-item">
-                  <div class="mockup-act-dot"></div>
-                  <div>
-                    <div class="mockup-act-text">New project inquiry</div>
-                    <div class="mockup-act-time">2 min ago</div>
-                  </div>
+              <div class="dm-panel">
+                <div class="dm-ptitle">Recent Activity</div>
+                <div class="dm-act">
+                  <div class="dm-adot" style="background:var(--accent-green);"></div>
+                  <div><div class="dm-atxt">New project inquiry received</div><div class="dm-atime">2 min ago</div></div>
                 </div>
-                <div class="mockup-activity-item">
-                  <div class="mockup-act-dot" style="background:var(--accent-green);"></div>
-                  <div>
-                    <div class="mockup-act-text">Design system updated</div>
-                    <div class="mockup-act-time">1 hr ago</div>
-                  </div>
+                <div class="dm-act">
+                  <div class="dm-adot" style="background:var(--accent-blue);"></div>
+                  <div><div class="dm-atxt">Design milestone completed</div><div class="dm-atime">1 hr ago</div></div>
                 </div>
-                <div class="mockup-activity-item">
-                  <div class="mockup-act-dot" style="background:var(--accent-purple);"></div>
-                  <div>
-                    <div class="mockup-act-text">Milestone completed</div>
-                    <div class="mockup-act-time">3 hrs ago</div>
-                  </div>
+                <div class="dm-act">
+                  <div class="dm-adot" style="background:var(--accent-purple);"></div>
+                  <div><div class="dm-atxt">Development update pushed</div><div class="dm-atime">3 hrs ago</div></div>
                 </div>
-                <div class="mockup-activity-item">
-                  <div class="mockup-act-dot" style="background:var(--accent-orange);"></div>
-                  <div>
-                    <div class="mockup-act-text">New client registered</div>
-                    <div class="mockup-act-time">5 hrs ago</div>
-                  </div>
+                <div class="dm-act">
+                  <div class="dm-adot" style="background:var(--accent-orange);"></div>
+                  <div><div class="dm-atxt">Client message received</div><div class="dm-atime">5 hrs ago</div></div>
                 </div>
               </div>
             </div>
@@ -552,544 +547,493 @@ html.light .lp-footer { background:#111827; }
   </div>
 </section>
 
-<!-- ══════════════════════ CRED STRIP ════════════════════════ -->
-<div class="cred-strip">
-  <div class="lp-container">
+<!-- ════════════════════════ CRED STRIP ══════════════════════ -->
+<div class="cred-strip" aria-label="Key capabilities">
+  <div class="lp-c">
     <div class="cred-grid">
-      <div class="cred-item">
-        <div class="cred-icon-wrap">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      <div class="cred-item fade-up">
+        <div class="cred-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div>
-          <div class="cred-title">Custom Solutions</div>
-          <div class="cred-desc">Built around your business</div>
-        </div>
+        <div><div class="cred-title">Custom Solutions</div><div class="cred-desc">Built around your business, not generic templates.</div></div>
       </div>
-      <div class="cred-item">
-        <div class="cred-icon-wrap">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <div class="cred-item fade-up fade-up-delay-1">
+        <div class="cred-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <div>
-          <div class="cred-title">Modern Technology</div>
-          <div class="cred-desc">Scalable and future-ready</div>
-        </div>
+        <div><div class="cred-title">Transparent Process</div><div class="cred-desc">Track your project throughout every stage of development.</div></div>
       </div>
-      <div class="cred-item">
-        <div class="cred-icon-wrap">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <div class="cred-item fade-up fade-up-delay-2">
+        <div class="cred-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <div>
-          <div class="cred-title">Transparent Process</div>
-          <div class="cred-desc">Clear communication at every step</div>
-        </div>
+        <div><div class="cred-title">Modern Technology</div><div class="cred-desc">Scalable and future-ready architecture for long-term growth.</div></div>
       </div>
-      <div class="cred-item">
-        <div class="cred-icon-wrap">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <div class="cred-item fade-up fade-up-delay-3">
+        <div class="cred-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <div>
-          <div class="cred-title">Ongoing Support</div>
-          <div class="cred-desc">We're here after launch</div>
-        </div>
+        <div><div class="cred-title">Ongoing Support</div><div class="cred-desc">We stay involved and available well after launch.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════ SERVICES ══════════════════════════ -->
-<section class="lp-section" id="services">
-  <div class="lp-container">
-    <div class="section-center">
-      <div class="lp-label">What We Offer</div>
-      <h2>From Idea to Production</h2>
-      <p>Everything you need to design, build, launch, and scale your digital product.</p>
+<!-- ════════════════════════ SERVICES ════════════════════════ -->
+<section class="lp-section" id="services" aria-labelledby="svc-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:56px;">
+      <div class="lp-pill" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        What We Build
+      </div>
+      <h2 id="svc-heading">Powerful Solutions for Every Business</h2>
+      <p>From idea to deployment, we provide everything you need to build and grow your digital product.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc-card">
-        <div class="svc-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <%
+      const services = [
+        { icon:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>', title:'Web Development', desc:'Responsive websites and powerful web applications built with modern, battle-tested technologies.' },
+        { icon:'<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>', title:'Mobile App Development', desc:'Cross-platform mobile applications for Android and iOS with native performance and modern UX.' },
+        { icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>', title:'Custom Software', desc:'Tailored software solutions designed around your specific business workflows and requirements.' },
+        { icon:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>', title:'E-Commerce Solutions', desc:'Online stores with payments, orders, inventory and customer management built to convert.' },
+        { icon:'<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>', title:'AI & Automation', desc:'AI-powered tools and workflow automation to save time, cut costs and improve productivity.' },
+        { icon:'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>', title:'API & Integrations', desc:'Robust APIs and third-party integrations that connect your business systems seamlessly.' },
+      ];
+      %>
+      <% services.forEach((s, i) => { %>
+        <div class="svc-card fade-up fade-up-delay-<%= i % 3 %>">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- s.icon %></svg>
+          </div>
+          <h3 class="svc-title"><%= s.title %></h3>
+          <p class="svc-desc"><%= s.desc %></p>
+          <a href="/auth/register" class="svc-link" aria-label="Learn more about <%= s.title %>">
+            Learn more
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-        <div>
-          <div class="svc-title">Web Applications</div>
-          <div class="svc-desc">Full-stack web apps using modern frameworks. Fast, secure, and scalable solutions.</div>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        </div>
-        <div>
-          <div class="svc-title">Mobile Apps</div>
-          <div class="svc-desc">Cross-platform mobile applications for iOS and Android. Native performance with React Native or Flutter.</div>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <div>
-          <div class="svc-title">API Development</div>
-          <div class="svc-desc">RESTful and GraphQL APIs built for scale. Secure, well-documented, and easy to integrate.</div>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-        </div>
-        <div>
-          <div class="svc-title">Database Design</div>
-          <div class="svc-desc">Optimised database architecture for SQL and NoSQL. Schema design, migrations, and performance tuning.</div>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <div>
-          <div class="svc-title">Client Collaboration</div>
-          <div class="svc-desc">Real-time communication and updates throughout the project lifecycle. You're always in the loop.</div>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <div>
-          <div class="svc-title">Project Management</div>
-          <div class="svc-desc">Milestones, timeline tracking, and transparent project management from start to finish.</div>
-        </div>
-      </div>
+      <% }) %>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ PORTFOLIO ═════════════════════════ -->
-<section class="lp-section lp-section-alt" id="portfolio">
-  <div class="lp-container">
-    <div class="portfolio-header">
+<!-- ════════════════════════ PORTFOLIO ═══════════════════════ -->
+<section class="lp-section lp-section-alt" id="portfolio" aria-labelledby="port-heading">
+  <div class="lp-c">
+    <div class="port-header">
       <div>
-        <div class="lp-label">Selected Work</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0;">What We've Built</h2>
+        <div class="lp-pill" aria-hidden="true">Selected Work</div>
+        <h2 id="port-heading" style="font-family:'Manrope',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.03em;color:var(--text-primary);margin:0;">Projects We're Proud Of</h2>
       </div>
-      <a href="/auth/register" style="font-size:0.88rem;font-weight:700;color:var(--accent-blue);">View All Projects →</a>
+      <a href="/auth/register" style="font-size:0.88rem;font-weight:700;color:var(--accent-blue);white-space:nowrap;display:flex;align-items:center;gap:5px;">
+        View All
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
-    <p class="portfolio-sub">Real products. Real solutions. Built for real business needs.</p>
-    <div class="portfolio-grid">
+    <p class="port-sub">Real products. Real solutions. Built for real business needs.</p>
+    <div class="port-grid">
 
       <!-- Project 1 -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-placeholder" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);">
-          <div style="text-align:center;padding:20px;">
-            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#63b3ed;margin-bottom:8px;">StackifyX Platform</div>
-            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-              <span style="padding:3px 10px;background:rgba(99,179,237,0.2);border-radius:4px;font-size:0.65rem;color:#63b3ed;">Dashboard</span>
-              <span style="padding:3px 10px;background:rgba(167,139,250,0.2);border-radius:4px;font-size:0.65rem;color:#a78bfa;">Projects</span>
+      <article class="port-card fade-up">
+        <div class="port-img" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">
+          <div style="width:100%;padding:20px 16px;">
+            <div style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:8px;padding:12px;margin-bottom:8px;">
+              <div style="font-size:0.6rem;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Project Dashboard</div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:5px;"><div style="width:80%;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:2px;"></div></div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:5px;"><div style="width:55%;height:100%;background:linear-gradient(90deg,#34d399,#059669);border-radius:2px;"></div></div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:35%;height:100%;background:linear-gradient(90deg,#fbbf24,#f59e0b);border-radius:2px;"></div></div>
             </div>
-            <div style="margin-top:16px;width:80%;height:6px;background:rgba(99,179,237,0.3);border-radius:3px;margin-left:auto;margin-right:auto;overflow:hidden;">
-              <div style="width:80%;height:100%;background:#63b3ed;border-radius:3px;"></div>
+            <div style="display:flex;gap:6px;">
+              <div style="flex:1;background:rgba(37,99,235,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.9rem;font-weight:800;color:#93c5fd;">12</div><div style="font-size:0.56rem;color:#64748b;">Projects</div></div>
+              <div style="flex:1;background:rgba(52,211,153,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.9rem;font-weight:800;color:#6ee7b7;">7</div><div style="font-size:0.56rem;color:#64748b;">Done</div></div>
+              <div style="flex:1;background:rgba(167,139,250,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.9rem;font-weight:800;color:#c4b5fd;">5</div><div style="font-size:0.56rem;color:#64748b;">Active</div></div>
             </div>
           </div>
         </div>
-        <div class="portfolio-body">
-          <div class="portfolio-name">StackifyX Platform</div>
-          <div class="portfolio-desc">Project service &amp; management platform for clients and teams.</div>
-          <div class="portfolio-tags">
-            <span class="portfolio-tag">Node.js</span>
-            <span class="portfolio-tag">MongoDB</span>
-            <span class="portfolio-tag">Express</span>
-            <span class="portfolio-tag">EJS</span>
+        <div class="port-body">
+          <h3 class="port-name">StackifyX Platform</h3>
+          <p class="port-desc">Project service and management platform for clients and development teams.</p>
+          <div class="port-tags">
+            <span class="port-tag">Node.js</span>
+            <span class="port-tag">MongoDB</span>
+            <span class="port-tag">Express</span>
+            <span class="port-tag">EJS</span>
           </div>
-          <a href="/auth/register" class="portfolio-link">View Case Study →</a>
+          <a href="/auth/register" class="port-link" aria-label="View case study for StackifyX Platform">
+            View Case Study
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-      </div>
+      </article>
 
       <!-- Project 2 -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-placeholder" style="background:linear-gradient(135deg,#0d2818 0%,#1a4731 50%,#0d2818 100%);">
-          <div style="text-align:center;padding:20px;">
-            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#34d399;margin-bottom:8px;">Healthcare Platform</div>
-            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-              <span style="padding:3px 10px;background:rgba(52,211,153,0.2);border-radius:4px;font-size:0.65rem;color:#34d399;">Web App</span>
-              <span style="padding:3px 10px;background:rgba(52,211,153,0.15);border-radius:4px;font-size:0.65rem;color:#34d399;">Healthcare</span>
+      <article class="port-card fade-up fade-up-delay-1">
+        <div class="port-img" style="background:linear-gradient(135deg,#0d2818,#1a4731);">
+          <div style="width:100%;padding:20px 16px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+              <div style="font-size:0.68rem;font-weight:800;color:#6ee7b7;">Healthcare Platform</div>
+              <div style="padding:2px 8px;background:rgba(52,211,153,0.2);border-radius:100px;font-size:0.55rem;color:#6ee7b7;font-weight:700;">Active</div>
             </div>
-            <div style="margin-top:16px;display:flex;gap:4px;justify-content:center;">
-              <% [60,80,45,90,55].forEach(h => { %>
-                <div style="width:14px;height:<%= h*0.5 %>px;background:rgba(52,211,153,0.5);border-radius:2px 2px 0 0;align-self:flex-end;"></div>
+            <div style="display:flex;align-items:flex-end;gap:4px;height:50px;margin-bottom:10px;">
+              <% [35,55,40,70,60,80,65].forEach(h => { %>
+                <div style="flex:1;height:<%= h %>%;background:rgba(52,211,153,0.4);border-radius:2px 2px 0 0;"></div>
               <% }) %>
             </div>
+            <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:7px;padding:8px;font-size:0.6rem;color:#6ee7b7;">
+              Healthcare management and digital services — appointment scheduling, patient records, digital billing.
+            </div>
           </div>
         </div>
-        <div class="portfolio-body">
-          <div class="portfolio-name">Healthcare Platform</div>
-          <div class="portfolio-desc">Healthcare management and digital services platform.</div>
-          <div class="portfolio-tags">
-            <span class="portfolio-tag">Web App</span>
-            <span class="portfolio-tag">MongoDB</span>
-            <span class="portfolio-tag">Node.js</span>
-            <span class="portfolio-tag">Chart.js</span>
+        <div class="port-body">
+          <h3 class="port-name">Healthcare Platform</h3>
+          <p class="port-desc">Healthcare management and digital services platform for clinics and hospitals.</p>
+          <div class="port-tags">
+            <span class="port-tag">Web App</span>
+            <span class="port-tag">Node.js</span>
+            <span class="port-tag">MongoDB</span>
+            <span class="port-tag">Chart.js</span>
           </div>
-          <a href="/auth/register" class="portfolio-link">View Case Study →</a>
+          <a href="/auth/register" class="port-link" aria-label="View case study for Healthcare Platform">
+            View Case Study
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-      </div>
+      </article>
 
       <!-- Project 3 -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-placeholder" style="background:linear-gradient(135deg,#1a0a2e 0%,#2d1454 50%,#1a0a2e 100%);">
-          <div style="text-align:center;padding:20px;">
-            <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#a78bfa;margin-bottom:8px;">TRUSTLEX.AJ</div>
-            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-              <span style="padding:3px 10px;background:rgba(167,139,250,0.2);border-radius:4px;font-size:0.65rem;color:#a78bfa;">Legal Tech</span>
-              <span style="padding:3px 10px;background:rgba(167,139,250,0.15);border-radius:4px;font-size:0.65rem;color:#a78bfa;">SaaS</span>
-            </div>
-            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 20px;">
-              <% ['#a78bfa','rgba(167,139,250,0.6)','rgba(167,139,250,0.3)'].forEach(c => { %>
-                <div style="height:8px;background:<%= c %>;border-radius:2px;"></div>
-              <% }) %>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-name">TRUSTLEX.AJ</div>
-          <div class="portfolio-desc">Legal consultation platform connecting clients with advocates.</div>
-          <div class="portfolio-tags">
-            <span class="portfolio-tag">Node.js</span>
-            <span class="portfolio-tag">Express</span>
-            <span class="portfolio-tag">MongoDB</span>
-            <span class="portfolio-tag">EJS</span>
-          </div>
-          <a href="/auth/register" class="portfolio-link">View Case Study →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ PROCESS ════════════════════════════ -->
-<section class="lp-section" id="process">
-  <div class="lp-container">
-    <div class="section-center">
-      <div class="lp-label">Technologies We Work With</div>
-      <h2>How We Turn Ideas Into Products</h2>
-    </div>
-    <div class="process-flow">
-      <div class="process-step">
-        <div class="process-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <div class="process-num-lbl">01</div>
-        <div class="process-title">Discover</div>
-        <div class="process-desc">We understand your idea, requirements and goals.</div>
-      </div>
-      <div class="process-step">
-        <div class="process-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <div class="process-num-lbl">02</div>
-        <div class="process-title">Plan</div>
-        <div class="process-desc">We define scope, technology, timeline and milestones.</div>
-      </div>
-      <div class="process-step">
-        <div class="process-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <div class="process-num-lbl">03</div>
-        <div class="process-title">Build</div>
-        <div class="process-desc">Our team designs and develops your product.</div>
-      </div>
-      <div class="process-step">
-        <div class="process-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-        </div>
-        <div class="process-num-lbl">04</div>
-        <div class="process-title">Launch</div>
-        <div class="process-desc">We deploy your product and provide ongoing support.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ WHY US ════════════════════════════ -->
-<section class="lp-section lp-section-alt" id="why-us">
-  <div class="lp-container">
-    <div class="why-layout">
-
-      <!-- Left -->
-      <div>
-        <div class="lp-label">Why Businesses Choose StackifyX</div>
-        <h2 class="why-left-title">Your Success is<br><span>Our Mission</span></h2>
-        <p class="why-left-desc">
-          We combine technology, creativity, and strategy to build digital products
-          that help businesses grow.
-        </p>
-        <a href="/auth/register" class="btn btn-primary">Learn More About Us →</a>
-      </div>
-
-      <!-- Right -->
-      <div>
-        <div class="why-features">
-          <div class="why-feat">
-            <div class="why-feat-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <div class="why-feat-title">Built Around You</div>
-            <div class="why-feat-desc">Custom solutions tailored to your business goals.</div>
-          </div>
-          <div class="why-feat">
-            <div class="why-feat-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            </div>
-            <div class="why-feat-title">Transparent &amp; Clear</div>
-            <div class="why-feat-desc">You're updated at every step of the journey.</div>
-          </div>
-          <div class="why-feat">
-            <div class="why-feat-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="why-feat-title">Scalable &amp; Secure</div>
-            <div class="why-feat-desc">We build with performance, security and scalability in mind.</div>
-          </div>
-          <div class="why-feat">
-            <div class="why-feat-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-            </div>
-            <div class="why-feat-title">Launch Fast</div>
-            <div class="why-feat-desc">Well-prioritised roadmap for your deepest digital product.</div>
-          </div>
-          <div class="why-feat">
-            <div class="why-feat-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="why-feat-title">Support That Cares</div>
-            <div class="why-feat-desc">We're here to support you even after launch.</div>
-          </div>
-        </div>
-
-        <!-- Stats row -->
-        <div class="stats-row">
-          <div class="stats-item">
-            <div class="stats-num">10+</div>
-            <div class="stats-lbl">Projects Delivered</div>
-          </div>
-          <div class="stats-item">
-            <div class="stats-num">5+</div>
-            <div class="stats-lbl">Technologies</div>
-          </div>
-          <div class="stats-item">
-            <div class="stats-num">18+</div>
-            <div class="stats-lbl">Happy Clients</div>
-          </div>
-          <div class="stats-item">
-            <div class="stats-num">99%</div>
-            <div class="stats-lbl">Client Satisfaction</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ TESTIMONIALS ══════════════════════ -->
-<section class="lp-section" id="testimonials">
-  <div class="lp-container">
-    <div class="testi-outer">
-      <div class="testi-nav testi-prev" onclick="testiPrev()">‹</div>
-      <div class="testi-nav testi-next" onclick="testiNext()">›</div>
-
-      <div class="testi-wrap" id="testiWrap">
-        <div class="testi-track" id="testiTrack">
-
-          <!-- Slide 1 -->
-          <div class="testi-slide">
-            <div class="testi-left">
-              <div class="testi-quote-icon">"</div>
-              <div class="testi-left-title">Trusted by<br>Businesses</div>
-            </div>
-            <div class="testi-content">
-              <p class="testi-text">
-                "StackifyX delivered our project beyond our expectations. The team is professional,
-                communicative, and truly cares about the success of our product. Highly recommended
-                for anyone looking for a reliable development partner."
-              </p>
-              <div class="testi-author">
-                <div class="testi-avatar">A</div>
-                <div>
-                  <div class="testi-name">Adv. Ashish Ade</div>
-                  <div class="testi-role">Founder, TRUSTLEX.AJ</div>
-                  <div class="testi-stars">
-                    <span class="testi-star">★</span><span class="testi-star">★</span>
-                    <span class="testi-star">★</span><span class="testi-star">★</span>
-                    <span class="testi-star">★</span>
-                  </div>
+      <article class="port-card fade-up fade-up-delay-2">
+        <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#2d1454);">
+          <div style="width:100%;padding:20px 16px;">
+            <div style="font-size:0.68rem;font-weight:800;color:#c4b5fd;margin-bottom:8px;">TRUSTLEX.AJ</div>
+            <div style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:8px;padding:10px;margin-bottom:8px;">
+              <div style="font-size:0.58rem;color:#a78bfa;margin-bottom:6px;font-weight:600;">Legal Consultation Portal</div>
+              <div style="display:flex;gap:5px;margin-bottom:5px;">
+                <div style="width:28px;height:28px;background:rgba(124,58,237,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
+                <div style="flex:1;background:rgba(124,58,237,0.1);border-radius:4px;padding:4px 6px;"><div style="font-size:0.55rem;color:#c4b5fd;font-weight:600;">Connect with certified lawyers</div></div>
               </div>
             </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="testi-slide">
-            <div class="testi-left">
-              <div class="testi-quote-icon">"</div>
-              <div class="testi-left-title">Trusted by<br>Businesses</div>
-            </div>
-            <div class="testi-content">
-              <p class="testi-text">
-                "Working with StackifyX was a great experience from start to finish. They understood
-                our vision immediately and delivered a product that exceeded what we had imagined.
-                The real-time progress tracking kept us informed throughout."
-              </p>
-              <div class="testi-author">
-                <div class="testi-avatar" style="background:linear-gradient(135deg,#34d399,#059669);">P</div>
-                <div>
-                  <div class="testi-name">Priya Shah</div>
-                  <div class="testi-role">CEO, MedCare Solutions</div>
-                  <div class="testi-stars">
-                    <span class="testi-star">★</span><span class="testi-star">★</span>
-                    <span class="testi-star">★</span><span class="testi-star">★</span>
-                    <span class="testi-star">★</span>
-                  </div>
-                </div>
-              </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">24+</div><div style="font-size:0.52rem;color:#7c6bad;">Lawyers</div></div>
+              <div style="background:rgba(124,58,237,0.1);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">Legal</div><div style="font-size:0.52rem;color:#7c6bad;">Platform</div></div>
+              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">SaaS</div><div style="font-size:0.52rem;color:#7c6bad;">Model</div></div>
             </div>
           </div>
-
         </div>
-      </div>
+        <div class="port-body">
+          <h3 class="port-name">TRUSTLEX.AJ</h3>
+          <p class="port-desc">Legal consultation platform connecting clients with certified advocates and lawyers.</p>
+          <div class="port-tags">
+            <span class="port-tag">Node.js</span>
+            <span class="port-tag">Express</span>
+            <span class="port-tag">MongoDB</span>
+            <span class="port-tag">EJS</span>
+          </div>
+          <a href="/auth/register" class="port-link" aria-label="View case study for TRUSTLEX.AJ">
+            View Case Study
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
 
-      <div class="testi-dots" id="testiDots">
-        <div class="testi-dot active" onclick="testiGo(0)"></div>
-        <div class="testi-dot" onclick="testiGo(1)"></div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ CTA ════════════════════════════════ -->
-<section class="cta-section" id="contact">
-  <div class="cta-glow cta-glow-1"></div>
-  <div class="cta-glow cta-glow-2"></div>
-  <div class="lp-container">
-    <div class="cta-inner">
-      <div class="cta-left">
-        <h2 class="cta-title">Have an Idea? Let's Build It.</h2>
-        <p class="cta-desc">Tell us what you're trying to build. We'll help you turn your idea into a reliable digital product.</p>
-      </div>
-      <div class="cta-right">
-        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
-          <a href="/auth/register" class="btn-cta-primary">Start a Project →</a>
-          <% if (locals.linkedinURL) { %>
-            <a href="<%= locals.linkedinURL %>" target="_blank" class="btn-cta-secondary">Talk to Our Team</a>
-          <% } else { %>
-            <a href="/auth/login" class="btn-cta-secondary">Sign In</a>
+<!-- ════════════════════════ PROCESS ═════════════════════════ -->
+<section class="lp-section" id="process" aria-labelledby="proc-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">How We Work</div>
+      <h2 id="proc-heading">How We Turn Ideas Into Products</h2>
+      <p>A clear, structured process so you always know what's happening and what comes next.</p>
+    </div>
+    <div class="proc-grid" role="list">
+      <%
+      const steps = [
+        { n:'01', title:'Discover', desc:'We understand your idea, requirements and business goals before writing a single line of code.', icon:'<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' },
+        { n:'02', title:'Plan',     desc:'We define scope, technology stack, timeline and milestones. You get full visibility into what we\'re building.', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>' },
+        { n:'03', title:'Build',    desc:'Our team designs and develops your product with regular updates, real-time chat and milestone check-ins.', icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>' },
+        { n:'04', title:'Launch',   desc:'We deploy your product to production and provide ongoing support. We don\'t disappear after delivery.', icon:'<path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/>' },
+      ];
+      %>
+      <% steps.forEach((s, i) => { %>
+        <div class="proc-step fade-up fade-up-delay-<%= i %>" role="listitem">
+          <div class="proc-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- s.icon %></svg>
+          </div>
+          <div class="proc-num"><%= s.n %></div>
+          <h3 class="proc-title"><%= s.title %></h3>
+          <p class="proc-desc"><%= s.desc %></p>
+          <% if (i < steps.length - 1) { %>
+            <div class="proc-arr" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           <% } %>
-          <div class="cta-rocket">🚀</div>
         </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ WHY US ══════════════════════════ -->
+<section class="lp-section lp-section-alt" id="why-us" aria-labelledby="why-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:52px;">
+      <div class="lp-pill" aria-hidden="true">Why StackifyX</div>
+      <h2 id="why-heading">Why Businesses Choose StackifyX</h2>
+      <p>We don't make generic promises. Here's specifically what sets us apart.</p>
+    </div>
+    <div class="why-grid">
+      <%
+      const whys = [
+        { icon:'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>', title:'Built Around Your Business', desc:'Custom solutions instead of generic templates. We build around your actual workflows, users, and goals — not what\'s easiest for us.' },
+        { icon:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>', title:'Transparent Development', desc:'Track milestones, review progress and communicate with our team throughout. You\'re never left wondering what\'s happening.' },
+        { icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title:'Production Ready', desc:'Secure, thoroughly tested and deployment-ready software. We don\'t hand over code that isn\'t production quality.' },
+        { icon:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>', title:'Scalable Architecture', desc:'Built to support future users, features and integrations. Your product won\'t need a full rewrite when you grow.' },
+        { icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', title:'Post-Launch Support', desc:'We stay involved after deployment. Questions, bug fixes and improvements — we\'re here after the project is delivered.' },
+      ];
+      %>
+      <% whys.forEach((w, i) => { %>
+        <div class="why-card fade-up fade-up-delay-<%= i % 3 %>">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- w.icon %></svg>
+          </div>
+          <h3 class="why-title"><%= w.title %></h3>
+          <p class="why-desc"><%= w.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════ ABOUT ═══════════════════════════ -->
+<section class="lp-section lp-section-alt" id="about" aria-labelledby="about-heading">
+  <div class="lp-c">
+    <div class="about-grid">
+      <div>
+        <div class="lp-pill" aria-hidden="true">About Us</div>
+        <h2 id="about-heading" style="font-family:'Manrope',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.03em;color:var(--text-primary);margin-bottom:16px;">Building Digital Products<br>With Purpose</h2>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:18px;">
+          StackifyX is a digital product development company focused on building
+          reliable, scalable software for businesses that want to grow.
+        </p>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:28px;">
+          We work directly with founders, product teams and business owners to
+          turn ideas into real products — with a clear process, transparent
+          communication and a focus on long-term quality over short-term shortcuts.
+        </p>
+        <div class="about-checklist">
+          <% [
+            'Custom development for your exact requirements',
+            'Direct communication — no account managers',
+            'Clean, documented, maintainable code',
+            'From MVP to full-scale production product',
+            'Post-launch support and iteration',
+          ].forEach(item => { %>
+            <div class="about-check">
+              <div class="about-check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <%= item %>
+            </div>
+          <% }) %>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="/auth/register" class="btn btn-primary">Start a Project →</a>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(37,99,235,0.08),transparent);border-radius:50%;pointer-events:none;"></div>
+        <% [
+          { icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',  title:'Clean Code',           sub:'Documented, maintainable, scalable' },
+          { icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',                title:'Security First',       sub:'Best practices from day one' },
+          { icon:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',title:'Transparent Process',sub:'Track every milestone live' },
+          { icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',title:'Direct Communication', sub:'Chat with the team anytime' },
+        ].forEach(item => { %>
+          <div class="about-vis-item">
+            <div class="about-vis-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- item.icon %></svg>
+            </div>
+            <div>
+              <div class="about-vis-title"><%= item.title %></div>
+              <div class="about-vis-sub"><%= item.sub %></div>
+            </div>
+          </div>
+        <% }) %>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ FOOTER ════════════════════════════ -->
-<footer class="lp-footer">
-  <div class="lp-container">
-    <div class="footer-grid">
-
-      <!-- Brand -->
-      <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <img src="/stackifyx-logo.jpg" alt="StackifyX" style="width:30px;height:30px;border-radius:7px;background:#fff;padding:2px;object-fit:contain;">
-          <span class="footer-brand-name">StackifyX</span>
+<!-- ════════════════════════ INDUSTRIES ══════════════════════ -->
+<section class="lp-section" id="industries" aria-labelledby="ind-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:44px;">
+      <div class="lp-pill" aria-hidden="true">Industries</div>
+      <h2 id="ind-heading">Solutions Across Industries</h2>
+      <p>We build for businesses of all sizes and sectors.</p>
+    </div>
+    <div class="ind-grid" role="list">
+      <%
+      const industries = [
+        { name:'Healthcare',          icon:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>' },
+        { name:'E-Commerce',          icon:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>' },
+        { name:'Legal',               icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
+        { name:'Education',           icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>' },
+        { name:'Hospitality',         icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>' },
+        { name:'Startups',            icon:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
+        { name:'Professional Services',icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>' },
+        { name:'Small Business',      icon:'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>' },
+      ];
+      %>
+      <% industries.forEach((ind, i) => { %>
+        <div class="ind-card fade-up fade-up-delay-<%= i % 4 %>" role="listitem">
+          <div class="ind-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- ind.icon %></svg>
+          </div>
+          <span class="ind-name"><%= ind.name %></span>
         </div>
-        <p class="footer-brand-desc">We build digital products that help businesses grow.</p>
-        <div class="footer-socials">
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════ CTA ═════════════════════════════ -->
+<section class="lp-section" id="contact" aria-label="Call to action">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Build?</div>
+      <h2 class="cta-title">Have an Idea?<br>Let's Build It.</h2>
+      <p class="cta-desc">Tell us what you're trying to build. We'll help you turn your idea into a reliable, scalable digital product — from first commit to production.</p>
+      <div class="cta-btns">
+        <a href="/auth/register" class="cta-btn-p" aria-label="Start your project">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Start a Project
+        </a>
+        <% if (locals.linkedinURL) { %>
+          <a href="<%= locals.linkedinURL %>" target="_blank" rel="noopener noreferrer" class="cta-btn-s" aria-label="Talk to our team on LinkedIn">Talk to Our Team</a>
+        <% } else { %>
+          <a href="/auth/login" class="cta-btn-s">Sign In</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="lp-footer" aria-label="Site footer">
+  <div class="lp-c">
+    <div class="foot-grid">
+
+      <!-- Brand col -->
+      <div>
+        <div class="foot-logo-row">
+          <img src="/stackifyx-logo.jpg" alt="StackifyX" style="width:30px;height:30px;border-radius:7px;background:#fff;padding:2px;object-fit:contain;">
+          <span class="foot-brand-name">Stackify<span class="foot-brand-accent">X</span></span>
+        </div>
+        <p class="foot-desc">We build digital products that help businesses grow — from idea to production.</p>
+        <div class="foot-socials">
           <% if (locals.linkedinURL) { %>
-            <a href="<%= locals.linkedinURL %>" target="_blank" class="footer-social" title="LinkedIn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.987V9h3.112v1.561h.046c.434-.82 1.491-1.684 3.067-1.684 3.279 0 3.884 2.159 3.884 4.966v6.609zM5.337 7.433a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zm1.557 13.019H3.78V9h3.114v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="<%= locals.linkedinURL %>" target="_blank" rel="noopener noreferrer" class="foot-social" title="LinkedIn" aria-label="LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.987V9h3.112v1.561h.046c.434-.82 1.491-1.684 3.067-1.684 3.279 0 3.884 2.159 3.884 4.966v6.609zM5.337 7.433a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zm1.557 13.019H3.78V9h3.114v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
           <% } %>
-          <a href="#" class="footer-social" title="GitHub">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="foot-social" title="GitHub" aria-label="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
-          <a href="https://www.instagram.com/stackifyx?utm_source=qr&igsh=dHBiZXBudWZ4eHQy" class="footer-social" title="Instagram">
+          <a href="https://www.instagram.com/stackifyx?utm_source=qr&igsh=dHBiZXBudWZ4eHQy" class="foot-social" title="Instagram">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
         </div>
       </div>
 
       <!-- Services -->
-      <div>
-        <div class="footer-col-title">Services</div>
-        <a href="#services" class="footer-link">Web Development</a>
-        <a href="#services" class="footer-link">Mobile Apps</a>
-        <a href="#services" class="footer-link">Custom Software</a>
-        <a href="#services" class="footer-link">API Development</a>
-        <a href="#services" class="footer-link">Database Design</a>
-      </div>
+      <nav aria-label="Services links">
+        <div class="foot-col-title">Services</div>
+        <a href="#services" class="foot-link">Web Development</a>
+        <a href="#services" class="foot-link">Mobile Apps</a>
+        <a href="#services" class="foot-link">Custom Software</a>
+        <a href="#services" class="foot-link">AI & Automation</a>
+        <a href="#services" class="foot-link">API Development</a>
+      </nav>
 
       <!-- Company -->
-      <div>
-        <div class="footer-col-title">Company</div>
-        <a href="#why-us"   class="footer-link">About Us</a>
-        <a href="#portfolio" class="footer-link">Our Work</a>
-        <a href="#process"  class="footer-link">Process</a>
-        <a href="#contact"  class="footer-link">Contact Us</a>
-        <a href="#"         class="footer-link">Careers</a>
-      </div>
+      <nav aria-label="Company links">
+        <div class="foot-col-title">Company</div>
+        <a href="#about"     class="foot-link">About</a>
+        <a href="#portfolio" class="foot-link">Our Work</a>
+        <a href="#process"   class="foot-link">Process</a>
+        <a href="#contact"   class="foot-link">Contact</a>
+        <a href="#"          class="foot-link">Careers</a>
+      </nav>
 
       <!-- Resources -->
-      <div>
-        <div class="footer-col-title">Resources</div>
-        <a href="#" class="footer-link">Blog</a>
-        <a href="#" class="footer-link">FAQ</a>
-        <a href="#" class="footer-link">Privacy Policy</a>
-        <a href="#" class="footer-link">Terms &amp; Conditions</a>
-      </div>
+      <nav aria-label="Resource links">
+        <div class="foot-col-title">Resources</div>
+        <a href="#" class="foot-link">Blog</a>
+        <a href="#" class="foot-link">FAQ</a>
+        <a href="#" class="foot-link">Privacy Policy</a>
+        <a href="#" class="foot-link">Terms & Conditions</a>
+      </nav>
 
       <!-- Contact -->
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <a href="mailto:stackifyx@gmail.com" class="footer-link" style="display:flex;align-items:center;gap:6px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <address style="font-style:normal;">
+        <div class="foot-col-title">Contact</div>
+        <a href="mailto:stackifyx@gmail.com" class="foot-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           stackifyx@gmail.com
         </a>
-        <a href="tel:+918830268379" class="footer-link" style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 5.55 5.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-          +91 88302 68379
+        <a href="/auth/login" class="foot-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Client Login
         </a>
-        <a href="https://shorturl.at/mfEfu" class="footer-link" style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="foot-link" style="cursor:default;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           India
-        </a>
-      </div>
+        </span>
+      </address>
 
     </div>
 
-    <!-- Bottom bar -->
-    <div class="footer-bottom">
-      <p>© 2026 StackifyX. All rights reserved.</p>
-      <p>Made with ❤️ by StackifyX</p>
+    <div class="foot-bottom">
+      <p>© <%= new Date().getFullYear() %> StackifyX. All rights reserved.</p>
+      <p>Made with ♥ by StackifyX</p>
     </div>
   </div>
 </footer>
 
+<!-- Intersection Observer: fade-up animations -->
 <script>
-// Testimonials slider
-let testiCurrent = 0;
-const slides = document.querySelectorAll('.testi-slide');
-const dots   = document.querySelectorAll('.testi-dot');
-const track  = document.getElementById('testiTrack');
+(function(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  },{ threshold:0.12 });
+  document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
 
-function testiGo(idx) {
-  testiCurrent = idx;
-  track.style.transform = `translateX(-${idx * 100}%)`;
-  dots.forEach((d,i) => d.classList.toggle('active', i === idx));
-}
-function testiNext() { testiGo((testiCurrent + 1) % slides.length); }
-function testiPrev() { testiGo((testiCurrent - 1 + slides.length) % slides.length); }
-
-// Auto-advance every 5s
-setInterval(testiNext, 5000);
+  // Anchor smooth scroll (navbar already handles, this covers footer links)
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var href=a.getAttribute('href');
+      if(href==='#')return;
+      var t=document.querySelector(href);
+      if(t){
+        e.preventDefault();
+        var navH=document.getElementById('mainNavbar').offsetHeight;
+        window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-navH-8,behavior:'smooth'});
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
