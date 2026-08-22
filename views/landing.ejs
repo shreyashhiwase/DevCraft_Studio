@@ -323,7 +323,6 @@ html.light .dash-mockup { box-shadow:0 24px 64px rgba(37,99,235,0.1),0 1px 4px r
 }
 .ind-name  { font-size:0.86rem;font-weight:700;color:var(--text-primary); }
 
-
 /* ── CTA ───────────────────────────────────────────────── */
 .cta-box {
   background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 45%,#7c3aed 100%);
@@ -903,6 +902,118 @@ html.light .dash-mockup { box-shadow:0 24px 64px rgba(37,99,235,0.1),0 1px 4px r
 </section>
 
 
+<!-- ════════════════════════ TESTIMONIALS ═════════════════════ -->
+<section class="lp-section lp-section-alt" id="testimonials" aria-labelledby="testi-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:52px;">
+      <div class="lp-pill" aria-hidden="true">Client Stories</div>
+      <h2 id="testi-heading">What Our Clients Say</h2>
+      <p>Real feedback from the businesses we've worked with.</p>
+    </div>
+
+    <div style="position:relative;">
+      <!-- Slider track -->
+      <div style="overflow:hidden;border-radius:20px;" id="testiWrap">
+        <div id="testiTrack" style="display:flex;transition:transform 0.5s ease;">
+
+          <!-- Slide 1 -->
+          <div style="min-width:100%;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;
+                      background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:52px 56px;"
+               class="testi-slide">
+            <div style="flex-shrink:0;">
+              <div style="font-family:'Manrope',sans-serif;font-size:5.5rem;font-weight:800;color:var(--accent-blue);opacity:0.25;line-height:0.8;margin-bottom:20px;">"</div>
+              <div style="font-family:'Manrope',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text-primary);line-height:1.2;max-width:160px;">Trusted by<br>Businesses</div>
+            </div>
+            <div>
+              <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.85;margin-bottom:28px;font-style:italic;">
+                "StackifyX delivered our project beyond our expectations. The team is professional,
+                communicative, and truly cares about the success of our product. The real-time project
+                tracking kept us informed at every step — highly recommended."
+              </p>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);
+                            display:flex;align-items:center;justify-content:center;
+                            font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0;">R</div>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem;color:var(--text-primary);margin-bottom:2px;">Adv. Ashish Ade</div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">Founder, TRUSTLEX.AJ</div>
+                  <div style="display:flex;gap:3px;">
+                    <% for(let i=0;i<5;i++) { %>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-orange)" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div style="min-width:100%;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;
+                      background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:52px 56px;"
+               class="testi-slide">
+            <div style="flex-shrink:0;">
+              <div style="font-family:'Manrope',sans-serif;font-size:5.5rem;font-weight:800;color:var(--accent-blue);opacity:0.25;line-height:0.8;margin-bottom:20px;">"</div>
+              <div style="font-family:'Manrope',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text-primary);line-height:1.2;max-width:160px;">Trusted by<br>Businesses</div>
+            </div>
+            <div>
+              <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.85;margin-bottom:28px;font-style:italic;">
+                "Working with StackifyX was a great experience from start to finish. They understood
+                our vision immediately and delivered a product that exceeded what we had imagined.
+                The transparency throughout the process made all the difference."
+              </p>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:48px;height:48px;border-radius:50%;
+                            background:linear-gradient(135deg,#34d399,#059669);
+                            display:flex;align-items:center;justify-content:center;
+                            font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0;">P</div>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem;color:var(--text-primary);margin-bottom:2px;">Priya Shah</div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">CEO, MedCare Solutions</div>
+                  <div style="display:flex;gap:3px;">
+                    <% for(let i=0;i<5;i++) { %>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-orange)" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Prev / Next -->
+      <button onclick="testiPrev()" aria-label="Previous testimonial"
+        style="position:absolute;left:-18px;top:50%;transform:translateY(-50%);
+               width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+               background:var(--bg-card);color:var(--text-secondary);cursor:pointer;
+               display:flex;align-items:center;justify-content:center;
+               transition:background 0.15s,border-color 0.15s,color 0.15s;z-index:10;"
+        onmouseover="this.style.background='var(--accent-blue)';this.style.color='#fff';this.style.borderColor='var(--accent-blue)';"
+        onmouseout="this.style.background='var(--bg-card)';this.style.color='var(--text-secondary)';this.style.borderColor='var(--border)';">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button onclick="testiNext()" aria-label="Next testimonial"
+        style="position:absolute;right:-18px;top:50%;transform:translateY(-50%);
+               width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+               background:var(--bg-card);color:var(--text-secondary);cursor:pointer;
+               display:flex;align-items:center;justify-content:center;
+               transition:background 0.15s,border-color 0.15s,color 0.15s;z-index:10;"
+        onmouseover="this.style.background='var(--accent-blue)';this.style.color='#fff';this.style.borderColor='var(--accent-blue)';"
+        onmouseout="this.style.background='var(--bg-card)';this.style.color='var(--text-secondary)';this.style.borderColor='var(--border)';">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <!-- Dots -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:24px;" role="tablist" aria-label="Testimonial slides">
+      <button class="testi-dot active" onclick="testiGo(0)" aria-label="Slide 1" aria-selected="true"
+        style="width:8px;height:8px;border-radius:50%;background:var(--accent-blue);border:none;cursor:pointer;padding:0;transition:background 0.2s,transform 0.2s;"></button>
+      <button class="testi-dot" onclick="testiGo(1)" aria-label="Slide 2" aria-selected="false"
+        style="width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:background 0.2s,transform 0.2s;"></button>
+    </div>
+  </div>
+</section>
 
 <!-- ════════════════════════ CTA ═════════════════════════════ -->
 <section class="lp-section" id="contact" aria-label="Call to action">
@@ -946,9 +1057,6 @@ html.light .dash-mockup { box-shadow:0 24px 64px rgba(37,99,235,0.1),0 1px 4px r
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.987V9h3.112v1.561h.046c.434-.82 1.491-1.684 3.067-1.684 3.279 0 3.884 2.159 3.884 4.966v6.609zM5.337 7.433a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zm1.557 13.019H3.78V9h3.114v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
           <% } %>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="foot-social" title="GitHub" aria-label="GitHub">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
           <a href="https://www.instagram.com/stackifyx?utm_source=qr&igsh=dHBiZXBudWZ4eHQy" class="foot-social" title="Instagram">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
@@ -1012,6 +1120,22 @@ html.light .dash-mockup { box-shadow:0 24px 64px rgba(37,99,235,0.1),0 1px 4px r
 
 <!-- Intersection Observer: fade-up animations -->
 <script>
+var testiCurrent=0;
+var testiSlides=2;
+function testiGo(idx){
+  testiCurrent=idx;
+  document.getElementById('testiTrack').style.transform='translateX(-'+(idx*100)+'%)';
+  document.querySelectorAll('.testi-dot').forEach(function(d,i){
+    d.style.background=i===idx?'var(--accent-blue)':'var(--border)';
+    d.setAttribute('aria-selected',i===idx?'true':'false');
+  });
+}
+function testiNext(){ testiGo((testiCurrent+1)%testiSlides); }
+function testiPrev(){ testiGo((testiCurrent-1+testiSlides)%testiSlides); }
+var testiTimer=setInterval(testiNext,6000);
+document.getElementById('testiWrap')&&document.getElementById('testiWrap').addEventListener('mouseenter',function(){clearInterval(testiTimer);});
+document.getElementById('testiWrap')&&document.getElementById('testiWrap').addEventListener('mouseleave',function(){testiTimer=setInterval(testiNext,6000);});
+
 (function(){
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
