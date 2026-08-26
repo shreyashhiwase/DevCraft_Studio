@@ -592,6 +592,7 @@ tbody tr:hover{background:rgba(255,255,255,0.02);}
   }
   .mobile-nav-link:hover{background:var(--bg-elevated);color:var(--text-primary);padding-left:30px;}
   .mobile-nav-highlight{color:var(--accent-blue);font-weight:700;}
+  .mobile-nav-link.active{color:var(--text-primary);background:var(--bg-elevated);}
 
   .mobile-user-section{padding:16px 24px 20px;background:var(--bg-card);border-top:2px solid var(--border-accent);margin-top:4px;}
   .mobile-user-info{display:flex;align-items:center;gap:12px;margin-bottom:14px;}

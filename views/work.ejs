@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/work'; %>
+<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Work', path:'/work' }]; %>
+<%- include('partials/page-head') %>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true">Selected Work</div>
+    <h1>Projects We're Proud Of</h1>
+    <p class="lead">Explore websites, applications, platforms and custom software developed by StackifyX.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROJECTS ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+
+    <div class="work-filters" role="tablist" aria-label="Filter projects by category">
+      <button class="work-filter-btn active" data-filter="all" onclick="workFilter('all',this)">All</button>
+      <button class="work-filter-btn" data-filter="web-application" onclick="workFilter('web-application',this)">Web Applications</button>
+      <button class="work-filter-btn" data-filter="custom-software" onclick="workFilter('custom-software',this)">Custom Software</button>
+    </div>
+
+    <div class="port-grid work-full" id="workGrid">
+
+      <!-- StackifyX Platform -->
+      <article class="port-card work-item" data-cats="web-application custom-software">
+        <div style="display:grid;grid-template-columns:280px 1fr;">
+          <div class="port-img" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);height:auto;min-height:100%;">
+            <div style="width:100%;padding:20px 16px;">
+              <div style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:8px;padding:12px;margin-bottom:8px;">
+                <div style="font-size:0.6rem;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Project Dashboard</div>
+                <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:5px;"><div style="width:80%;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:2px;"></div></div>
+                <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:5px;"><div style="width:55%;height:100%;background:linear-gradient(90deg,#34d399,#059669);border-radius:2px;"></div></div>
+                <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:35%;height:100%;background:linear-gradient(90deg,#fbbf24,#f59e0b);border-radius:2px;"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="work-card-detail">
+            <div class="work-status">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+              Live &amp; In Active Development
+            </div>
+            <h2 class="port-name" style="font-size:1.3rem;">StackifyX Platform</h2>
+            <p class="port-desc" style="margin-bottom:6px;">Category: Web Application &middot; Custom Software</p>
+
+            <div class="work-section-label">The Problem</div>
+            <p class="port-desc">Client project work was scattered across emails and chats, with no shared view of progress, inquiries or payments.</p>
+
+            <div class="work-section-label">The Solution</div>
+            <p class="port-desc">A full project-service platform where clients submit inquiries, track project status, chat with the team in real time, and manage payments — with a separate admin dashboard for the team.</p>
+
+            <div class="work-section-label">Key Features</div>
+            <div class="about-checklist" style="margin-top:0;">
+              <% ['Client & admin dashboards','Project inquiry submission & tracking','Real-time chat via Socket.IO','Payment tracking','Role-based authentication'].forEach(f => { %>
+                <div class="about-check" style="font-size:0.84rem;">
+                  <div class="about-check-icon" style="width:18px;height:18px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                  <%= f %>
+                </div>
+              <% }) %>
+            </div>
+
+            <div class="port-tags" style="margin-top:16px;">
+              <span class="port-tag">Node.js</span><span class="port-tag">Express</span>
+              <span class="port-tag">MongoDB</span><span class="port-tag">EJS</span>
+              <span class="port-tag">Socket.IO</span>
+            </div>
+            <a href="/" class="port-link" style="margin-top:14px;" aria-label="This platform is the site you're on">
+              You're Using It Right Now
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Healthcare Platform -->
+      <article class="port-card work-item" data-cats="web-application custom-software">
+        <div style="display:grid;grid-template-columns:280px 1fr;">
+          <div class="port-img" style="background:linear-gradient(135deg,#0d2818,#1a4731);height:auto;">
+            <div style="width:100%;padding:20px 16px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                <div style="font-size:0.68rem;font-weight:800;color:#6ee7b7;">Healthcare Platform</div>
+              </div>
+              <div style="display:flex;align-items:flex-end;gap:4px;height:50px;margin-bottom:10px;">
+                <% [35,55,40,70,60,80,65].forEach(h => { %>
+                  <div style="flex:1;height:<%= h %>%;background:rgba(52,211,153,0.4);border-radius:2px 2px 0 0;"></div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <div class="work-card-detail">
+            <h2 class="port-name" style="font-size:1.3rem;">Healthcare Platform</h2>
+            <p class="port-desc" style="margin-bottom:6px;">Category: Web Application &middot; Custom Software</p>
+
+            <div class="work-section-label">The Problem</div>
+            <p class="port-desc">Clinics needed a digital way to manage appointments, patient records and billing instead of relying on paper or disconnected tools.</p>
+
+            <div class="work-section-label">The Solution</div>
+            <p class="port-desc">A healthcare management platform covering appointment scheduling, patient records and digital billing for clinics and hospitals.</p>
+
+            <div class="work-section-label">Key Features</div>
+            <div class="about-checklist" style="margin-top:0;">
+              <% ['Appointment scheduling','Patient records management','Digital billing','Data visualization dashboards'].forEach(f => { %>
+                <div class="about-check" style="font-size:0.84rem;">
+                  <div class="about-check-icon" style="width:18px;height:18px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                  <%= f %>
+                </div>
+              <% }) %>
+            </div>
+
+            <div class="port-tags" style="margin-top:16px;">
+              <span class="port-tag">Node.js</span><span class="port-tag">MongoDB</span>
+              <span class="port-tag">Chart.js</span><span class="port-tag">Web App</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TRUSTLEX.AJ -->
+      <article class="port-card work-item" data-cats="web-application custom-software">
+        <div style="display:grid;grid-template-columns:280px 1fr;">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#2d1454);height:auto;">
+            <div style="width:100%;padding:20px 16px;">
+              <div style="font-size:0.68rem;font-weight:800;color:#c4b5fd;margin-bottom:8px;">TRUSTLEX.AJ</div>
+              <div style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:8px;padding:10px;">
+                <div style="font-size:0.58rem;color:#a78bfa;margin-bottom:6px;font-weight:600;">Legal Consultation Portal</div>
+                <div style="display:flex;gap:5px;">
+                  <div style="width:28px;height:28px;background:rgba(124,58,237,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div style="flex:1;background:rgba(124,58,237,0.1);border-radius:4px;padding:4px 6px;"><div style="font-size:0.55rem;color:#c4b5fd;font-weight:600;">Connect with certified lawyers</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="work-card-detail">
+            <h2 class="port-name" style="font-size:1.3rem;">TRUSTLEX.AJ</h2>
+            <p class="port-desc" style="margin-bottom:6px;">Category: Web Application &middot; Custom Software</p>
+
+            <div class="work-section-label">The Problem</div>
+            <p class="port-desc">People looking for legal help often struggle to find and connect with the right advocate for their situation.</p>
+
+            <div class="work-section-label">The Solution</div>
+            <p class="port-desc">A legal consultation platform connecting clients with certified advocates and lawyers for consultations.</p>
+
+            <div class="work-section-label">Key Features</div>
+            <div class="about-checklist" style="margin-top:0;">
+              <% ['Client-to-lawyer matching','Consultation booking flow','Advocate profiles','SaaS-style access model'].forEach(f => { %>
+                <div class="about-check" style="font-size:0.84rem;">
+                  <div class="about-check-icon" style="width:18px;height:18px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                  <%= f %>
+                </div>
+              <% }) %>
+            </div>
+
+            <div class="port-tags" style="margin-top:16px;">
+              <span class="port-tag">Node.js</span><span class="port-tag">Express</span>
+              <span class="port-tag">MongoDB</span><span class="port-tag">EJS</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p style="text-align:center;color:var(--text-muted);font-size:0.85rem;margin-top:36px;">More projects are added as they're completed. Have a project in mind?
+      <a href="/contact" style="color:var(--accent-blue);font-weight:700;">Let's talk.</a>
+    </p>
+  </div>
+</section>
+
+<script>
+function workFilter(cat, btn){
+  document.querySelectorAll('.work-filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.work-item').forEach(function(item){
+    var cats = (item.getAttribute('data-cats')||'').split(' ');
+    item.style.display = (cat==='all' || cats.indexOf(cat)!==-1) ? '' : 'none';
+  });
+}
+</script>
+
+<style>
+@media(max-width:800px){
+  .work-item > div { grid-template-columns:1fr!important; }
+}
+</style>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>

@@ -67,40 +67,34 @@
             </div>
           </div>
 
-        <% } else if (locals.isLanding) { %>
-          <!-- Landing page nav -->
+        <% } else { %>
+          <%
+            // Which top-level public page are we on? Used to highlight the active link.
+            const nav = locals.navActive || (locals.isLanding ? 'home' : '');
+            const isActive = (key) => nav === key ? ' active' : '';
+          %>
+          <!-- Public site nav (Home + all marketing pages) -->
           <div class="nav-desktop-links">
-            <a href="#services"  class="nav-link nav-anchor">Services</a>
-            <a href="#portfolio" class="nav-link nav-anchor">Work</a>
-            <a href="#process"   class="nav-link nav-anchor">Process</a>
-            <a href="#why-us"    class="nav-link nav-anchor">Why Us</a>
-            <a href="#about"     class="nav-link nav-anchor">About</a>
-            <a href="#contact"   class="nav-link nav-anchor">Contact</a>
+            <a href="/"          class="nav-link<%= isActive('home') %>">Home</a>
+            <a href="/services"  class="nav-link<%= isActive('services') %>">Services</a>
+            <a href="/work"      class="nav-link<%= isActive('work') %>">Work</a>
+            <a href="/why-us"    class="nav-link<%= isActive('why-us') %>">Why Choose Us</a>
+            <a href="/about"     class="nav-link<%= isActive('about') %>">About</a>
+            <a href="/contact"   class="nav-link<%= isActive('contact') %>">Contact</a>
             <div class="nav-sep"></div>
             <a href="/auth/login"    class="nav-link">Login</a>
             <a href="/auth/register" class="nav-btn">Start a Project →</a>
           </div>
           <div class="mobile-nav-menu">
-            <a href="#services"  class="mobile-nav-link mobile-nav-anchor">Services</a>
-            <a href="#portfolio" class="mobile-nav-link mobile-nav-anchor">Our Work</a>
-            <a href="#process"   class="mobile-nav-link mobile-nav-anchor">Process</a>
-            <a href="#why-us"    class="mobile-nav-link mobile-nav-anchor">Why Us</a>
-            <a href="#about"     class="mobile-nav-link mobile-nav-anchor">About</a>
-            <a href="#contact"   class="mobile-nav-link mobile-nav-anchor">Contact</a>
+            <a href="/"          class="mobile-nav-link<%= isActive('home') %>">Home</a>
+            <a href="/services"  class="mobile-nav-link<%= isActive('services') %>">Services</a>
+            <a href="/work"      class="mobile-nav-link<%= isActive('work') %>">Work</a>
+            <a href="/why-us"    class="mobile-nav-link<%= isActive('why-us') %>">Why Choose Us</a>
+            <a href="/about"     class="mobile-nav-link<%= isActive('about') %>">About</a>
+            <a href="/contact"   class="mobile-nav-link<%= isActive('contact') %>">Contact</a>
             <div style="height:1px;background:var(--border);margin:6px 0;"></div>
             <a href="/auth/login"    class="mobile-nav-link">Login</a>
             <a href="/auth/register" class="mobile-nav-link mobile-nav-highlight">Start a Project →</a>
-          </div>
-
-        <% } else { %>
-          <!-- Other guest pages -->
-          <div class="nav-desktop-links">
-            <a href="/auth/login"    class="nav-link">Login</a>
-            <a href="/auth/register" class="nav-btn">Get Started</a>
-          </div>
-          <div class="mobile-nav-menu">
-            <a href="/auth/login"    class="mobile-nav-link">Login</a>
-            <a href="/auth/register" class="mobile-nav-link mobile-nav-highlight">Get Started Free</a>
           </div>
         <% } %>
 

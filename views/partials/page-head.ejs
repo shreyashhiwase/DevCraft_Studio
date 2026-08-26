@@ -1,0 +1,57 @@
+<%
+  const _base = process.env.APP_URL || 'https://stackifyx.onrender.com';
+  const _path = locals.canonicalPath || '/';
+  const _url  = _base + _path;
+  const _desc = locals.metaDescription || 'StackifyX builds websites, web applications, mobile apps and custom software for businesses.';
+%>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpeg" href="/stackifyx-logo.jpg">
+<script>if(localStorage.getItem('devcraft-theme')==='light')document.documentElement.classList.add('light');</script>
+
+<!-- SEO -->
+<title><%= title %></title>
+<meta name="description" content="<%= _desc %>">
+<link rel="canonical" href="<%= _url %>">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="<%= _url %>">
+<meta property="og:title"       content="<%= title %>">
+<meta property="og:description" content="<%= _desc %>">
+<meta property="og:image"       content="<%= _base %>/stackifyx-logo.jpg">
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="twitter:title"      content="<%= title %>">
+<meta name="twitter:description" content="<%= _desc %>">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": _url + "#webpage",
+      "url": _url,
+      "name": title,
+      "description": _desc,
+      "isPartOf": { "@id": _base + "/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": (locals.breadcrumbs || []).map((b, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": b.name,
+        "item": _base + b.path
+      }))
+    }
+  ]
+}) %>
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<%- include('site-styles') %>

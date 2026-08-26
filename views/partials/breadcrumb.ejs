@@ -1,0 +1,15 @@
+<% const crumbs = locals.breadcrumbs || []; %>
+<% if (crumbs.length > 1) { %>
+<nav aria-label="Breadcrumb" style="margin-bottom:22px;">
+  <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.82rem;color:var(--text-muted);flex-wrap:wrap;">
+    <% crumbs.forEach((c, i) => { %>
+      <% if (i > 0) { %><span aria-hidden="true">/</span><% } %>
+      <% if (i === crumbs.length - 1) { %>
+        <span style="color:var(--text-primary);font-weight:700;" aria-current="page"><%= c.name %></span>
+      <% } else { %>
+        <a href="<%= c.path %>" style="color:var(--text-muted);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--accent-blue)'" onmouseout="this.style.color='var(--text-muted)'"><%= c.name %></a>
+      <% } %>
+    <% }) %>
+  </div>
+</nav>
+<% } %>

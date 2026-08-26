@@ -205,9 +205,9 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#07070f;color:#e2e8f0}
 </style></head>
 <body><div class="wrap">
 <div class="hdr">
-<img src="https://stackifyx.onrender.com/stackifyx-logo.jpg" alt="StackifyX" style="width:52px;height:52px;border-radius:12px;background:#fff;padding:3px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
-<h1>StackifyX</h1>
-<p>Your Personal Project Service Platform</p>
+  <img src="${process.env.APP_URL || 'http://localhost:3000'}/stackifyx-logo.jpg" alt="StackifyX" style="width:52px;height:52px;border-radius:12px;background:#fff;padding:3px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
+  <h1>StackifyX</h1>
+  <p>Your Personal Project Service Platform</p>
 </div>
 <div class="bdy">${content}</div>
 <div class="ftr">
@@ -222,7 +222,7 @@ const sendWelcome = (user) => sendEmail({
   html: base(`
     <span class="badge bw">👋 Welcome aboard</span>
     <p>Hi <strong style="color:#e2e8f0">${user.name}</strong>,</p>
-    <p>Your account is ready! Submit project requests, track progress live, and chat directly with our StackifyX team.</p>
+    <p>Your account is ready! Submit project requests, track progress live, and chat directly with our dev team.</p>
     <div class="ic">
       <h3>🚀 Get started in 3 steps</h3>
       <p>1. Submit a project inquiry with your requirements &amp; budget<br>
@@ -297,13 +297,36 @@ const sendPasswordReset = (user, resetURL) => sendEmail({
   `, 'Reset Password'),
 });
 
+// ─── Contact page lead notification ───────────────────────────────────────
+// Sent to the StackifyX team inbox whenever a visitor submits the public
+// /contact form. Does not touch the existing authenticated Inquiry emails.
+const sendContactNotification = (msg) => sendEmail({
+  to: process.env.CONTACT_NOTIFY_EMAIL || process.env.BREVO_SENDER_EMAIL || process.env.EMAIL_USER,
+  subject: `📩 New project inquiry from ${msg.name}`,
+  html: base(`
+    <span class="badge bi">📩 New Contact Form Lead</span>
+    <p>A new project inquiry was submitted on the website.</p>
+    <div class="ic">
+      <h3>${msg.name}</h3>
+      <p>Email: ${msg.email}</p>
+      ${msg.phone ? `<p>Phone: ${msg.phone}</p>` : ''}
+      ${msg.company ? `<p>Company: ${msg.company}</p>` : ''}
+      <p>Project Type: ${msg.projectType}</p>
+      <p>Budget Range: ${msg.budgetRange}</p>
+    </div>
+    <p style="white-space:pre-wrap">${msg.description}</p>
+  `, 'New Contact Form Lead'),
+});
+
 module.exports = {
   verifyEmailConfig,
+  sendEmail,
   sendWelcome,
   sendInquiryAccepted,
   sendProjectStarted,
   sendProjectCompleted,
   sendPasswordReset,
+  sendContactNotification,
 };
 
 // ─── 6. Email Verification ────────────────────────────────────────────────

@@ -96,6 +96,11 @@ app.get('/sitemap.xml', (req, res) => {
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${base}/</loc><lastmod>${now}</lastmod><priority>1.0</priority></url>
+  <url><loc>${base}/services</loc><lastmod>${now}</lastmod><priority>0.9</priority></url>
+  <url><loc>${base}/work</loc><lastmod>${now}</lastmod><priority>0.9</priority></url>
+  <url><loc>${base}/why-us</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
+  <url><loc>${base}/about</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
+  <url><loc>${base}/contact</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
   <url><loc>${base}/auth/login</loc><lastmod>${now}</lastmod><priority>0.6</priority></url>
   <url><loc>${base}/auth/register</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>
 </urlset>`);
@@ -105,12 +110,15 @@ app.get('/sitemap.xml', (req, res) => {
 app.get('/', (req, res) => {
   if (req.session.userId)
     return res.redirect(req.session.userRole === 'admin' ? '/admin/dashboard' : '/dashboard');
-  // isLanding tells the navbar to show section anchor links (Services, Process, etc.)
   res.render('landing', {
     title: 'StackifyX — We Build Digital Products That Move Businesses Forward',
     isLanding: true,
+    navActive: 'home',
   });
 });
+
+// Public marketing pages (Services, Work, Why Choose Us, About, Contact)
+app.use('/', require('./routes/public'));
 
 // 404
 app.use((req, res) =>
