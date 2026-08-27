@@ -101,6 +101,8 @@ app.get('/sitemap.xml', (req, res) => {
   <url><loc>${base}/why-us</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
   <url><loc>${base}/about</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
   <url><loc>${base}/contact</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
+  <url><loc>${base}/terms</loc><lastmod>${now}</lastmod><priority>0.4</priority></url>
+  <url><loc>${base}/privacy-policy</loc><lastmod>${now}</lastmod><priority>0.4</priority></url>
   <url><loc>${base}/auth/login</loc><lastmod>${now}</lastmod><priority>0.6</priority></url>
   <url><loc>${base}/auth/register</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>
 </urlset>`);

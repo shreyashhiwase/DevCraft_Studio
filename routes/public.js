@@ -6,6 +6,12 @@ const express = require('express');
 const router = express.Router();
 const { submitContact } = require('../controllers/contactController');
 
+// Configurable "Last Updated" dates for legal pages — update these
+// manually whenever the Terms or Privacy Policy content changes.
+// (Not tied to server start time or request time, per requirements.)
+const TERMS_LAST_UPDATED = 'August 2026';
+const PRIVACY_LAST_UPDATED = 'August 2026';
+
 router.get('/services', (req, res) => {
   res.render('services', {
     title: 'StackifyX Services — Web, Mobile & Custom Software Development',
@@ -47,5 +53,23 @@ router.get('/contact', (req, res) => {
 });
 
 router.post('/contact', submitContact);
+
+router.get('/terms', (req, res) => {
+  res.render('terms', {
+    title: 'Terms of Service — StackifyX',
+    metaDescription: 'Read the Terms of Service governing the use of StackifyX services and platform.',
+    navActive: '',
+    lastUpdated: TERMS_LAST_UPDATED,
+  });
+});
+
+router.get('/privacy-policy', (req, res) => {
+  res.render('privacy-policy', {
+    title: 'Privacy Policy — StackifyX',
+    metaDescription: 'Learn how StackifyX collects, uses, protects and manages personal information.',
+    navActive: '',
+    lastUpdated: PRIVACY_LAST_UPDATED,
+  });
+});
 
 module.exports = router;

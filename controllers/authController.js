@@ -23,7 +23,17 @@ const postRegister = async (req, res) => {
   if (!errors.isEmpty())
     return res.render('auth/register', { title: 'Create Account', errors: errors.array(), formData: req.body });
 
-  const { name, email, password, phone } = req.body;
+  const { name, email, password, phone, termsAccepted } = req.body;
+
+  // Defense-in-depth: never rely solely on frontend/express-validator checks.
+  if (!termsAccepted) {
+    return res.render('auth/register', {
+      title: 'Create Account',
+      errors: [{ msg: 'You must agree to the Terms of Service and Privacy Policy to create an account.' }],
+      formData: req.body
+    });
+  }
+
   try {
     const existing = await User.findOne({ email: email.toLowerCase() });
     if (existing) {
@@ -53,6 +63,9 @@ const postRegister = async (req, res) => {
       isVerified:         false,
       emailVerifyToken:   hashedTok,
       emailVerifyExpires: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
+      termsAccepted:         true,
+      privacyPolicyAccepted: true,
+      termsAcceptedAt:       new Date(),
     });
 
     // Send verification email (non-blocking)
