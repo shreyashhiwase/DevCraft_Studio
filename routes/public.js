@@ -5,6 +5,10 @@
 const express = require('express');
 const router = express.Router();
 const { submitContact } = require('../controllers/contactController');
+const { services, bySlug, commonProcess } = require('../data/servicesData');
+const { industries, bySlug: industryBySlug } = require('../data/industriesData');
+const { posts, bySlug: postBySlug } = require('../data/blogData');
+const { caseStudies, bySlug: caseStudyBySlug } = require('../data/caseStudiesData');
 
 // Configurable "Last Updated" dates for legal pages — update these
 // manually whenever the Terms or Privacy Policy content changes.
@@ -17,6 +21,94 @@ router.get('/services', (req, res) => {
     title: 'StackifyX Services — Web, Mobile & Custom Software Development',
     metaDescription: 'Websites, web applications, mobile apps, custom software, e-commerce and AI automation — explore the digital product services StackifyX provides.',
     navActive: 'services',
+  });
+});
+
+router.get('/services/:slug', (req, res, next) => {
+  const service = bySlug[req.params.slug];
+  if (!service) return next(); // fall through to 404 handler
+
+  const relatedServices = (service.related || [])
+    .map(slug => bySlug[slug])
+    .filter(Boolean);
+
+  res.render('service-detail', {
+    title: `${service.title} — StackifyX`,
+    metaDescription: service.metaDescription,
+    navActive: 'services',
+    service,
+    relatedServices,
+    commonProcess,
+  });
+});
+
+router.get('/industries', (req, res) => {
+  res.render('industries', {
+    title: 'Industries We Build For — StackifyX',
+    metaDescription: 'StackifyX builds digital solutions across industries — healthcare, legal, e-commerce, education, hospitality, real estate and more.',
+    navActive: 'industries',
+    industries,
+  });
+});
+
+router.get('/industries/:slug', (req, res, next) => {
+  const industry = industryBySlug[req.params.slug];
+  if (!industry) return next(); // fall through to 404 handler
+
+  const relatedServices = (industry.relatedServices || [])
+    .map(slug => bySlug[slug])
+    .filter(Boolean);
+
+  res.render('industry-detail', {
+    title: `Digital Solutions for ${industry.name} — StackifyX`,
+    metaDescription: industry.metaDescription,
+    navActive: 'industries',
+    industry,
+    relatedServices,
+  });
+});
+
+router.get('/blog', (req, res) => {
+  const sorted = [...posts].sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+  res.render('blog', {
+    title: 'Blog — StackifyX',
+    metaDescription: 'Practical guides on websites, software and growing your business online, from the StackifyX team.',
+    navActive: 'blog',
+    posts: sorted,
+  });
+});
+
+router.get('/blog/:slug', (req, res, next) => {
+  const post = postBySlug[req.params.slug];
+  if (!post) return next(); // fall through to 404 handler
+
+  const relatedService = post.relatedService ? bySlug[post.relatedService] : null;
+
+  res.render('blog-post', {
+    title: `${post.title} — StackifyX Blog`,
+    metaDescription: post.metaDescription,
+    navActive: 'blog',
+    post,
+    relatedService,
+  });
+});
+
+router.get('/work/:slug', (req, res, next) => {
+  const study = caseStudyBySlug[req.params.slug];
+  if (!study) return next(); // fall through to 404 handler
+
+  const relatedServices = (study.relatedServices || [])
+    .map(slug => bySlug[slug])
+    .filter(Boolean);
+  const relatedIndustry = study.industry ? industryBySlug[study.industry] : null;
+
+  res.render('case-study-detail', {
+    title: `${study.name} — StackifyX Case Study`,
+    metaDescription: `${study.tagline} A case study on ${study.name}, built by StackifyX.`,
+    navActive: 'work',
+    study,
+    relatedServices,
+    relatedIndustry,
   });
 });
 

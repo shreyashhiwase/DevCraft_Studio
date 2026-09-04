@@ -1,0 +1,266 @@
+// data/industriesData.js
+//
+// Content source for /industries and /industries/:slug pages.
+// Same pattern as data/servicesData.js: one data file, one template, one route.
+//
+// IMPORTANT — honesty rules:
+// - Only Healthcare and Legal reference an actual completed StackifyX project
+//   (the Healthcare Platform and TRUSTLEX.AJ, both shown on /work). Every
+//   other industry is framed as "how we'd approach this" — recommended
+//   solutions and common features — with NO claim of existing clients,
+//   results, or completed projects in that space.
+// - No invented stats, testimonials, or client names anywhere in this file.
+
+const industries = [
+    {
+      slug: 'healthcare',
+      name: 'Healthcare',
+      tagline: 'Clinics & Healthcare Providers',
+      metaDescription: 'Digital solutions for clinics and healthcare providers — appointment scheduling, patient records and billing. See the healthcare platform StackifyX has built.',
+      intro: 'Clinics and small healthcare providers are often stuck juggling paper records, phone-based scheduling and manual billing. We\u2019ve built a healthcare management platform that replaces that with a single system.',
+      hasPortfolio: true,
+      portfolioNote: 'This isn\u2019t theoretical — our Healthcare Platform (appointment scheduling, patient records and digital billing) is a real project in our portfolio.',
+      portfolioLink: '/work',
+      problems: [
+        'Appointments booked over phone calls with no central calendar',
+        'Patient records kept on paper or scattered across spreadsheets',
+        'Billing handled manually, with no clear record of what\u2019s paid or pending',
+        'No way for patients to see appointment history or upcoming visits',
+      ],
+      solutions: [
+        'A patient record and appointment scheduling system',
+        'A digital billing and invoicing workflow',
+        'Role-based access for doctors, staff and administrators',
+        'Dashboards to see clinic activity at a glance',
+      ],
+      features: ['Appointment scheduling & calendar', 'Patient record management', 'Digital billing', 'Data visualization dashboards', 'Role-based staff access'],
+      relatedServices: ['custom-software-development', 'web-development'],
+    },
+    {
+      slug: 'legal',
+      name: 'Legal',
+      tagline: 'Law Firms & Legal Consultation',
+      metaDescription: 'Digital platforms for law firms and legal consultation services — client-to-lawyer matching, booking and advocate profiles. See our legal platform, TRUSTLEX.AJ.',
+      intro: 'Connecting people who need legal help with the right lawyer is often harder than it should be. We built TRUSTLEX.AJ, a legal consultation platform that handles exactly this.',
+      hasPortfolio: true,
+      portfolioNote: 'TRUSTLEX.AJ, our legal consultation platform connecting clients with certified advocates, is a real project in our portfolio.',
+      portfolioLink: '/work',
+      problems: [
+        'Prospective clients don\u2019t know which lawyer fits their situation',
+        'Consultation booking handled over phone or email with no structure',
+        'No online presence showcasing an advocate\u2019s specialization or profile',
+        'Manual tracking of consultations and client intake',
+      ],
+      solutions: [
+        'A client-to-lawyer matching and booking platform',
+        'Advocate profile pages with specialization details',
+        'A structured consultation booking flow',
+        'A SaaS-style access model for ongoing use',
+      ],
+      features: ['Advocate profiles', 'Consultation booking flow', 'Client-to-lawyer matching', 'Secure client communication'],
+      relatedServices: ['saas-development', 'custom-software-development'],
+    },
+    {
+      slug: 'ecommerce',
+      name: 'E-Commerce & Retail',
+      tagline: 'Online Stores & Retail Businesses',
+      metaDescription: 'Custom e-commerce development for retail businesses — product catalogs, checkout, payment integration and order management built around your products.',
+      intro: 'Retail and product-based businesses need a store that fits their actual catalog and operations, not a rigid template with recurring subscription fees.',
+      hasPortfolio: false,
+      problems: [
+        'Store builders that limit customization and charge ongoing fees',
+        'Checkout flows that lose customers before completing a purchase',
+        'No easy way to manage inventory as the product catalog grows',
+        'Payments that feel disconnected from the rest of the store',
+      ],
+      solutions: [
+        'A custom-built online store with full ownership of the code',
+        'Integrated payment gateway (e.g. Razorpay)',
+        'An admin dashboard for managing products, stock and orders',
+        'Customer accounts with order history',
+      ],
+      features: ['Product catalog & categories', 'Cart & multi-step checkout', 'Payment integration', 'Order & inventory management', 'Admin dashboard'],
+      relatedServices: ['ecommerce-development', 'ai-automation'],
+    },
+    {
+      slug: 'education',
+      name: 'Education',
+      tagline: 'Schools, Coaching Centers & Ed-Tech',
+      metaDescription: 'Websites and management systems for schools, coaching centers and education businesses — enrollment, course information and student management.',
+      intro: 'Education businesses — from coaching centers to small schools — need a clear online presence and, often, simple systems to manage students, courses and enrollment.',
+      hasPortfolio: false,
+      problems: [
+        'No professional website explaining courses, faculty or admissions',
+        'Enrollment and student information managed on paper or in spreadsheets',
+        'No easy way for prospective students to get information or inquire',
+        'Course schedules and updates communicated informally',
+      ],
+      solutions: [
+        'A professional website with course and admissions information',
+        'A student or enrollment management system',
+        'An inquiry form that routes leads directly to staff',
+        'An admin dashboard to manage courses, batches or schedules',
+      ],
+      features: ['Course & faculty pages', 'Admissions/enrollment inquiry form', 'Student management dashboard', 'Schedule & announcement updates'],
+      relatedServices: ['web-development', 'custom-software-development'],
+    },
+    {
+      slug: 'restaurants',
+      name: 'Restaurants',
+      tagline: 'Restaurants & Food Businesses',
+      metaDescription: 'Websites for restaurants and food businesses — digital menus, table reservations and location/contact information built to bring in customers.',
+      intro: 'A restaurant\u2019s website is often the deciding factor between a customer choosing you or a competitor a search away. It needs to load fast and show a menu, location and hours clearly.',
+      hasPortfolio: false,
+      problems: [
+        'No website, or one that\u2019s slow and hard to read on mobile',
+        'Menu information out of date or missing online',
+        'No way for customers to reserve a table online',
+        'Location and hours buried instead of front-and-center',
+      ],
+      solutions: [
+        'A fast, mobile-friendly website with a digital menu',
+        'An online table reservation form',
+        'Clear location, hours and contact information',
+        'Integration with maps and click-to-call/WhatsApp',
+      ],
+      features: ['Digital menu display', 'Table reservation form', 'Location & hours', 'Photo gallery', 'Click-to-call / WhatsApp contact'],
+      relatedServices: ['web-development', 'ui-ux-design'],
+    },
+    {
+      slug: 'real-estate',
+      name: 'Real Estate',
+      tagline: 'Real Estate Agencies & Developers',
+      metaDescription: 'Websites and listing platforms for real estate agencies — property listings, search/filter and lead capture built for serious inquiries.',
+      intro: 'Real estate is a visual, detail-heavy business. A website needs to present listings clearly and make it easy for a serious buyer or renter to reach out.',
+      hasPortfolio: false,
+      problems: [
+        'Listings scattered across social media with no central catalog',
+        'No way for visitors to filter properties by price, type or location',
+        'Inquiries handled informally, with leads getting lost',
+        'Property photos and details presented inconsistently',
+      ],
+      solutions: [
+        'A property listing website with search and filters',
+        'A structured inquiry form tied to specific listings',
+        'An admin dashboard for adding and updating listings',
+        'Consistent, well-organized property detail pages',
+      ],
+      features: ['Property listings with search/filter', 'Per-property inquiry form', 'Admin dashboard for listings', 'Photo galleries & maps'],
+      relatedServices: ['web-development', 'custom-software-development'],
+    },
+    {
+      slug: 'salons',
+      name: 'Salons & Beauty',
+      tagline: 'Salons, Spas & Beauty Businesses',
+      metaDescription: 'Websites and booking systems for salons and beauty businesses — service menus, online appointment booking and customer information.',
+      intro: 'Salons and beauty businesses run on appointments. A simple booking system and a clear service menu online can reduce no-shows and phone-tag scheduling.',
+      hasPortfolio: false,
+      problems: [
+        'Appointments booked entirely over phone or WhatsApp',
+        'No online overview of services and pricing',
+        'Double-bookings or missed appointments from manual scheduling',
+        'No way to showcase work (styling, treatments) to attract new clients',
+      ],
+      solutions: [
+        'An online appointment booking system',
+        'A service menu with pricing and duration',
+        'A gallery to showcase past work',
+        'Automated booking confirmations',
+      ],
+      features: ['Online appointment booking', 'Service menu & pricing', 'Staff/stylist selection', 'Photo gallery'],
+      relatedServices: ['web-development', 'custom-software-development'],
+    },
+    {
+      slug: 'hotels',
+      name: 'Hotels',
+      tagline: 'Hotels & Guesthouses',
+      metaDescription: 'Websites and booking-inquiry systems for hotels and guesthouses — room information, availability inquiries and a strong first impression.',
+      intro: 'Hotels and guesthouses compete for attention against large booking platforms. A strong direct website with clear room information and easy inquiries helps capture direct bookings.',
+      hasPortfolio: false,
+      problems: [
+        'Reliant entirely on third-party booking platforms that take commission',
+        'No professional website separate from listing-site profiles',
+        'Room information, photos and amenities hard to find',
+        'No easy way for guests to inquire about availability directly',
+      ],
+      solutions: [
+        'A direct-booking-friendly website with room details and photos',
+        'An availability inquiry form',
+        'Clear presentation of amenities and location',
+        'A path to reduce dependence on third-party commission-based platforms',
+      ],
+      features: ['Room listings & photos', 'Availability inquiry form', 'Amenities & location details', 'Mobile-friendly design'],
+      relatedServices: ['web-development', 'ui-ux-design'],
+    },
+    {
+      slug: 'fitness',
+      name: 'Fitness',
+      tagline: 'Gyms & Fitness Studios',
+      metaDescription: 'Websites and membership tools for gyms and fitness studios — class schedules, membership plans and inquiry forms.',
+      intro: 'Gyms and fitness studios need a website that clearly shows class schedules, membership options and makes it easy for a new visitor to take the first step.',
+      hasPortfolio: false,
+      problems: [
+        'Class schedules and pricing not available online',
+        'No way for prospective members to inquire or book a trial',
+        'Membership information communicated only in person',
+        'No system to track memberships or class attendance',
+      ],
+      solutions: [
+        'A website with class schedules and membership plans',
+        'A trial-class or membership inquiry form',
+        'Optional membership/attendance tracking tools',
+        'Clear presentation of trainers and facilities',
+      ],
+      features: ['Class schedule display', 'Membership plans & pricing', 'Trial/inquiry form', 'Trainer profiles'],
+      relatedServices: ['web-development', 'custom-software-development'],
+    },
+    {
+      slug: 'startups',
+      name: 'Startups',
+      tagline: 'Early-Stage & Growing Startups',
+      metaDescription: 'Product development for startups — MVP scoping, SaaS platforms and web applications built to launch fast without cutting corners on architecture.',
+      intro: 'Startups need to move fast without building on a foundation that collapses at the first sign of growth. We help scope a realistic first version and build it on architecture that can grow.',
+      hasPortfolio: false,
+      problems: [
+        'An idea with no clear technical plan or MVP scope',
+        'Limited budget that needs to be spent on the right features first',
+        'Concern about building something that can\u2019t scale later',
+        'Needing a technical partner, not just a freelancer for one task',
+      ],
+      solutions: [
+        'A scoped MVP focused on the core value proposition',
+        'SaaS-ready architecture (authentication, roles, admin panel)',
+        'A clear, milestone-based development process',
+        'Ongoing support as the product evolves post-launch',
+      ],
+      features: ['MVP scoping & planning', 'Authentication & role-based access', 'Admin panel', 'API-based architecture for future integrations'],
+      relatedServices: ['saas-development', 'custom-software-development'],
+    },
+    {
+      slug: 'small-business',
+      name: 'Small Business',
+      tagline: 'Local & Small Businesses',
+      metaDescription: 'Affordable websites and simple digital tools for small and local businesses — a professional online presence without enterprise complexity or cost.',
+      intro: 'Most small businesses don\u2019t need a complex system — they need a clean, professional website and maybe one tool that saves real time, without enterprise-level cost or complexity.',
+      hasPortfolio: false,
+      problems: [
+        'No website, or an outdated one that doesn\u2019t reflect the business today',
+        'Relying entirely on social media instead of an owned website',
+        'Manual processes (bookings, inquiries, orders) eating up time',
+        'Uncertainty about what\u2019s actually needed vs. nice-to-have',
+      ],
+      solutions: [
+        'A clean, professional business website',
+        'A simple inquiry or booking form suited to the business',
+        'One well-chosen automation or tool that removes a real bottleneck',
+        'A scope that matches the business\u2019s actual size and budget',
+      ],
+      features: ['Business website', 'Inquiry/contact form', 'WhatsApp/click-to-call integration', 'Simple admin tools where useful'],
+      relatedServices: ['web-development', 'website-maintenance'],
+    },
+  ];
+  
+  const bySlug = Object.fromEntries(industries.map(i => [i.slug, i]));
+  
+  module.exports = { industries, bySlug };
+  

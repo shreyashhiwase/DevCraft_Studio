@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/services/' + service.slug; %>
+<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Services', path:'/services' }, { name: service.title, path:'/services/' + service.slug }]; %>
+<%- include('partials/page-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "serviceType": service.title,
+      "provider": { "@type": "Organization", "name": "StackifyX" },
+      "areaServed": "IN",
+      "description": service.metaDescription
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": service.faq.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+}) %>
+</script>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true"><%= service.heroTag %></div>
+    <h1><%= service.h1 %></h1>
+    <p class="lead"><%= service.intro %></p>
+    <div class="hero-btns">
+      <a href="/contact" class="btn btn-primary btn-lg">Start This Project →</a>
+      <a href="/work" class="btn btn-secondary btn-lg">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROBLEMS WE SOLVE ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Common Challenges</div>
+      <h2>Problems This Service Solves</h2>
+    </div>
+    <div class="about-checklist" style="max-width:760px;margin:0 auto;">
+      <% service.problems.forEach(p => { %>
+        <div class="about-check">
+          <div class="about-check-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <%= p %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FEATURES ═══════════════════ -->
+<section class="lp-section" aria-labelledby="features-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">What's Included</div>
+      <h2 id="features-heading">What We Build</h2>
+    </div>
+    <div class="about-checklist" style="max-width:760px;margin:0 auto;">
+      <% service.features.forEach(f => { %>
+        <div class="about-check">
+          <div class="about-check-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <%= f %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROCESS ═══════════════════ -->
+<section class="lp-section lp-section-alt" aria-labelledby="proc-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">How We Work</div>
+      <h2 id="proc-heading">Our Development Process</h2>
+    </div>
+    <div class="proc-grid" role="list">
+      <% commonProcess.forEach((s, i) => { %>
+        <div class="proc-step" role="listitem">
+          <div class="proc-num"><%= s.n %></div>
+          <h3 class="proc-title"><%= s.title %></h3>
+          <p class="proc-desc"><%= s.desc %></p>
+          <% if (i < commonProcess.length - 1) { %>
+            <div class="proc-arr" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TECHNOLOGY & BENEFITS ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="contact-wrap" style="grid-template-columns:1fr 1fr;">
+      <div class="contact-info-card">
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Technology We Use</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <% service.technologies.forEach(t => { %>
+            <span class="port-tag"><%= t %></span>
+          <% }) %>
+        </div>
+      </div>
+      <div class="contact-info-card">
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Why It Matters</h2>
+        <div class="about-checklist" style="margin-top:0;">
+          <% service.benefits.forEach(b => { %>
+            <div class="about-check" style="font-size:0.86rem;">
+              <div class="about-check-icon" style="width:18px;height:18px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <%= b %>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="lp-section lp-section-alt" aria-labelledby="faq-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">FAQ</div>
+      <h2 id="faq-heading">Questions About <%= service.title %></h2>
+    </div>
+    <div class="faq-list" style="max-width:800px;margin:0 auto;">
+      <% service.faq.forEach((f, i) => { %>
+        <div class="faq-item" id="svc-faq-item-<%= i %>">
+          <button class="faq-q" onclick="toggleSvcFaq(<%= i %>)" aria-expanded="false" aria-controls="svc-faq-a-<%= i %>">
+            <span><%= f.q %></span>
+            <span class="faq-q-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </button>
+          <div class="faq-a" id="svc-faq-a-<%= i %>">
+            <p><%= f.a %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<script>
+function toggleSvcFaq(i){
+  var item=document.getElementById('svc-faq-item-'+i);
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('#svc-faq-item-'+i+', .faq-item.open').forEach(function(el){
+    if(el.id.indexOf('svc-faq-item-')===0){
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    }
+  });
+  if(!wasOpen){
+    item.classList.add('open');
+    item.querySelector('.faq-q').setAttribute('aria-expanded','true');
+  }
+}
+</script>
+
+<!-- ═══════════════════ RELATED SERVICES ═══════════════════ -->
+<% if (relatedServices && relatedServices.length) { %>
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Related</div>
+      <h2>You Might Also Need</h2>
+    </div>
+    <div class="svc-grid" style="grid-template-columns:repeat(3,1fr);">
+      <% relatedServices.forEach(r => { %>
+        <a href="/services/<%= r.slug %>" class="svc-card" style="text-decoration:none;color:inherit;display:block;">
+          <h3 class="svc-title" style="font-size:1.05rem;"><%= r.title %></h3>
+          <p class="svc-desc"><%= r.intro.slice(0, 110) %>&hellip;</p>
+          <span class="svc-link">
+            Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Build?</div>
+      <h2 class="cta-title">Let's Talk About Your<br><%= service.title %> Project</h2>
+      <p class="cta-desc">Tell us what you're trying to build. We'll help you understand scope, technology and next steps — no obligation.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="cta-btn-p">Get a Free Consultation</a>
+        <a href="/services" class="cta-btn-s">View All Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>

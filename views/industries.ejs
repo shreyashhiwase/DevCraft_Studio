@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/industries'; %>
+<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Industries', path:'/industries' }]; %>
+<%- include('partials/page-head') %>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true">Industries We Build For</div>
+    <h1>Digital Solutions Across Industries</h1>
+    <p class="lead">Every industry has different workflows and different customers. Here's how our services apply to some of the businesses we work with most.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ INDUSTRY GRID ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="ind-grid">
+      <% industries.forEach(ind => { %>
+        <a href="/industries/<%= ind.slug %>" class="svc-card" style="text-decoration:none;color:inherit;display:block;">
+          <h2 class="svc-title" style="font-size:1.05rem;"><%= ind.name %></h2>
+          <p class="svc-desc"><%= ind.tagline %></p>
+          <% if (ind.hasPortfolio) { %>
+            <p style="font-size:0.75rem;font-weight:700;color:var(--accent-green);margin-bottom:14px;">✓ Real project in our portfolio</p>
+          <% } %>
+          <span class="svc-link">
+            Explore <%= ind.name %>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Not Listed Here?</div>
+      <h2 class="cta-title">Don't See Your Industry?</h2>
+      <p class="cta-desc">These are examples, not limits. Tell us about your business and we'll figure out the right approach together.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="cta-btn-p">Talk to Us</a>
+        <a href="/services" class="cta-btn-s">View Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>

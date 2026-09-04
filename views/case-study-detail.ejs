@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/work/' + study.slug; %>
+<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Work', path:'/work' }, { name: study.name, path:'/work/' + study.slug }]; %>
+<%- include('partials/page-head') %>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true"><%= study.category %></div>
+    <h1><%= study.name %></h1>
+    <p class="lead"><%= study.tagline %></p>
+    <% if (study.status) { %>
+      <p style="display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:700;color:var(--accent-green);margin-top:6px;">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        <%= study.status %>
+      </p>
+    <% } %>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROBLEM / SOLUTION ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="contact-wrap" style="grid-template-columns:1fr 1fr;">
+      <div class="contact-info-card">
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:12px;">The Problem</h2>
+        <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.75;margin:0;"><%= study.problem %></p>
+      </div>
+      <div class="contact-info-card">
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:12px;">The Solution</h2>
+        <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.75;margin:0;"><%= study.solution %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FEATURES ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">What Was Built</div>
+      <h2>Key Features</h2>
+    </div>
+    <div class="about-checklist" style="max-width:760px;margin:0 auto;">
+      <% study.features.forEach(f => { %>
+        <div class="about-check">
+          <div class="about-check-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <%= f %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROCESS ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">How It Was Built</div>
+      <h2>Development Notes</h2>
+    </div>
+    <div class="about-checklist" style="max-width:760px;margin:0 auto;">
+      <% study.process.forEach(p => { %>
+        <div class="about-check">
+          <div class="about-check-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <%= p %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TECH & LIVE LINK ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c" style="max-width:800px;">
+    <div class="contact-info-card">
+      <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Technology Used</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:<%= study.liveNote ? '18px' : '0' %>;">
+        <% study.technologies.forEach(t => { %>
+          <span class="port-tag"><%= t %></span>
+        <% }) %>
+      </div>
+      <% if (study.liveNote) { %>
+        <a href="<%= study.liveLink %>" class="port-link" aria-label="View this live project">
+          <%= study.liveNote %>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ RELATED SERVICES / INDUSTRY ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Related</div>
+      <h2>Explore Further</h2>
+    </div>
+    <div class="svc-grid">
+      <% relatedServices.forEach(s => { %>
+        <a href="/services/<%= s.slug %>" class="svc-card" style="text-decoration:none;color:inherit;display:block;">
+          <h3 class="svc-title" style="font-size:1.05rem;"><%= s.title %></h3>
+          <p class="svc-desc"><%= s.intro.slice(0, 100) %>&hellip;</p>
+          <span class="svc-link">Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      <% }) %>
+      <% if (relatedIndustry) { %>
+        <a href="/industries/<%= relatedIndustry.slug %>" class="svc-card" style="text-decoration:none;color:inherit;display:block;">
+          <h3 class="svc-title" style="font-size:1.05rem;">Building for <%= relatedIndustry.name %>?</h3>
+          <p class="svc-desc">See how our approach applies to <%= relatedIndustry.name.toLowerCase() %> businesses.</p>
+          <span class="svc-link">View Industry Page
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Have Something Similar in Mind?</div>
+      <h2 class="cta-title">Let's Build Your Version of This</h2>
+      <p class="cta-desc">Every project starts with a conversation about what you're actually trying to solve.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="cta-btn-p">Start a Conversation</a>
+        <a href="/work" class="cta-btn-s">See More Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>

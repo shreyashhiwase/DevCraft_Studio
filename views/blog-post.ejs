@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/blog/' + post.slug; %>
+<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Blog', path:'/blog' }, { name: post.title, path:'/blog/' + post.slug }]; %>
+<%- include('partials/page-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": post.metaDescription,
+  "datePublished": post.publishDate,
+  "author": { "@type": "Organization", "name": "StackifyX" },
+  "publisher": { "@type": "Organization", "name": "StackifyX" }
+}) %>
+</script>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true"><%= post.category %></div>
+    <h1><%= post.title %></h1>
+    <p class="blog-meta" style="justify-content:center;margin-top:8px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <%= new Date(post.publishDate).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' }) %>
+      &nbsp;·&nbsp; StackifyX
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ ARTICLE BODY ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <article class="blog-article">
+      <p><%= post.intro %></p>
+      <% post.sections.forEach(sec => { %>
+        <h2><%= sec.heading %></h2>
+        <% sec.paragraphs.forEach(para => { %>
+          <p><%= para %></p>
+        <% }) %>
+      <% }) %>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Start?</div>
+      <h2 class="cta-title">Have a Project in Mind?</h2>
+      <p class="cta-desc">We'll help you scope it out — no obligation, just a clear next step.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="cta-btn-p">Get a Free Consultation</a>
+        <% if (relatedService) { %>
+          <a href="/services/<%= relatedService.slug %>" class="cta-btn-s">Explore <%= relatedService.title %></a>
+        <% } else { %>
+          <a href="/blog" class="cta-btn-s">More Articles</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>

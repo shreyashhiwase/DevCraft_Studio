@@ -1,4 +1,11 @@
 // middleware/upload.js - Multer file upload configuration
+//
+// ⚠️  RENDER WARNING: Render free tier has an EPHEMERAL filesystem.
+// Files uploaded via Multer (project deliverables, inquiry attachments)
+// are saved to /public/uploads/ which is WIPED on every redeploy or restart.
+//
+// For production file storage, use Cloudinary or AWS S3.
+// For now, files work fine locally and survive until the next Render restart.
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');

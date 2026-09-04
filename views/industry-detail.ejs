@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/industries/' + industry.slug; %>
+<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Industries', path:'/industries' }, { name: industry.name, path:'/industries/' + industry.slug }]; %>
+<%- include('partials/page-head') %>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true"><%= industry.tagline %></div>
+    <h1>Digital Solutions for <%= industry.name %></h1>
+    <p class="lead"><%= industry.intro %></p>
+    <div class="hero-btns">
+      <a href="/contact" class="btn btn-primary btn-lg">Start Your Project →</a>
+      <% if (industry.hasPortfolio) { %>
+        <a href="<%= industry.portfolioLink %>" class="btn btn-secondary btn-lg">See This In Our Work</a>
+      <% } else { %>
+        <a href="/work" class="btn btn-secondary btn-lg">See Our Work</a>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<% if (industry.hasPortfolio) { %>
+<section class="lp-section" style="padding-top:0;padding-bottom:32px;">
+  <div class="lp-c" style="max-width:800px;">
+    <div class="contact-info-card" style="display:flex;gap:16px;align-items:flex-start;">
+      <div class="contact-info-icon" aria-hidden="true" style="flex-shrink:0;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;"><%= industry.portfolioNote %></p>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ═══════════════════ PROBLEMS ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Common Challenges</div>
+      <h2>What We Hear From <%= industry.name %> Businesses</h2>
+    </div>
+    <div class="about-checklist" style="max-width:760px;margin:0 auto;">
+      <% industry.problems.forEach(p => { %>
+        <div class="about-check">
+          <div class="about-check-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <%= p %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ RECOMMENDED SOLUTIONS ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Recommended Approach</div>
+      <h2>What We&rsquo;d Recommend Building</h2>
+    </div>
+    <div class="about-checklist" style="max-width:760px;margin:0 auto;">
+      <% industry.solutions.forEach(s => { %>
+        <div class="about-check">
+          <div class="about-check-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <%= s %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ USEFUL FEATURES ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Useful Features</div>
+      <h2>Features That Matter Most Here</h2>
+    </div>
+    <div class="svc-grid">
+      <% industry.features.forEach(f => { %>
+        <div class="svc-card" style="padding:20px 22px;">
+          <p style="font-size:0.9rem;color:var(--text-primary);font-weight:600;margin:0;"><%= f %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ RELATED SERVICES ═══════════════════ -->
+<% if (relatedServices && relatedServices.length) { %>
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Relevant Services</div>
+      <h2>Services That Apply Here</h2>
+    </div>
+    <div class="svc-grid" style="grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto;">
+      <% relatedServices.forEach(s => { %>
+        <a href="/services/<%= s.slug %>" class="svc-card" style="text-decoration:none;color:inherit;display:block;">
+          <h3 class="svc-title" style="font-size:1.05rem;"><%= s.title %></h3>
+          <p class="svc-desc"><%= s.intro.slice(0, 110) %>&hellip;</p>
+          <span class="svc-link">
+            Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Build?</div>
+      <h2 class="cta-title">Building for<br><%= industry.name %>?</h2>
+      <p class="cta-desc">Tell us about your business and what you're trying to solve. We'll help you figure out the right starting point.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="cta-btn-p">Get a Free Consultation</a>
+        <a href="/industries" class="cta-btn-s">View All Industries</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>
