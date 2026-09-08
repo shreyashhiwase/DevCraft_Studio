@@ -82,18 +82,31 @@ router.get('/google/callback',
         return res.redirect('/auth/login');
       }
 
-      // ── Set our own session variables (same format as local login) ──
-      req.session.userId   = user._id;
-      req.session.userRole = user.role;
-
-      // Also log in via passport (populates req.user for passport middleware)
+      // ── Log in via Passport FIRST ────────────────────────────────────
+      // Passport 0.6+ regenerates req.session inside req.logIn() to guard
+      // against session fixation — which wipes out anything set on the
+      // session beforehand. So our custom session fields must be set
+      // AFTER req.logIn() completes, not before it.
       req.logIn(user, (loginErr) => {
         if (loginErr) {
           console.error('req.logIn error:', loginErr.message);
-          // Session is already set above — safe to continue
+          req.flash('error', 'Google sign-in failed due to a server error. Please try again.');
+          return res.redirect('/auth/login');
         }
+
+        // Set our own session variables (same format as local login) —
+        // now safe, since the session has already been regenerated.
+        req.session.userId   = user._id;
+        req.session.userRole = user.role;
+
         req.flash('success', `Welcome${user.authProvider === 'google' ? ' via Google' : ''}, ${user.name}! 🎉`);
-        return res.redirect(user.role === 'admin' ? '/admin/dashboard' : '/dashboard');
+
+        // Explicitly save before redirecting — avoids a race between the
+        // MongoStore write and the browser following the redirect.
+        req.session.save((saveErr) => {
+          if (saveErr) console.error('Session save error after Google login:', saveErr.message);
+          return res.redirect(user.role === 'admin' ? '/admin/dashboard' : '/dashboard');
+        });
       });
 
     })(req, res, next);
