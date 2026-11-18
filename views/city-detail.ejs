@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% locals.canonicalPath = '/' + city.slug; %>
+<% locals.breadcrumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Locations', path: '/locations' },
+  { name: city.cityName, path: '/' + city.slug }
+]; %>
+<%- include('partials/page-head') %>
+
+<!-- City & FAQ Schema Markup -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": `Website Development in ${city.cityName}`,
+      "serviceType": "Website Development & Software Engineering",
+      "provider": {
+        "@type": "Organization",
+        "name": "StackifyX",
+        "url": (process.env.APP_URL || "https://www.stackifyx.jo3.org")
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": city.cityName
+      },
+      "description": city.metaDescription
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": (city.faqs || []).map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.a
+        }
+      }))
+    }
+  ]
+}) %>
+</script>
+</head>
+<body class="lp-wrap">
+<%- include('partials/navbar') %>
+
+<!-- ═══════════════════ CITY HERO ═══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="lp-c page-hero-inner">
+    <%- include('partials/breadcrumb') %>
+    <div class="lp-pill" aria-hidden="true">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <%= city.cityName %>, <%= city.state %>
+    </div>
+    <h1><%= city.h1 %></h1>
+    <p class="lead"><%= city.intro %></p>
+    <div class="hero-btns">
+      <a href="/contact" class="btn btn-primary btn-lg">Get a Free Consultation →</a>
+      <a href="https://wa.me/918600214628?text=Hi%20StackifyX,%20I%20am%20looking%20for%20website%20development%20services%20in%20<%= encodeURIComponent(city.cityName) %>"
+         target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg" style="display:inline-flex;align-items:center;gap:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.001c-5.523 0-10 4.477-10 10 0 1.77.464 3.489 1.343 5.003L2 22l5.13-1.326a9.96 9.96 0 004.871 1.24h.004c5.522 0 9.999-4.478 9.999-10 0-2.652-1.03-5.14-2.929-7.014A9.926 9.926 0 0012.001 2zm5.94 15.94a8.264 8.264 0 01-5.936 2.463h-.003a8.283 8.283 0 01-4.223-1.156l-.303-.18-3.043.787.813-2.965-.198-.304a8.256 8.256 0 01-1.265-4.394c0-4.57 3.72-8.29 8.294-8.29 2.216 0 4.298.863 5.865 2.431a8.235 8.235 0 012.427 5.866c0 4.57-3.72 8.29-8.29 8.29z"/></svg>
+        WhatsApp Quick Chat
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LOCAL BUSINESS CONTEXT ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div style="max-width:880px; margin:0 auto;">
+      <div class="lp-pill" aria-hidden="true">Market Landscape</div>
+      <h2 style="font-size:clamp(1.6rem, 2.8vw, 2.2rem); font-weight:800; color:var(--text-primary); margin-bottom:18px;">
+        Digital Growth in <%= city.cityName %>
+      </h2>
+      <p style="font-size:1.02rem; color:var(--text-secondary); line-height:1.85; margin-bottom:28px;">
+        <%= city.businessContext %>
+      </p>
+      <div style="background:var(--bg-card); border:1px solid var(--border-accent); border-radius:18px; padding:28px; display:flex; gap:18px; align-items:flex-start;">
+        <div style="width:40px; height:40px; border-radius:10px; background:rgba(37,99,235,0.12); display:flex; align-items:center; justify-content:center; color:var(--accent-blue); flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <h3 style="font-size:1.05rem; font-weight:800; color:var(--text-primary); margin:0 0 6px;">Remote Collaboration Model</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7; margin:0;">
+            <%= city.whyRemote %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ KEY INDUSTRIES IN CITY ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">Industry Focus</div>
+      <h2>Industries We Serve in <%= city.cityName %></h2>
+      <p>Targeted web and software solutions tailored to prominent business sectors across <%= city.cityName %>.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:24px;">
+      <% (city.keyIndustries || []).forEach(ind => { %>
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:18px; padding:32px;">
+          <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-primary); margin:0 0 10px;"><%= ind.name %></h3>
+          <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.75; margin:0;"><%= ind.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SERVICES AVAILABLE ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">Our Capabilities</div>
+      <h2>Digital Services for <%= city.cityName %> Businesses</h2>
+      <p>Explore our core engineering capabilities available to founders and companies in <%= city.cityName %>.</p>
+    </div>
+    <div class="svc-grid">
+      <% (featuredServices || []).forEach(svc => { %>
+        <div class="svc-card">
+          <h3 class="svc-title" style="font-size:1.15rem;"><%= svc.title %></h3>
+          <p class="svc-desc"><%= svc.intro %></p>
+          <a href="/services/<%= svc.slug %>" class="svc-link" style="margin-top:auto;">
+            Explore <%= svc.title %>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DEVELOPMENT PROCESS ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">Process</div>
+      <h2>Our 6-Step Development Process</h2>
+      <p>Structured, transparent milestones keeping you in complete control from day one to launch.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      <% (commonProcess || []).forEach(proc => { %>
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px;">
+          <div style="font-size:1.3rem; font-weight:800; color:var(--accent-blue); margin-bottom:8px;"><%= proc.n %></div>
+          <h3 style="font-size:1.05rem; font-weight:800; color:var(--text-primary); margin-bottom:8px;"><%= proc.title %></h3>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7; margin:0;"><%= proc.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQS ═══════════════════ -->
+<% if (city.faqs && city.faqs.length) { %>
+<section class="lp-section lp-section-alt">
+  <div class="lp-c" style="max-width:860px;">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">FAQs</div>
+      <h2>Frequently Asked Questions in <%= city.cityName %></h2>
+      <p>Common questions local founders and business owners ask about web development with StackifyX.</p>
+    </div>
+    <div class="faq-list">
+      <% city.faqs.forEach((faq, i) => { %>
+        <div class="faq-item <%= i === 0 ? 'open' : '' %>">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span><%= faq.q %></span>
+            <div class="faq-q-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="faq-a">
+            <p><%= faq.a %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ═══════════════════ NEARBY CITIES INTERLINKING ═══════════════════ -->
+<section class="lp-section">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:36px;">
+      <div class="lp-pill" aria-hidden="true">Other Regions</div>
+      <h2>Other Cities We Serve Across India</h2>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+      <% (nearbyCities || []).forEach(nc => { %>
+        <a href="/<%= nc.slug %>" style="padding:10px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:100px; color:var(--text-secondary); text-decoration:none; font-size:0.88rem; font-weight:600; transition:all 0.2s ease;"
+           onmouseover="this.style.borderColor='var(--accent-blue)';this.style.color='#fff';"
+           onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)';">
+          <%= nc.cityName %> Website Development →
+        </a>
+      <% }) %>
+      <a href="/locations" style="padding:10px 20px; background:rgba(37,99,235,0.1); border:1px solid var(--border-accent); border-radius:100px; color:var(--accent-blue); text-decoration:none; font-size:0.88rem; font-weight:700;">
+        View All Locations →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FINAL CONSULTATION CTA ═══════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c" style="max-width:900px;">
+    <div class="cta-box">
+      <div class="cta-glow-1" aria-hidden="true"></div>
+      <div class="cta-glow-2" aria-hidden="true"></div>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Get Started</div>
+      <h2 class="cta-title">Ready to Grow Your Business in <%= city.cityName %>?</h2>
+      <p class="cta-desc">Let's discuss your project requirements, scope, and timeline. Get a free proposal and milestone roadmap with zero obligation.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="cta-btn-p">Get a Free Consultation</a>
+        <a href="https://wa.me/918600214628?text=Hi%20StackifyX,%20I%20would%20like%20to%20discuss%20a%20website%20project%20for%20my%20business%20in%20<%= encodeURIComponent(city.cityName) %>"
+           target="_blank" rel="noopener noreferrer" class="cta-btn-s">
+          WhatsApp Us Direct
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/site-footer') %>
+</body>
+</html>

@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <% locals.canonicalPath = '/blog/' + post.slug; %>
-<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Blog', path:'/blog' }, { name: post.title, path:'/blog/' + post.slug }]; %>
+<% locals.breadcrumbs = [
+  { name:'Home', path:'/' },
+  { name:'Blog', path:'/blog' },
+  { name: post.title, path:'/blog/' + post.slug }
+]; %>
 <%- include('partials/page-head') %>
+
+<!-- Enhanced Article Schema -->
 <script type="application/ld+json">
 <%- JSON.stringify({
   "@context": "https://schema.org",
@@ -11,8 +17,25 @@
   "headline": post.title,
   "description": post.metaDescription,
   "datePublished": post.publishDate,
-  "author": { "@type": "Organization", "name": "StackifyX" },
-  "publisher": { "@type": "Organization", "name": "StackifyX" }
+  "dateModified": post.publishDate,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": (process.env.APP_URL || "https://www.stackifyx.jo3.org") + "/blog/" + post.slug
+  },
+  "author": {
+    "@type": "Organization",
+    "name": (post.author || "StackifyX Engineering Team"),
+    "url": (process.env.APP_URL || "https://www.stackifyx.jo3.org")
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "StackifyX",
+    "logo": {
+      "@type": "ImageObject",
+      "url": (process.env.APP_URL || "https://www.stackifyx.jo3.org") + "/stackifyx-logo.jpg"
+    }
+  },
+  "keywords": (post.tags || []).join(", ")
 }) %>
 </script>
 </head>
@@ -26,10 +49,15 @@
     <%- include('partials/breadcrumb') %>
     <div class="lp-pill" aria-hidden="true"><%= post.category %></div>
     <h1><%= post.title %></h1>
-    <p class="blog-meta" style="justify-content:center;margin-top:8px;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      <%= new Date(post.publishDate).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' }) %>
-      &nbsp;·&nbsp; StackifyX
+    <p class="blog-meta" style="justify-content:center;margin-top:12px;gap:14px;flex-wrap:wrap;">
+      <span style="display:flex;align-items:center;gap:6px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <%= new Date(post.publishDate).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' }) %>
+      </span>
+      <span>•</span>
+      <span><%= post.readTime || '6 min read' %></span>
+      <span>•</span>
+      <span style="color:var(--accent-blue);font-weight:700;"><%= post.author || 'StackifyX Engineering' %></span>
     </p>
   </div>
 </section>
@@ -38,32 +66,71 @@
 <section class="lp-section">
   <div class="lp-c">
     <article class="blog-article">
-      <p><%= post.intro %></p>
+      <p class="lead" style="font-size:1.15rem;line-height:1.85;color:var(--text-primary);margin-bottom:32px;">
+        <%= post.intro %>
+      </p>
+
       <% post.sections.forEach(sec => { %>
-        <h2><%= sec.heading %></h2>
+        <h2 style="font-size:1.5rem;font-weight:800;color:var(--text-primary);margin:42px 0 16px;letter-spacing:-0.02em;">
+          <%= sec.heading %>
+        </h2>
         <% sec.paragraphs.forEach(para => { %>
-          <p><%= para %></p>
+          <p style="font-size:1.02rem;color:var(--text-secondary);line-height:1.85;margin-bottom:20px;">
+            <%= para %>
+          </p>
         <% }) %>
       <% }) %>
+
+      <!-- Tags -->
+      <% if (post.tags && post.tags.length) { %>
+        <div style="margin-top:48px;padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:0.8rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Tags:</span>
+          <% post.tags.forEach(t => { %>
+            <span style="font-size:0.78rem;background:var(--bg-card);border:1px solid var(--border);padding:4px 12px;border-radius:100px;color:var(--text-secondary);font-weight:600;"><%= t %></span>
+          <% }) %>
+        </div>
+      <% } %>
     </article>
   </div>
 </section>
 
-<!-- ═══════════════════ CTA ═══════════════════ -->
+<!-- ═══════════════════ RELATED POSTS ═══════════════════ -->
+<% if (locals.recentPosts && recentPosts.length) { %>
 <section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:36px;">
+      <div class="lp-pill" aria-hidden="true">Related Reading</div>
+      <h2>Recommended Articles</h2>
+    </div>
+    <div class="blog-grid">
+      <% recentPosts.forEach(rp => { %>
+        <a href="/blog/<%= rp.slug %>" class="blog-card">
+          <div class="blog-cat"><%= rp.category %></div>
+          <h2><%= rp.title %></h2>
+          <p class="blog-excerpt"><%= rp.excerpt %></p>
+          <div class="blog-meta"><%= rp.readTime || '6 min read' %> · Read Guide →</div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="lp-section">
   <div class="lp-c" style="max-width:900px;">
     <div class="cta-box">
       <div class="cta-glow-1" aria-hidden="true"></div>
       <div class="cta-glow-2" aria-hidden="true"></div>
-      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Start?</div>
-      <h2 class="cta-title">Have a Project in Mind?</h2>
-      <p class="cta-desc">We'll help you scope it out — no obligation, just a clear next step.</p>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Grow?</div>
+      <h2 class="cta-title">Turn These Insights Into Reality</h2>
+      <p class="cta-desc">Discuss your project goals with StackifyX engineers. We'll help you scope and build a high-performance digital product across India.</p>
       <div class="cta-btns">
         <a href="/contact" class="cta-btn-p">Get a Free Consultation</a>
         <% if (relatedService) { %>
           <a href="/services/<%= relatedService.slug %>" class="cta-btn-s">Explore <%= relatedService.title %></a>
         <% } else { %>
-          <a href="/blog" class="cta-btn-s">More Articles</a>
+          <a href="/services" class="cta-btn-s">View All Services</a>
         <% } %>
       </div>
     </div>

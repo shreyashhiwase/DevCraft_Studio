@@ -2,25 +2,42 @@
 <html lang="en">
 <head>
 <% locals.canonicalPath = '/services/' + service.slug; %>
-<% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Services', path:'/services' }, { name: service.title, path:'/services/' + service.slug }]; %>
+<% locals.breadcrumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services' },
+  { name: service.title, path: '/services/' + service.slug }
+]; %>
 <%- include('partials/page-head') %>
+
+<!-- Service & FAQ Schema -->
 <script type="application/ld+json">
 <%- JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Service",
+      "name": service.title,
       "serviceType": service.title,
-      "provider": { "@type": "Organization", "name": "StackifyX" },
-      "areaServed": "IN",
+      "provider": {
+        "@type": "Organization",
+        "name": "StackifyX",
+        "url": (process.env.APP_URL || "https://www.stackifyx.jo3.org")
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
       "description": service.metaDescription
     },
     {
       "@type": "FAQPage",
-      "mainEntity": service.faq.map(f => ({
+      "mainEntity": (service.faq || []).map(f => ({
         "@type": "Question",
         "name": f.q,
-        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.a
+        }
       }))
     }
   ]
@@ -39,8 +56,12 @@
     <h1><%= service.h1 %></h1>
     <p class="lead"><%= service.intro %></p>
     <div class="hero-btns">
-      <a href="/contact" class="btn btn-primary btn-lg">Start This Project →</a>
-      <a href="/work" class="btn btn-secondary btn-lg">See Our Work</a>
+      <a href="/contact" class="btn btn-primary btn-lg">Get a Free Consultation →</a>
+      <a href="https://wa.me/918600214628?text=Hi%20StackifyX,%20I%20am%20interested%20in%20<%= encodeURIComponent(service.title) %>"
+         target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg" style="display:inline-flex;align-items:center;gap:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.001c-5.523 0-10 4.477-10 10 0 1.77.464 3.489 1.343 5.003L2 22l5.13-1.326a9.96 9.96 0 004.871 1.24h.004c5.522 0 9.999-4.478 9.999-10 0-2.652-1.03-5.14-2.929-7.014A9.926 9.926 0 0012.001 2zm5.94 15.94a8.264 8.264 0 01-5.936 2.463h-.003a8.283 8.283 0 01-4.223-1.156l-.303-.18-3.043.787.813-2.965-.198-.304a8.256 8.256 0 01-1.265-4.394c0-4.57 3.72-8.29 8.294-8.29 2.216 0 4.298.863 5.865 2.431a8.235 8.235 0 012.427 5.866c0 4.57-3.72 8.29-8.29 8.29z"/></svg>
+        WhatsApp Quick Chat
+      </a>
     </div>
   </div>
 </section>
@@ -49,14 +70,15 @@
 <section class="lp-section lp-section-alt">
   <div class="lp-c">
     <div class="lp-heading center" style="margin-bottom:40px;">
-      <div class="lp-pill" aria-hidden="true">Common Challenges</div>
-      <h2>Problems This Service Solves</h2>
+      <div class="lp-pill" aria-hidden="true">Challenges We Solve</div>
+      <h2>Pain Points We Eliminate</h2>
+      <p>Why modern businesses partner with StackifyX for <%= service.title.toLowerCase() %>.</p>
     </div>
     <div class="about-checklist" style="max-width:760px;margin:0 auto;">
       <% service.problems.forEach(p => { %>
         <div class="about-check">
           <div class="about-check-icon" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </div>
           <%= p %>
         </div>
@@ -71,12 +93,13 @@
     <div class="lp-heading center" style="margin-bottom:40px;">
       <div class="lp-pill" aria-hidden="true">What's Included</div>
       <h2 id="features-heading">What We Build</h2>
+      <p>Key features, deliverables, and capabilities engineered into every project.</p>
     </div>
     <div class="about-checklist" style="max-width:760px;margin:0 auto;">
       <% service.features.forEach(f => { %>
         <div class="about-check">
-          <div class="about-check-icon" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="about-check-icon" aria-hidden="true" style="background:rgba(16,185,129,0.15);color:var(--accent-green);border-color:rgba(16,185,129,0.3);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <%= f %>
         </div>
@@ -91,6 +114,7 @@
     <div class="lp-heading center" style="margin-bottom:48px;">
       <div class="lp-pill" aria-hidden="true">How We Work</div>
       <h2 id="proc-heading">Our Development Process</h2>
+      <p>Transparent milestones from initial discovery to production deployment.</p>
     </div>
     <div class="proc-grid" role="list">
       <% commonProcess.forEach((s, i) => { %>
@@ -100,7 +124,7 @@
           <p class="proc-desc"><%= s.desc %></p>
           <% if (i < commonProcess.length - 1) { %>
             <div class="proc-arr" aria-hidden="true">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </div>
           <% } %>
         </div>
@@ -114,20 +138,20 @@
   <div class="lp-c">
     <div class="contact-wrap" style="grid-template-columns:1fr 1fr;">
       <div class="contact-info-card">
-        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Technology We Use</h2>
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Technologies We Use</h2>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
           <% service.technologies.forEach(t => { %>
-            <span class="port-tag"><%= t %></span>
+            <span class="port-tag" style="background:rgba(37,99,235,0.1);border-color:rgba(37,99,235,0.25);color:var(--accent-blue);font-weight:700;"><%= t %></span>
           <% }) %>
         </div>
       </div>
       <div class="contact-info-card">
-        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Why It Matters</h2>
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:18px;">Business Benefits</h2>
         <div class="about-checklist" style="margin-top:0;">
           <% service.benefits.forEach(b => { %>
             <div class="about-check" style="font-size:0.86rem;">
               <div class="about-check-icon" style="width:18px;height:18px;">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
               <%= b %>
             </div>
@@ -144,17 +168,16 @@
     <div class="lp-heading center" style="margin-bottom:48px;">
       <div class="lp-pill" aria-hidden="true">FAQ</div>
       <h2 id="faq-heading">Questions About <%= service.title %></h2>
+      <p>Answers to common questions businesses ask before starting a project.</p>
     </div>
     <div class="faq-list" style="max-width:800px;margin:0 auto;">
       <% service.faq.forEach((f, i) => { %>
-        <div class="faq-item" id="svc-faq-item-<%= i %>">
-          <button class="faq-q" onclick="toggleSvcFaq(<%= i %>)" aria-expanded="false" aria-controls="svc-faq-a-<%= i %>">
+        <div class="faq-item <%= i === 0 ? 'open' : '' %>" id="svc-faq-item-<%= i %>">
+          <button class="faq-q" onclick="toggleSvcFaq(<%= i %>)" aria-expanded="<%= i === 0 ? 'true' : 'false' %>">
             <span><%= f.q %></span>
-            <span class="faq-q-icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
+            <span class="faq-q-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-a" id="svc-faq-a-<%= i %>">
+          <div class="faq-a">
             <p><%= f.a %></p>
           </div>
         </div>
@@ -164,18 +187,8 @@
 </section>
 <script>
 function toggleSvcFaq(i){
-  var item=document.getElementById('svc-faq-item-'+i);
-  var wasOpen=item.classList.contains('open');
-  document.querySelectorAll('#svc-faq-item-'+i+', .faq-item.open').forEach(function(el){
-    if(el.id.indexOf('svc-faq-item-')===0){
-      el.classList.remove('open');
-      el.querySelector('.faq-q').setAttribute('aria-expanded','false');
-    }
-  });
-  if(!wasOpen){
-    item.classList.add('open');
-    item.querySelector('.faq-q').setAttribute('aria-expanded','true');
-  }
+  var item = document.getElementById('svc-faq-item-' + i);
+  item.classList.toggle('open');
 }
 </script>
 
@@ -184,8 +197,8 @@ function toggleSvcFaq(i){
 <section class="lp-section">
   <div class="lp-c">
     <div class="lp-heading center" style="margin-bottom:40px;">
-      <div class="lp-pill" aria-hidden="true">Related</div>
-      <h2>You Might Also Need</h2>
+      <div class="lp-pill" aria-hidden="true">Explore More</div>
+      <h2>Related Digital Solutions</h2>
     </div>
     <div class="svc-grid" style="grid-template-columns:repeat(3,1fr);">
       <% relatedServices.forEach(r => { %>
@@ -193,8 +206,8 @@ function toggleSvcFaq(i){
           <h3 class="svc-title" style="font-size:1.05rem;"><%= r.title %></h3>
           <p class="svc-desc"><%= r.intro.slice(0, 110) %>&hellip;</p>
           <span class="svc-link">
-            Learn More
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            Explore <%= r.title %>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </span>
         </a>
       <% }) %>
@@ -210,11 +223,14 @@ function toggleSvcFaq(i){
       <div class="cta-glow-1" aria-hidden="true"></div>
       <div class="cta-glow-2" aria-hidden="true"></div>
       <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Build?</div>
-      <h2 class="cta-title">Let's Talk About Your<br><%= service.title %> Project</h2>
-      <p class="cta-desc">Tell us what you're trying to build. We'll help you understand scope, technology and next steps — no obligation.</p>
+      <h2 class="cta-title">Let's Discuss Your<br><%= service.title %> Requirements</h2>
+      <p class="cta-desc">Reach out today for a free discovery consultation and clear milestone roadmap with no obligation.</p>
       <div class="cta-btns">
         <a href="/contact" class="cta-btn-p">Get a Free Consultation</a>
-        <a href="/services" class="cta-btn-s">View All Services</a>
+        <a href="https://wa.me/918600214628?text=Hi%20StackifyX,%20I%20would%20like%20to%20discuss%20a%20<%= encodeURIComponent(service.title) %>%20project"
+           target="_blank" rel="noopener noreferrer" class="cta-btn-s">
+          Chat on WhatsApp
+        </a>
       </div>
     </div>
   </div>

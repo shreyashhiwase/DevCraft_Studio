@@ -88,41 +88,54 @@ app.use('/',     require('./routes/payments'));
 app.use('/',     require('./routes/chat'));
 app.use('/',     require('./routes/reviews'));
 
+// Google verification
+app.get('/google786b0231396a70b4.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'google786b0231396a70b4.html'));
+});
+
 // Sitemap
 app.get('/sitemap.xml', (req, res) => {
-  const base = process.env.APP_URL || 'https://stackifyx.onrender.com';
+  const base = process.env.APP_URL || 'https://www.stackifyx.jo3.org';
   const now  = new Date().toISOString().split('T')[0];
   const { services } = require('./data/servicesData');
   const { industries } = require('./data/industriesData');
   const { posts } = require('./data/blogData');
   const { caseStudies } = require('./data/caseStudiesData');
+  const { cities } = require('./data/cityData');
+
   const serviceUrls = services.map(s =>
-    `  <url><loc>${base}/services/${s.slug}</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>`
+    `  <url><loc>${base}/services/${s.slug}</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>`
+  ).join('\n');
+  const cityUrls = cities.map(c =>
+    `  <url><loc>${base}/${c.slug}</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>`
   ).join('\n');
   const industryUrls = industries.map(i =>
-    `  <url><loc>${base}/industries/${i.slug}</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>`
+    `  <url><loc>${base}/industries/${i.slug}</loc><lastmod>${now}</lastmod><priority>0.75</priority></url>`
   ).join('\n');
   const blogUrls = posts.map(p =>
-    `  <url><loc>${base}/blog/${p.slug}</loc><lastmod>${p.publishDate}</lastmod><priority>0.6</priority></url>`
+    `  <url><loc>${base}/blog/${p.slug}</loc><lastmod>${p.publishDate}</lastmod><priority>0.7</priority></url>`
   ).join('\n');
   const caseStudyUrls = caseStudies.map(c =>
-    `  <url><loc>${base}/work/${c.slug}</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>`
+    `  <url><loc>${base}/work/${c.slug}</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>`
   ).join('\n');
+
   res.header('Content-Type','application/xml');
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${base}/</loc><lastmod>${now}</lastmod><priority>1.0</priority></url>
   <url><loc>${base}/services</loc><lastmod>${now}</lastmod><priority>0.9</priority></url>
 ${serviceUrls}
+  <url><loc>${base}/locations</loc><lastmod>${now}</lastmod><priority>0.9</priority></url>
+${cityUrls}
   <url><loc>${base}/industries</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
 ${industryUrls}
-  <url><loc>${base}/blog</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>
-${blogUrls}
   <url><loc>${base}/work</loc><lastmod>${now}</lastmod><priority>0.9</priority></url>
 ${caseStudyUrls}
   <url><loc>${base}/why-us</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
   <url><loc>${base}/about</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
-  <url><loc>${base}/contact</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
+  <url><loc>${base}/blog</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
+${blogUrls}
+  <url><loc>${base}/contact</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>
   <url><loc>${base}/terms</loc><lastmod>${now}</lastmod><priority>0.4</priority></url>
   <url><loc>${base}/privacy-policy</loc><lastmod>${now}</lastmod><priority>0.4</priority></url>
   <url><loc>${base}/auth/login</loc><lastmod>${now}</lastmod><priority>0.6</priority></url>
@@ -135,9 +148,10 @@ app.get('/', (req, res) => {
   if (req.session.userId)
     return res.redirect(req.session.userRole === 'admin' ? '/admin/dashboard' : '/dashboard');
   res.render('landing', {
-    title: 'StackifyX — We Build Digital Products That Move Businesses Forward',
+    title: 'StackifyX — Software Development & Website Development Company in India',
     isLanding: true,
     navActive: 'home',
+    canonicalPath: '/',
   });
 });
 

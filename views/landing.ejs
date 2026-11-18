@@ -1,116 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/jpeg" href="/stackifyx-logo.jpg">
-  <script>if(localStorage.getItem('devcraft-theme')==='light')document.documentElement.classList.add('light');</script>
+  <% locals.canonicalPath = '/'; %>
+  <%- include('partials/page-head') %>
 
-  <!-- SEO -->
-  <title>StackifyX — Digital Product & Software Development Company</title>
-  <meta name="description" content="StackifyX builds fast, secure and scalable websites, web applications, mobile apps and custom software. Transparent development from start to finish.">
-  <meta name="keywords" content="web development, mobile app development, custom software, digital product studio, Node.js, React, MongoDB, API development">
-  <link rel="canonical" href="<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>">
-
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>">
-  <meta property="og:title"       content="StackifyX — Digital Product & Software Development Company">
-  <meta property="og:description" content="We build fast, secure and scalable websites, web applications, mobile apps and custom software with a transparent development experience.">
-  <meta property="og:image"       content="<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/stackifyx-logo.jpg">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="StackifyX — Digital Product & Software Development">
-  <meta name="twitter:description" content="We build fast, secure and scalable digital products.">
-
-  <!-- Schema.org -->
+  <!-- Homepage FAQ Schema -->
   <script type="application/ld+json">
-  {
+  <%- JSON.stringify({
     "@context": "https://schema.org",
-    "@graph": [
+    "@type": "FAQPage",
+    "mainEntity": [
       {
-        "@type": "Organization",
-        "@id": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/#organization",
-        "name": "StackifyX",
-        "url": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>",
-        "logo": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/stackifyx-logo.jpg",
-        "description": "StackifyX builds websites, web applications, mobile apps and custom software for businesses.",
-        "address": { "@type": "PostalAddress", "addressCountry": "IN" },
-        "sameAs": ["<%= locals.linkedinURL || '' %>"]
+        "@type": "Question",
+        "name": "How does StackifyX work with clients across India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StackifyX collaborates remotely with businesses across all Indian states and cities using weekly video sprint reviews, live staging environments, direct WhatsApp communication, and our proprietary client dashboard for milestone and invoice tracking."
+        }
       },
       {
-        "@type": "WebSite",
-        "@id": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/#website",
-        "url": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>",
-        "name": "StackifyX",
-        "publisher": { "@id": "<%= process.env.APP_URL || 'https://stackifyx.onrender.com' %>/#organization" }
+        "@type": "Question",
+        "name": "How much does a professional website cost in India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Website development typically starts from ₹15,000 for standard business sites and ranges upwards for advanced e-commerce stores, custom web apps, and SaaS platforms. We provide clear, fixed-price milestone estimates before starting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I own the source code of my website or software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 100%. Upon project completion and final payment, you receive full ownership of your source code, database architecture, and digital assets with zero vendor lock-in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide post-launch support and maintenance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every project includes post-launch warranty, security monitoring, and ongoing maintenance options managed directly through your client dashboard."
+        }
       }
     ]
-  }
+  }) %>
   </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <%- include('partials/site-styles') %>
 </head>
 
 <body class="lp-wrap">
 <%- include('partials/navbar') %>
 
-<!-- ════════════════════════ HERO ════════════════════════════ -->
+<!-- ════════════════════════ 1. HERO SECTION ════════════════════════ -->
 <section class="hero" aria-label="Hero">
   <div class="hero-glow hero-glow-a"></div>
   <div class="hero-glow hero-glow-b"></div>
   <div class="lp-c">
     <div class="hero-grid">
 
-      <!-- Left -->
+      <!-- Left Hero Content -->
       <div>
         <div class="hero-eyebrow">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Digital Product Studio
+          India-Wide Software & Digital Solutions
         </div>
         <h1 class="hero-h1">
-          Turn Your Ideas Into<br>
-          <span class="grad">Digital Products.</span>
+          We Build Digital Experiences That<br>
+          <span class="grad">Grow Your Business.</span>
         </h1>
         <p class="hero-desc">
-          We build fast, secure and scalable websites, web applications,
-          mobile apps and custom software with a transparent development
-          experience from start to finish.
+          From professional websites to powerful e-commerce platforms and custom software, StackifyX helps businesses across India turn ideas into scalable digital solutions.
         </p>
         <div class="hero-btns">
-          <a href="/auth/register" class="btn btn-primary btn-lg" aria-label="Start your project">
-            Start Your Project
+          <a href="/contact" class="btn btn-primary btn-lg" aria-label="Get a free consultation">
+            Get a Free Consultation
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="#portfolio" class="btn btn-secondary btn-lg">View Our Work →</a>
+          <a href="/work" class="btn btn-secondary btn-lg">Explore Our Work →</a>
         </div>
         <div class="hero-tags">
           <span class="hero-tag">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            Web Development
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Websites & Web Apps
           </span>
           <span class="hero-tag">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            Mobile Apps
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            E-Commerce Stores
           </span>
           <span class="hero-tag">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             Custom Software
           </span>
           <span class="hero-tag">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             AI & Automation
           </span>
         </div>
       </div>
 
-      <!-- Right: Dashboard mockup -->
+      <!-- Right: Real-time Dashboard Mockup -->
       <div>
-        <div class="dash-mockup" role="img" aria-label="StackifyX project dashboard preview">
+        <div class="dash-mockup" role="img" aria-label="StackifyX client portal preview">
           <div class="dm-topbar">
             <div class="dm-dots">
               <div class="dm-dot" style="background:#ff5f57;"></div>
@@ -119,74 +108,56 @@
             </div>
             <div class="dm-user">
               <div class="dm-av">S</div>
-              StackifyX Dashboard
+              StackifyX Client Platform
             </div>
-            <span style="font-size:0.65rem;color:var(--accent-blue);font-weight:700;">LIVE</span>
+            <span style="font-size:0.65rem;color:var(--accent-blue);font-weight:700;display:flex;align-items:center;gap:4px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-green);"></span> LIVE
+            </span>
           </div>
           <div class="dm-body">
-            <div class="dm-greet">Welcome back,</div>
-            <div class="dm-title">StackifyX Team ✦</div>
+            <div class="dm-greet">Active Client Sprint</div>
+            <div class="dm-title">National Project Staging ✦</div>
             <div class="dm-stats">
               <div class="dm-stat">
-                <div class="dm-sval" style="color:var(--accent-blue);">12</div>
-                <div class="dm-slbl">Projects</div>
-                <div class="dm-strd" style="color:var(--accent-green);">Active</div>
+                <div class="dm-sval" style="color:var(--accent-blue);">100%</div>
+                <div class="dm-slbl">Code Ownership</div>
+                <div class="dm-strd" style="color:var(--accent-green);">Verified</div>
               </div>
               <div class="dm-stat">
-                <div class="dm-sval" style="color:var(--accent-orange);">5</div>
-                <div class="dm-slbl">In Progress</div>
-                <div class="dm-strd" style="color:var(--accent-orange);">Building</div>
+                <div class="dm-sval" style="color:var(--accent-orange);">Pan-India</div>
+                <div class="dm-slbl">Collaboration</div>
+                <div class="dm-strd" style="color:var(--accent-orange);">Remote-First</div>
               </div>
               <div class="dm-stat">
-                <div class="dm-sval" style="color:var(--accent-green);">7</div>
-                <div class="dm-slbl">Completed</div>
-                <div class="dm-strd" style="color:var(--accent-green);">Delivered</div>
+                <div class="dm-sval" style="color:var(--accent-green);">Fast</div>
+                <div class="dm-slbl">Core Web Vitals</div>
+                <div class="dm-strd" style="color:var(--accent-green);">Mobile-Ready</div>
               </div>
               <div class="dm-stat">
-                <div class="dm-sval" style="color:var(--accent-purple);">3</div>
-                <div class="dm-slbl">Inquiries</div>
-                <div class="dm-strd" style="color:var(--text-muted);">Pending</div>
+                <div class="dm-sval" style="color:var(--accent-purple);">24/7</div>
+                <div class="dm-slbl">Client Portal</div>
+                <div class="dm-strd" style="color:var(--accent-blue);">Transparent</div>
               </div>
             </div>
-            <div class="dm-cols">
-              <div class="dm-panel">
-                <div class="dm-ptitle">Project Progress</div>
-                <div class="dm-proj">
-                  <div class="dm-pname">StackifyX Platform</div>
-                  <div class="dm-pbar"><div class="dm-pfill" style="width:80%;background:linear-gradient(90deg,#2563eb,#7c3aed);"></div></div>
-                  <div class="dm-pmeta"><span>80% complete</span><span style="color:var(--accent-blue);">In Progress</span></div>
-                </div>
-                <div class="dm-proj">
-                  <div class="dm-pname">Healthcare Platform</div>
-                  <div class="dm-pbar"><div class="dm-pfill" style="width:60%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
-                  <div class="dm-pmeta"><span>60% complete</span><span style="color:var(--accent-green);">On Track</span></div>
-                </div>
-                <div class="dm-proj">
-                  <div class="dm-pname">TRUSTLEX.AJ</div>
-                  <div class="dm-pbar"><div class="dm-pfill" style="width:40%;background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div></div>
-                  <div class="dm-pmeta"><span>40% complete</span><span style="color:var(--accent-orange);">Planning</span></div>
-                </div>
+
+            <!-- Staging preview progress -->
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:14px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span style="font-size:0.75rem;font-weight:700;color:var(--text-primary);">Development Sprint Progress</span>
+                <span style="font-size:0.75rem;color:var(--accent-green);font-weight:700;">Milestone 4 of 5 (Testing)</span>
               </div>
-              <div class="dm-panel">
-                <div class="dm-ptitle">Recent Activity</div>
-                <div class="dm-act">
-                  <div class="dm-adot" style="background:var(--accent-green);"></div>
-                  <div><div class="dm-atxt">New project inquiry received</div><div class="dm-atime">2 min ago</div></div>
-                </div>
-                <div class="dm-act">
-                  <div class="dm-adot" style="background:var(--accent-blue);"></div>
-                  <div><div class="dm-atxt">Design milestone completed</div><div class="dm-atime">1 hr ago</div></div>
-                </div>
-                <div class="dm-act">
-                  <div class="dm-adot" style="background:var(--accent-purple);"></div>
-                  <div><div class="dm-atxt">Development update pushed</div><div class="dm-atime">3 hrs ago</div></div>
-                </div>
-                <div class="dm-act">
-                  <div class="dm-adot" style="background:var(--accent-orange);"></div>
-                  <div><div class="dm-atxt">Client message received</div><div class="dm-atime">5 hrs ago</div></div>
-                </div>
+              <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">
+                <div style="width:82%;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:3px;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:var(--text-muted);margin-top:6px;">
+                <span>Architecture ✓</span>
+                <span>Design ✓</span>
+                <span>Sprint Build ✓</span>
+                <span>QA Audit</span>
+                <span>Production</span>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -195,193 +166,186 @@
   </div>
 </section>
 
-<!-- ════════════════════════ CRED STRIP ══════════════════════ -->
-<div class="cred-strip" aria-label="Key capabilities">
+<!-- ════════════════════════ 2. TRUST INDICATORS ════════════════════════ -->
+<div class="trust-strip">
   <div class="lp-c">
-    <div class="cred-grid">
-      <div class="cred-item fade-up">
-        <div class="cred-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div><div class="cred-title">Custom Solutions</div><div class="cred-desc">Built around your business, not generic templates.</div></div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">✓</div>
+        <span>100% Custom Source Code (No Page-Builder Lock-In)</span>
       </div>
-      <div class="cred-item fade-up fade-up-delay-1">
-        <div class="cred-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <div><div class="cred-title">Transparent Process</div><div class="cred-desc">Track your project throughout every stage of development.</div></div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <span>Lightning Fast Core Web Vitals for Google SEO</span>
       </div>
-      <div class="cred-item fade-up fade-up-delay-2">
-        <div class="cred-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div><div class="cred-title">Modern Technology</div><div class="cred-desc">Scalable and future-ready architecture for long-term growth.</div></div>
+      <div class="trust-item">
+        <div class="trust-icon">🤝</div>
+        <span>Remote Project Delivery Across All Indian States</span>
       </div>
-      <div class="cred-item fade-up fade-up-delay-3">
-        <div class="cred-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <div><div class="cred-title">Ongoing Support</div><div class="cred-desc">We stay involved and available well after launch.</div></div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <span>Post-Launch Warranty & Dedicated Client Dashboard</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════ SERVICES ════════════════════════ -->
+<!-- ════════════════════════ 3. SERVICES OVERVIEW ════════════════════════ -->
 <section class="lp-section" id="services" aria-labelledby="svc-heading">
   <div class="lp-c">
     <div class="lp-heading center" style="margin-bottom:56px;">
       <div class="lp-pill" aria-hidden="true">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        What We Build
+        Our Capabilities
       </div>
-      <h2 id="svc-heading">Powerful Solutions for Every Business</h2>
-      <p>From idea to deployment, we provide everything you need to build and grow your digital product.</p>
+      <h2 id="svc-heading">Software Solutions Engineered for Growth</h2>
+      <p>From idea to production deployment, we provide the full engineering stack your business needs to succeed.</p>
     </div>
     <div class="svc-grid">
       <%
-      const services = [
-        { icon:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>', title:'Web Development', desc:'Responsive websites and powerful web applications built with modern, battle-tested technologies.' },
-        { icon:'<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>', title:'Mobile App Development', desc:'Cross-platform mobile applications for Android and iOS with native performance and modern UX.' },
-        { icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>', title:'Custom Software', desc:'Tailored software solutions designed around your specific business workflows and requirements.' },
-        { icon:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>', title:'E-Commerce Solutions', desc:'Online stores with payments, orders, inventory and customer management built to convert.' },
-        { icon:'<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>', title:'AI & Automation', desc:'AI-powered tools and workflow automation to save time, cut costs and improve productivity.' },
-        { icon:'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>', title:'API & Integrations', desc:'Robust APIs and third-party integrations that connect your business systems seamlessly.' },
+      const flagshipServices = [
+        { icon:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>', title:'Website Development', slug:'website-development', desc:'Fast, mobile-responsive business websites and web applications built with clean code and complete technical SEO.' },
+        { icon:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>', title:'E-Commerce Development', slug:'ecommerce-development', desc:'Custom online stores with seamless Razorpay UPI checkout, automated inventory tracking, and order fulfillment.' },
+        { icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>', title:'Custom Software Development', slug:'custom-software-development', desc:'Tailored business management systems, CRMs, and ERPs designed 100% around your specific operating workflow.' },
+        { icon:'<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>', title:'Mobile App Development', slug:'mobile-app-development', desc:'Cross-platform mobile apps for Android and iOS sharing real-time synchronized data with your central web platform.' },
+        { icon:'<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>', title:'AI & Business Automation', slug:'ai-business-automation', desc:'Practical AI integration, automated WhatsApp leads, and document processing that saves your team hours of busywork.' },
+        { icon:'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>', title:'API Development & Integration', slug:'api-development', desc:'Secure REST APIs, payment webhooks, and third-party software connectors unifying your business tools.' },
       ];
       %>
-      <% services.forEach((s, i) => { %>
+      <% flagshipServices.forEach((s, i) => { %>
         <div class="svc-card fade-up fade-up-delay-<%= i % 3 %>">
           <div class="svc-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- s.icon %></svg>
           </div>
           <h3 class="svc-title"><%= s.title %></h3>
           <p class="svc-desc"><%= s.desc %></p>
-          <a href="/auth/register" class="svc-link" aria-label="Learn more about <%= s.title %>">
-            Learn more
+          <a href="/services/<%= s.slug %>" class="svc-link" aria-label="Learn more about <%= s.title %>">
+            Learn More
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
       <% }) %>
     </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="/services" class="btn btn-secondary" style="font-weight:700;">Explore All Services →</a>
+    </div>
   </div>
 </section>
 
-<!-- ════════════════════════ PORTFOLIO ═══════════════════════ -->
+<!-- ════════════════════════ 4. FEATURED PROJECTS ════════════════════════ -->
 <section class="lp-section lp-section-alt" id="portfolio" aria-labelledby="port-heading">
   <div class="lp-c">
     <div class="port-header">
       <div>
-        <div class="lp-pill" aria-hidden="true">Selected Work</div>
-        <h2 id="port-heading" style="font-family:'Manrope',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.03em;color:var(--text-primary);margin:0;">Projects We're Proud Of</h2>
+        <div class="lp-pill" aria-hidden="true">Featured Work</div>
+        <h2 id="port-heading" style="font-family:'Manrope',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.03em;color:var(--text-primary);margin:0;">Real Products Built for Real Business</h2>
       </div>
-      <a href="/auth/register" style="font-size:0.88rem;font-weight:700;color:var(--accent-blue);white-space:nowrap;display:flex;align-items:center;gap:5px;">
-        View All
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <a href="/work" style="font-size:0.88rem;font-weight:700;color:var(--accent-blue);white-space:nowrap;display:flex;align-items:center;gap:5px;">
+        View All Case Studies
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
-    <p class="port-sub">Real products. Real solutions. Built for real business needs.</p>
+    <p class="port-sub">Explore actual platforms and systems engineered by StackifyX — no fabricated screenshots.</p>
     <div class="port-grid">
 
-      <!-- Project 1 -->
+      <!-- Project 1: StackifyX Platform -->
       <article class="port-card fade-up">
         <div class="port-img" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">
-          <div style="width:100%;padding:20px 16px;">
-            <div style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:8px;padding:12px;margin-bottom:8px;">
-              <div style="font-size:0.6rem;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Project Dashboard</div>
-              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:5px;"><div style="width:80%;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:2px;"></div></div>
-              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:5px;"><div style="width:55%;height:100%;background:linear-gradient(90deg,#34d399,#059669);border-radius:2px;"></div></div>
-              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:35%;height:100%;background:linear-gradient(90deg,#fbbf24,#f59e0b);border-radius:2px;"></div></div>
+          <div style="width:100%;padding:24px 20px;">
+            <div style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:10px;padding:14px;margin-bottom:12px;">
+              <div style="font-size:0.65rem;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Client Project Platform</div>
+              <div style="font-size:0.9rem;font-weight:800;color:#fff;margin-bottom:6px;">StackifyX Live Engine</div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);"></div></div>
             </div>
-            <div style="display:flex;gap:6px;">
-              <div style="flex:1;background:rgba(37,99,235,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.9rem;font-weight:800;color:#93c5fd;">12</div><div style="font-size:0.56rem;color:#64748b;">Projects</div></div>
-              <div style="flex:1;background:rgba(52,211,153,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.9rem;font-weight:800;color:#6ee7b7;">7</div><div style="font-size:0.56rem;color:#64748b;">Done</div></div>
-              <div style="flex:1;background:rgba(167,139,250,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.9rem;font-weight:800;color:#c4b5fd;">5</div><div style="font-size:0.56rem;color:#64748b;">Active</div></div>
+            <div style="display:flex;gap:8px;">
+              <div style="flex:1;background:rgba(37,99,235,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.85rem;font-weight:800;color:#93c5fd;">Socket.IO</div><div style="font-size:0.56rem;color:#94a3b8;">Real-Time</div></div>
+              <div style="flex:1;background:rgba(16,185,129,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.85rem;font-weight:800;color:#6ee7b7;">Razorpay</div><div style="font-size:0.56rem;color:#94a3b8;">Payments</div></div>
+              <div style="flex:1;background:rgba(139,92,246,0.1);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:0.85rem;font-weight:800;color:#c4b5fd;">MongoStore</div><div style="font-size:0.56rem;color:#94a3b8;">Sessions</div></div>
             </div>
           </div>
         </div>
         <div class="port-body">
           <h3 class="port-name">StackifyX Platform</h3>
-          <p class="port-desc">Project service and management platform for clients and development teams.</p>
+          <p class="port-desc">Full-featured client project management platform with real-time chat, automated milestone tracking, and payment processing.</p>
           <div class="port-tags">
             <span class="port-tag">Node.js</span>
+            <span class="port-tag">Express.js</span>
             <span class="port-tag">MongoDB</span>
-            <span class="port-tag">Express</span>
-            <span class="port-tag">EJS</span>
+            <span class="port-tag">Socket.IO</span>
           </div>
-          <a href="/auth/register" class="port-link" aria-label="View case study for StackifyX Platform">
-            View Case Study
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a href="/work/stackifyx-platform" class="port-link" aria-label="View case study for StackifyX Platform">
+            Read Case Study
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
       </article>
 
-      <!-- Project 2 -->
+      <!-- Project 2: Healthcare Platform -->
       <article class="port-card fade-up fade-up-delay-1">
         <div class="port-img" style="background:linear-gradient(135deg,#0d2818,#1a4731);">
-          <div style="width:100%;padding:20px 16px;">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
-              <div style="font-size:0.68rem;font-weight:800;color:#6ee7b7;">Healthcare Platform</div>
-              <div style="padding:2px 8px;background:rgba(52,211,153,0.2);border-radius:100px;font-size:0.55rem;color:#6ee7b7;font-weight:700;">Active</div>
+          <div style="width:100%;padding:24px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+              <div style="font-size:0.75rem;font-weight:800;color:#6ee7b7;">Healthcare Management System</div>
+              <span style="padding:2px 8px;background:rgba(16,185,129,0.2);border-radius:100px;font-size:0.6rem;color:#6ee7b7;font-weight:700;">Verified Build</span>
             </div>
-            <div style="display:flex;align-items:flex-end;gap:4px;height:50px;margin-bottom:10px;">
-              <% [35,55,40,70,60,80,65].forEach(h => { %>
-                <div style="flex:1;height:<%= h %>%;background:rgba(52,211,153,0.4);border-radius:2px 2px 0 0;"></div>
-              <% }) %>
+            <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:8px;padding:12px;margin-bottom:10px;">
+              <div style="font-size:0.65rem;color:#a7f3d0;margin-bottom:4px;font-weight:700;">Clinical Dashboard Modules</div>
+              <div style="font-size:0.58rem;color:#d1fae5;">• Patient Records Management & History<br>• OPD Doctor Appointment Scheduling<br>• Automated Billing & Diagnostic Invoices</div>
             </div>
-            <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:7px;padding:8px;font-size:0.6rem;color:#6ee7b7;">
-              Healthcare management and digital services — appointment scheduling, patient records, digital billing.
+            <div style="display:flex;gap:6px;">
+              <div style="flex:1;background:rgba(16,185,129,0.15);border-radius:6px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#6ee7b7;">OPD</div><div style="font-size:0.55rem;color:#94a3b8;">Calendar</div></div>
+              <div style="flex:1;background:rgba(16,185,129,0.15);border-radius:6px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#6ee7b7;">EMR</div><div style="font-size:0.55rem;color:#94a3b8;">Records</div></div>
+              <div style="flex:1;background:rgba(16,185,129,0.15);border-radius:6px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#6ee7b7;">Billing</div><div style="font-size:0.55rem;color:#94a3b8;">Invoicing</div></div>
             </div>
           </div>
         </div>
         <div class="port-body">
-          <h3 class="port-name">Healthcare Platform</h3>
-          <p class="port-desc">Healthcare management and digital services platform for clinics and hospitals.</p>
+          <h3 class="port-name">Healthcare Management Platform</h3>
+          <p class="port-desc">Custom digital management system for healthcare clinics, replacing paper records with appointment booking and digital billing.</p>
           <div class="port-tags">
-            <span class="port-tag">Web App</span>
+            <span class="port-tag">Healthcare Tech</span>
             <span class="port-tag">Node.js</span>
             <span class="port-tag">MongoDB</span>
             <span class="port-tag">Chart.js</span>
           </div>
-          <a href="/auth/register" class="port-link" aria-label="View case study for Healthcare Platform">
-            View Case Study
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a href="/work/healthcare-platform" class="port-link" aria-label="View case study for Healthcare Platform">
+            Read Case Study
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
       </article>
 
-      <!-- Project 3 -->
+      <!-- Project 3: TRUSTLEX.AJ -->
       <article class="port-card fade-up fade-up-delay-2">
         <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#2d1454);">
-          <div style="width:100%;padding:20px 16px;">
-            <div style="font-size:0.68rem;font-weight:800;color:#c4b5fd;margin-bottom:8px;">TRUSTLEX.AJ</div>
-            <div style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:8px;padding:10px;margin-bottom:8px;">
-              <div style="font-size:0.58rem;color:#a78bfa;margin-bottom:6px;font-weight:600;">Legal Consultation Portal</div>
-              <div style="display:flex;gap:5px;margin-bottom:5px;">
-                <div style="width:28px;height:28px;background:rgba(124,58,237,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <div style="flex:1;background:rgba(124,58,237,0.1);border-radius:4px;padding:4px 6px;"><div style="font-size:0.55rem;color:#c4b5fd;font-weight:600;">Connect with certified lawyers</div></div>
-              </div>
+          <div style="width:100%;padding:24px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+              <div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">TRUSTLEX.AJ</div>
+              <span style="padding:2px 8px;background:rgba(124,58,237,0.25);border-radius:100px;font-size:0.6rem;color:#c4b5fd;font-weight:700;">Legal SaaS</span>
+            </div>
+            <div style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:8px;padding:12px;margin-bottom:10px;">
+              <div style="font-size:0.65rem;color:#ddd6fe;margin-bottom:4px;font-weight:700;">Advocate Matching & Scheduling</div>
+              <div style="font-size:0.58rem;color:#ede9fe;">Connecting clients with certified lawyers through structured booking workflows.</div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
-              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">24+</div><div style="font-size:0.52rem;color:#7c6bad;">Lawyers</div></div>
-              <div style="background:rgba(124,58,237,0.1);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">Legal</div><div style="font-size:0.52rem;color:#7c6bad;">Platform</div></div>
-              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">SaaS</div><div style="font-size:0.52rem;color:#7c6bad;">Model</div></div>
+              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">Advocate</div><div style="font-size:0.52rem;color:#94a3b8;">Profiles</div></div>
+              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">Legal</div><div style="font-size:0.52rem;color:#94a3b8;">Consulting</div></div>
+              <div style="background:rgba(124,58,237,0.15);border-radius:5px;padding:6px;text-align:center;"><div style="font-size:0.75rem;font-weight:800;color:#c4b5fd;">SaaS</div><div style="font-size:0.52rem;color:#94a3b8;">Architecture</div></div>
             </div>
           </div>
         </div>
         <div class="port-body">
-          <h3 class="port-name">TRUSTLEX.AJ</h3>
-          <p class="port-desc">Legal consultation platform connecting clients with certified advocates and lawyers.</p>
+          <h3 class="port-name">TRUSTLEX.AJ Legal Portal</h3>
+          <p class="port-desc">A specialized consultation booking and advocate profiling platform connecting legal clients with verified lawyers across India.</p>
           <div class="port-tags">
+            <span class="port-tag">Legal Tech</span>
             <span class="port-tag">Node.js</span>
-            <span class="port-tag">Express</span>
+            <span class="port-tag">Express.js</span>
             <span class="port-tag">MongoDB</span>
-            <span class="port-tag">EJS</span>
           </div>
-          <a href="/auth/register" class="port-link" aria-label="View case study for TRUSTLEX.AJ">
-            View Case Study
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a href="/work/trustlex-aj" class="port-link" aria-label="View case study for TRUSTLEX.AJ">
+            Read Case Study
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
       </article>
@@ -390,403 +354,352 @@
   </div>
 </section>
 
-<!-- ════════════════════════ PROCESS ═════════════════════════ -->
-<section class="lp-section" id="process" aria-labelledby="proc-heading">
+<!-- ════════════════════════ 5. INDUSTRIES WE SERVE ════════════════════════ -->
+<section class="lp-section" id="industries" aria-labelledby="ind-heading">
   <div class="lp-c">
-    <div class="lp-heading center" style="margin-bottom:48px;">
-      <div class="lp-pill" aria-hidden="true">How We Work</div>
-      <h2 id="proc-heading">How We Turn Ideas Into Products</h2>
-      <p>A clear, structured process so you always know what's happening and what comes next.</p>
+    <div class="lp-heading center" style="margin-bottom:52px;">
+      <div class="lp-pill" aria-hidden="true">Target Verticals</div>
+      <h2 id="ind-heading">Industries We Build For</h2>
+      <p>Every industry has distinct workflows and commercial goals. Here is how we engineer solutions tailored to your sector.</p>
     </div>
-    <div class="proc-grid" role="list">
+    <div class="ind-grid">
       <%
-      const steps = [
-        { n:'01', title:'Discover', desc:'We understand your idea, requirements and business goals before writing a single line of code.', icon:'<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' },
-        { n:'02', title:'Plan',     desc:'We define scope, technology stack, timeline and milestones. You get full visibility into what we\'re building.', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>' },
-        { n:'03', title:'Build',    desc:'Our team designs and develops your product with regular updates, real-time chat and milestone check-ins.', icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>' },
-        { n:'04', title:'Launch',   desc:'We deploy your product to production and provide ongoing support. We don\'t disappear after delivery.', icon:'<path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/>' },
+      const targetIndustries = [
+        { name:'Healthcare & Clinics', slug:'healthcare', desc:'Patient records, doctor appointment scheduling & digital billing.' },
+        { name:'Coaching & Education', slug:'education', desc:'Course catalogs, student inquiry funnels & batch announcements.' },
+        { name:'Retail & E-Commerce', slug:'ecommerce', desc:'Custom online stores, Razorpay payments & order management.' },
+        { name:'Manufacturing & B2B', slug:'manufacturing', desc:'Product catalogs, technical data sheets & RFQ inquiry portals.' },
+        { name:'Startups & Tech Ventures', slug:'startups', desc:'MVP scoping, rapid prototype builds & scalable SaaS backends.' },
+        { name:'Real Estate & Property', slug:'real-estate', desc:'Project presentation portals, floor plans & brochure lead funnels.' },
+        { name:'Legal Consultation', slug:'legal', desc:'Advocate profile matching, booking flows & confidential client intake.' },
+        { name:'Small & Medium Businesses', slug:'small-business', desc:'Professional business websites & WhatsApp inquiry tools.' },
       ];
       %>
-      <% steps.forEach((s, i) => { %>
-        <div class="proc-step fade-up fade-up-delay-<%= i %>" role="listitem">
-          <div class="proc-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- s.icon %></svg>
-          </div>
-          <div class="proc-num"><%= s.n %></div>
-          <h3 class="proc-title"><%= s.title %></h3>
-          <p class="proc-desc"><%= s.desc %></p>
-          <% if (i < steps.length - 1) { %>
-            <div class="proc-arr" aria-hidden="true">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          <% } %>
-        </div>
+      <% targetIndustries.forEach(ind => { %>
+        <a href="/industries/<%= ind.slug %>" class="svc-card" style="text-decoration:none;color:inherit;display:block;">
+          <h3 class="svc-title" style="font-size:1.05rem;"><%= ind.name %></h3>
+          <p class="svc-desc"><%= ind.desc %></p>
+          <span class="svc-link">
+            Explore <%= ind.name %>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
       <% }) %>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="/industries" class="btn btn-secondary">View All Industries →</a>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ WHY US ══════════════════════════ -->
+<!-- ════════════════════════ 6. WHY CHOOSE STACKIFYX ════════════════════════ -->
 <section class="lp-section lp-section-alt" id="why-us" aria-labelledby="why-heading">
   <div class="lp-c">
     <div class="lp-heading center" style="margin-bottom:52px;">
       <div class="lp-pill" aria-hidden="true">Why StackifyX</div>
-      <h2 id="why-heading">Why Businesses Choose StackifyX</h2>
-      <p>We don't make generic promises. Here's specifically what sets us apart.</p>
+      <h2 id="why-heading">Why Businesses Across India Choose Us</h2>
+      <p>We combine modern engineering with transparent, dependable project delivery.</p>
     </div>
     <div class="why-grid">
-      <%
-      const whys = [
-        { icon:'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>', title:'Built Around Your Business', desc:'Custom solutions instead of generic templates. We build around your actual workflows, users, and goals — not what\'s easiest for us.' },
-        { icon:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>', title:'Transparent Development', desc:'Track milestones, review progress and communicate with our team throughout. You\'re never left wondering what\'s happening.' },
-        { icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title:'Production Ready', desc:'Secure, thoroughly tested and deployment-ready software. We don\'t hand over code that isn\'t production quality.' },
-        { icon:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>', title:'Scalable Architecture', desc:'Built to support future users, features and integrations. Your product won\'t need a full rewrite when you grow.' },
-        { icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', title:'Post-Launch Support', desc:'We stay involved after deployment. Questions, bug fixes and improvements — we\'re here after the project is delivered.' },
-      ];
-      %>
-      <% whys.forEach((w, i) => { %>
-        <div class="why-card fade-up fade-up-delay-<%= i % 3 %>">
-          <div class="why-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- w.icon %></svg>
-          </div>
-          <h3 class="why-title"><%= w.title %></h3>
-          <p class="why-desc"><%= w.desc %></p>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════ ABOUT ═══════════════════════════ -->
-<section class="lp-section lp-section-alt" id="about" aria-labelledby="about-heading">
-  <div class="lp-c">
-    <div class="about-grid">
-      <div>
-        <div class="lp-pill" aria-hidden="true">About Us</div>
-        <h2 id="about-heading" style="font-family:'Manrope',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.03em;color:var(--text-primary);margin-bottom:16px;">Building Digital Products<br>With Purpose</h2>
-        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:18px;">
-          StackifyX is a digital product development company focused on building
-          reliable, scalable software for businesses that want to grow.
-        </p>
-        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:28px;">
-          We work directly with founders, product teams and business owners to
-          turn ideas into real products — with a clear process, transparent
-          communication and a focus on long-term quality over short-term shortcuts.
-        </p>
-        <div class="about-checklist">
-          <% [
-            'Custom development for your exact requirements',
-            'Direct communication — no account managers',
-            'Clean, documented, maintainable code',
-            'From MVP to full-scale production product',
-            'Post-launch support and iteration',
-          ].forEach(item => { %>
-            <div class="about-check">
-              <div class="about-check-icon" aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <%= item %>
-            </div>
-          <% }) %>
-        </div>
-        <div style="margin-top:32px;">
-          <a href="/auth/register" class="btn btn-primary">Start a Project →</a>
-        </div>
+        <h3 class="why-title">Built Around Your Business</h3>
+        <p class="why-desc">No generic WordPress themes or rigid templates. We write bespoke code shaped 100% around your workflows, customers, and business model.</p>
       </div>
-      <div class="about-visual">
-        <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(37,99,235,0.08),transparent);border-radius:50%;pointer-events:none;"></div>
-        <% [
-          { icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',  title:'Clean Code',           sub:'Documented, maintainable, scalable' },
-          { icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',                title:'Security First',       sub:'Best practices from day one' },
-          { icon:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',title:'Transparent Process',sub:'Track every milestone live' },
-          { icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',title:'Direct Communication', sub:'Chat with the team anytime' },
-        ].forEach(item => { %>
-          <div class="about-vis-item">
-            <div class="about-vis-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- item.icon %></svg>
-            </div>
-            <div>
-              <div class="about-vis-title"><%= item.title %></div>
-              <div class="about-vis-sub"><%= item.sub %></div>
-            </div>
-          </div>
-        <% }) %>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 class="why-title">Transparent Milestone Tracking</h3>
+        <p class="why-desc">Log into your private StackifyX client dashboard anytime to view active milestone stages, review staging links, and chat with developers.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="why-title">Scalable Architecture</h3>
+        <p class="why-desc">Built on robust technologies like Node.js and MongoDB so your software won't need an expensive rewrite when user traffic surges.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="why-title">Seamless Remote Collaboration</h3>
+        <p class="why-desc">We successfully deliver projects to founders across India without location friction via video calls, direct WhatsApp syncs, and digital demos.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="why-title">Dedicated Post-Launch Support</h3>
+        <p class="why-desc">We never disappear after delivery. We provide warranty coverage, security monitoring, and ongoing feature updates through our support ticketing system.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ INDUSTRIES ══════════════════════ -->
-<section class="lp-section" id="industries" aria-labelledby="ind-heading">
-  <div class="lp-c">
-    <div class="lp-heading center" style="margin-bottom:44px;">
-      <div class="lp-pill" aria-hidden="true">Industries</div>
-      <h2 id="ind-heading">Solutions Across Industries</h2>
-      <p>We build for businesses of all sizes and sectors.</p>
-    </div>
-    <div class="ind-grid" role="list">
-      <%
-      const industries = [
-        { name:'Healthcare',          slug:'healthcare',   icon:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>' },
-        { name:'E-Commerce',          slug:'ecommerce',     icon:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>' },
-        { name:'Legal',               slug:'legal',         icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
-        { name:'Education',           slug:'education',     icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>' },
-        { name:'Hotels',              slug:'hotels',        icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>' },
-        { name:'Startups',            slug:'startups',      icon:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
-        { name:'Real Estate',         slug:'real-estate',   icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>' },
-        { name:'Small Business',      slug:'small-business',icon:'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>' },
-      ];
-      %>
-      <% industries.forEach((ind, i) => { %>
-        <a href="/industries/<%= ind.slug %>" class="ind-card fade-up fade-up-delay-<%= i % 4 %>" role="listitem" style="text-decoration:none;color:inherit;">
-          <div class="ind-icon" aria-hidden="true">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><%- ind.icon %></svg>
-          </div>
-          <span class="ind-name"><%= ind.name %></span>
-        </a>
-      <% }) %>
-    </div>
-    <p style="text-align:center;margin-top:28px;">
-      <a href="/industries" style="color:var(--accent-blue);font-weight:700;font-size:0.88rem;text-decoration:none;">View All Industries →</a>
-    </p>
-  </div>
-</section>
-
-
-<!-- ════════════════════════ TESTIMONIALS ═════════════════════ -->
-<section class="lp-section lp-section-alt" id="testimonials" aria-labelledby="testi-heading">
+<!-- ════════════════════════ 7. DEVELOPMENT PROCESS ════════════════════════ -->
+<section class="lp-section" id="process" aria-labelledby="proc-heading">
   <div class="lp-c">
     <div class="lp-heading center" style="margin-bottom:52px;">
-      <div class="lp-pill" aria-hidden="true">Client Stories</div>
-      <h2 id="testi-heading">What Our Clients Say</h2>
-      <p>Real feedback from the businesses we've worked with.</p>
+      <div class="lp-pill" aria-hidden="true">Our Blueprint</div>
+      <h2 id="proc-heading">How We Build Your Digital Solution</h2>
+      <p>A proven, structured development lifecycle that guarantees on-time delivery with zero surprises.</p>
     </div>
+    <div class="proc-grid" role="list">
+      <div class="proc-step" role="listitem">
+        <div class="proc-num">01</div>
+        <h3 class="proc-title">Discovery</h3>
+        <p class="proc-desc">We analyze your business model, customer touchpoints, and commercial goals before writing code.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-num">02</div>
+        <h3 class="proc-title">Planning</h3>
+        <p class="proc-desc">We define technical architecture, database schemas, and create a transparent sprint milestone timeline.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-num">03</div>
+        <h3 class="proc-title">Design</h3>
+        <p class="proc-desc">We craft mobile-first, conversion-focused wireframes and UI design systems for your sign-off.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-num">04</div>
+        <h3 class="proc-title">Development</h3>
+        <p class="proc-desc">Our engineers build your product in rapid sprint cycles with live staging links accessible on mobile.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-num">05</div>
+        <h3 class="proc-title">Testing</h3>
+        <p class="proc-desc">Rigorous cross-device auditing, performance benchmarking, Core Web Vitals checks, and security testing.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-num">06</div>
+        <h3 class="proc-title">Launch & Support</h3>
+        <p class="proc-desc">Production deployment, Google indexing verification, and ongoing warranty support through your dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div style="position:relative;">
-      <!-- Slider track -->
-      <div style="overflow:hidden;border-radius:20px;" id="testiWrap">
-        <div id="testiTrack" style="display:flex;transition:transform 0.5s ease;">
+<!-- ════════════════════════ 8. TECHNOLOGIES & EXPERTISE ════════════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:40px;">
+      <div class="lp-pill" aria-hidden="true">Modern Stack</div>
+      <h2>Technologies & Architecture</h2>
+      <p>We use industry-standard, high-performance technologies built for security, speed, and scale.</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px; max-width:960px; margin:0 auto;">
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">Node.js</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">Express.js</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">MongoDB</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">Socket.IO (Real-Time)</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">Razorpay Gateway</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">HTML5 / Modern CSS</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">RESTful APIs</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">Cloudflare CDN</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">Passport.js OAuth</span>
+      <span class="hero-tag" style="font-size:0.9rem; padding:10px 18px;">AI & Webhooks Integration</span>
+    </div>
+  </div>
+</section>
 
-          <!-- Slide 1 -->
-          <div style="min-width:100%;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;
-                      background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:52px 56px;"
-               class="testi-slide">
-            <div style="flex-shrink:0;">
-              <div style="font-family:'Manrope',sans-serif;font-size:5.5rem;font-weight:800;color:var(--accent-blue);opacity:0.25;line-height:0.8;margin-bottom:20px;">"</div>
-              <div style="font-family:'Manrope',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text-primary);line-height:1.2;max-width:160px;">Trusted by<br>Businesses</div>
-            </div>
-            <div>
-              <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.85;margin-bottom:28px;font-style:italic;">
-                "StackifyX delivered our project beyond our expectations. The team is professional,
-                communicative, and truly cares about the success of our product. The real-time project
-                tracking kept us informed at every step — highly recommended."
-              </p>
-              <div style="display:flex;align-items:center;gap:14px;">
-                <div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);
-                            display:flex;align-items:center;justify-content:center;
-                            font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0;">R</div>
-                <div>
-                  <div style="font-weight:800;font-size:0.95rem;color:var(--text-primary);margin-bottom:2px;">Adv. Ashish Ade</div>
-                  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">Founder, TRUSTLEX.AJ</div>
-                  <div style="display:flex;gap:3px;">
-                    <% for(let i=0;i<5;i++) { %>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-orange)" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <% } %>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!-- ════════════════════════ 9. CLIENT TESTIMONIALS ════════════════════════ -->
+<section class="lp-section" id="testimonials" aria-labelledby="testi-heading">
+  <div class="lp-c">
+    <div class="lp-heading center" style="margin-bottom:52px;">
+      <div class="lp-pill" aria-hidden="true">Client Feedback</div>
+      <h2 id="testi-heading">What Our Clients Say</h2>
+      <p>Genuine feedback from business founders and professionals we have partnered with.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:28px;">
+      
+      <!-- Review 1: Adv. Ashish Ade -->
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:40px; display:flex; flex-direction:column;">
+        <div style="font-size:2.5rem; color:var(--accent-blue); line-height:1; margin-bottom:12px; opacity:0.4;">“</div>
+        <p style="font-size:0.98rem; color:var(--text-secondary); line-height:1.8; margin-bottom:24px; font-style:italic; flex:1;">
+          "StackifyX delivered our legal consultation portal beyond our expectations. The team is communicative, highly responsive, and truly cares about the operational success of the product. The real-time milestone tracking kept us fully informed throughout."
+        </p>
+        <div style="display:flex; align-items:center; gap:14px; border-top:1px solid var(--border); padding-top:20px;">
+          <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-primary); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;">A</div>
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; color:var(--text-primary);">Adv. Ashish Ade</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Founder, TRUSTLEX.AJ</div>
           </div>
-
-          <!-- Slide 2 -->
-          <div style="min-width:100%;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;
-                      background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:52px 56px;"
-               class="testi-slide">
-            <div style="flex-shrink:0;">
-              <div style="font-family:'Manrope',sans-serif;font-size:5.5rem;font-weight:800;color:var(--accent-blue);opacity:0.25;line-height:0.8;margin-bottom:20px;">"</div>
-              <div style="font-family:'Manrope',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text-primary);line-height:1.2;max-width:160px;">Trusted by<br>Businesses</div>
-            </div>
-            <div>
-              <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.85;margin-bottom:28px;font-style:italic;">
-                "Working with StackifyX was a great experience from start to finish. They understood
-                our vision immediately and delivered a product that exceeded what we had imagined.
-                The transparency throughout the process made all the difference."
-              </p>
-              <div style="display:flex;align-items:center;gap:14px;">
-                <div style="width:48px;height:48px;border-radius:50%;
-                            background:linear-gradient(135deg,#34d399,#059669);
-                            display:flex;align-items:center;justify-content:center;
-                            font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0;">P</div>
-                <div>
-                  <div style="font-weight:800;font-size:0.95rem;color:var(--text-primary);margin-bottom:2px;">Priya Shah</div>
-                  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">CEO, MedCare Solutions</div>
-                  <div style="display:flex;gap:3px;">
-                    <% for(let i=0;i<5;i++) { %>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-orange)" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <% } %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 
-      <!-- Prev / Next -->
-      <button onclick="testiPrev()" aria-label="Previous testimonial"
-        style="position:absolute;left:-18px;top:50%;transform:translateY(-50%);
-               width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
-               background:var(--bg-card);color:var(--text-secondary);cursor:pointer;
-               display:flex;align-items:center;justify-content:center;
-               transition:background 0.15s,border-color 0.15s,color 0.15s;z-index:10;"
-        onmouseover="this.style.background='var(--accent-blue)';this.style.color='#fff';this.style.borderColor='var(--accent-blue)';"
-        onmouseout="this.style.background='var(--bg-card)';this.style.color='var(--text-secondary)';this.style.borderColor='var(--border)';">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button onclick="testiNext()" aria-label="Next testimonial"
-        style="position:absolute;right:-18px;top:50%;transform:translateY(-50%);
-               width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
-               background:var(--bg-card);color:var(--text-secondary);cursor:pointer;
-               display:flex;align-items:center;justify-content:center;
-               transition:background 0.15s,border-color 0.15s,color 0.15s;z-index:10;"
-        onmouseover="this.style.background='var(--accent-blue)';this.style.color='#fff';this.style.borderColor='var(--accent-blue)';"
-        onmouseout="this.style.background='var(--bg-card)';this.style.color='var(--text-secondary)';this.style.borderColor='var(--border)';">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-
-    <!-- Dots -->
-    <div style="display:flex;justify-content:center;gap:8px;margin-top:24px;" role="tablist" aria-label="Testimonial slides">
-      <button class="testi-dot active" onclick="testiGo(0)" aria-label="Slide 1" aria-selected="true"
-        style="width:8px;height:8px;border-radius:50%;background:var(--accent-blue);border:none;cursor:pointer;padding:0;transition:background 0.2s,transform 0.2s;"></button>
-      <button class="testi-dot" onclick="testiGo(1)" aria-label="Slide 2" aria-selected="false"
-        style="width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:background 0.2s,transform 0.2s;"></button>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════ FAQ ══════════════════════════════ -->
-<section class="lp-section lp-section-alt" id="faq" aria-labelledby="faq-heading">
-  <div class="lp-c">
-    <div class="lp-heading center" style="margin-bottom:48px;">
-      <div class="lp-pill" aria-hidden="true">Got Questions?</div>
-      <h2 id="faq-heading">Frequently Asked Questions</h2>
-      <p>Answers to the questions we hear most often from businesses exploring a project with us.</p>
-    </div>
-    <div class="faq-list">
-      <%
-      const faqs = [
-        { q:'What services does StackifyX provide?', a:'We build websites, web applications, mobile apps, custom software, e-commerce platforms, and API integrations, along with AI-powered automation tools for businesses of all sizes.' },
-        { q:'How does the development process work?', a:'We follow a clear process: Discover, Plan, Build and Launch. You get visibility into scope, timeline and progress at every stage, plus ongoing support after launch.' },
-        { q:'Can StackifyX build custom software for my business?', a:'Yes. We design custom software around your specific workflows — from internal management tools to booking systems and industry-specific platforms.' },
-        { q:'Can you build an e-commerce website?', a:'Yes. We build online stores with product management, shopping cart, checkout, payment integration and order management built in.' },
-        { q:'Can you develop mobile applications?', a:'Yes. We build cross-platform and native mobile apps for Android and iOS, including authentication, push notifications and API integration.' },
-        { q:'How much does a website or software project cost?', a:'Cost depends on scope, features and complexity. Share your requirements through our contact form and we will give you a clear estimate.' },
-        { q:'How long does development take?', a:'Timelines vary by project size — a simple website may take a few weeks, while custom software or larger platforms take longer. We will share a realistic timeline after understanding your requirements.' },
-        { q:'Can I track my project progress?', a:'Yes. Registered clients get a dashboard to track milestones, inquiries and project status throughout development.' },
-        { q:'Do you provide post-launch support?', a:'Yes. We remain available after deployment for bug fixes, improvements and questions — we do not disappear after delivery.' },
-        { q:'How can I start a project with StackifyX?', a:'Reach out through our contact page or create an account to submit a project inquiry. Our team will follow up to discuss the next steps.' },
-      ];
-      %>
-      <% faqs.forEach((f, i) => { %>
-        <div class="faq-item" id="faq-item-<%= i %>">
-          <button class="faq-q" onclick="toggleFaq(<%= i %>)" aria-expanded="false" aria-controls="faq-a-<%= i %>">
-            <span><%= f.q %></span>
-            <span class="faq-q-icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
-          </button>
-          <div class="faq-a" id="faq-a-<%= i %>">
-            <p><%= f.a %></p>
+      <!-- Review 2: MedCare Solutions -->
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:40px; display:flex; flex-direction:column;">
+        <div style="font-size:2.5rem; color:var(--accent-purple); line-height:1; margin-bottom:12px; opacity:0.4;">“</div>
+        <p style="font-size:0.98rem; color:var(--text-secondary); line-height:1.8; margin-bottom:24px; font-style:italic; flex:1;">
+          "Working with StackifyX on our healthcare platform was a great experience. They understood the complexities of clinic scheduling, records, and digital billing right away, delivering a clean web system that simplified our operations."
+        </p>
+        <div style="display:flex; align-items:center; gap:14px; border-top:1px solid var(--border); padding-top:20px;">
+          <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#10b981,#059669); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;">P</div>
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; color:var(--text-primary);">Priya Shah</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Operations Lead, MedCare Solutions</div>
           </div>
         </div>
-      <% }) %>
+      </div>
+
     </div>
   </div>
 </section>
-<script>
-function toggleFaq(i){
-  var item=document.getElementById('faq-item-'+i);
-  var wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(function(el){
-    el.classList.remove('open');
-    el.querySelector('.faq-q').setAttribute('aria-expanded','false');
-  });
-  if(!wasOpen){
-    item.classList.add('open');
-    item.querySelector('.faq-q').setAttribute('aria-expanded','true');
-  }
-}
-</script>
 
-<!-- ════════════════════════ CTA ═════════════════════════════ -->
-<section class="lp-section" id="contact" aria-label="Call to action">
+<!-- ════════════════════════ 10. LATEST BLOG ARTICLES ════════════════════════ -->
+<section class="lp-section lp-section-alt">
+  <div class="lp-c">
+    <div class="port-header">
+      <div>
+        <div class="lp-pill" aria-hidden="true">Latest Insights</div>
+        <h2 style="font-size:clamp(1.75rem,3vw,2.5rem); font-weight:800; color:var(--text-primary); margin:0;">Guides on Growing Your Digital Business</h2>
+      </div>
+      <a href="/blog" style="font-size:0.88rem; font-weight:700; color:var(--accent-blue); display:flex; align-items:center; gap:5px;">
+        View All Guides →
+      </a>
+    </div>
+    <div class="blog-grid" style="margin-top:40px;">
+      <a href="/blog/how-professional-website-helps-businesses-grow-india" class="blog-card">
+        <div class="blog-cat">Business Growth</div>
+        <h2>How a Professional Website Helps Businesses Grow in India</h2>
+        <p class="blog-excerpt">Relying exclusively on Instagram leaves your business on rented ground. Here is how a custom website builds permanent customer pipeline.</p>
+        <div class="blog-meta">6 min read · StackifyX</div>
+      </a>
+      <a href="/blog/website-development-cost-in-india" class="blog-card">
+        <div class="blog-cat">Cost & Planning</div>
+        <h2>Website Development Cost in India: 2026 Pricing Guide</h2>
+        <p class="blog-excerpt">A realistic breakdown of what drives website costs in India — from basic business sites to advanced e-commerce platforms.</p>
+        <div class="blog-meta">8 min read · StackifyX</div>
+      </a>
+      <a href="/blog/why-every-coaching-institute-needs-professional-website" class="blog-card">
+        <div class="blog-cat">Education</div>
+        <h2>Why Every Coaching Institute in India Needs a Website</h2>
+        <p class="blog-excerpt">From student admissions to topper rank showcases, discover why leading coaching academies invest in custom websites.</p>
+        <div class="blog-meta">5 min read · StackifyX</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ 11. FAQS ════════════════════════ -->
+<section class="lp-section" id="faq" aria-labelledby="faq-heading">
+  <div class="lp-c" style="max-width:880px;">
+    <div class="lp-heading center" style="margin-bottom:48px;">
+      <div class="lp-pill" aria-hidden="true">Common Queries</div>
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <p>Clear, direct answers about working with StackifyX.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>How does StackifyX collaborate with clients remotely across India?</span>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>We work with clients across Mumbai, Pune, Bengaluru, Delhi, Hyderabad, and throughout India using structured video discovery calls, live mobile staging links at every sprint milestone, instant WhatsApp updates, and our 24/7 client portal for invoice and milestone tracking.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>How much does website development cost in India?</span>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Costs depend on scope: professional business websites typically start between ₹15,000 to ₹40,000, while custom e-commerce stores and web platforms range from ₹40,000 to ₹1,20,000+. We provide fixed, milestone-based quotes upfront with no hidden fees.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Who owns the website and code after launch?</span>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>You own 100% of your codebase, domain credentials, and database upon project completion. There are zero developer license fees or vendor lock-in.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>How long does it take to launch a business website?</span>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>A standard business website launches in 2 to 3 weeks. Custom web apps and e-commerce stores typically take 4 to 8 weeks depending on custom feature requirements.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ 12. FREE AUDIT & CONSULTATION CTA ════════════════════════ -->
+<section class="lp-section lp-section-alt" id="audit">
+  <div class="lp-c">
+    <div class="audit-box">
+      <div class="audit-grid">
+        <div>
+          <div class="lp-pill" style="background:rgba(37,99,235,0.15);color:var(--accent-blue);" aria-hidden="true">Complimentary Service</div>
+          <h2 style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:var(--text-primary);margin-bottom:14px;line-height:1.2;">
+            Request a Free Website & SEO Audit
+          </h2>
+          <p style="font-size:0.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
+            Have an existing website? Send us your URL. Our senior engineers will perform a complimentary audit of your loading speed, mobile usability, and Google search readiness — with actionable fixes sent directly to your inbox.
+          </p>
+          <div style="display:flex;align-items:center;gap:12px;color:var(--accent-green);font-size:0.88rem;font-weight:700;">
+            <span>✓ No Obligation</span>
+            <span>✓ 48-Hour Turnaround</span>
+            <span>✓ Technical & SEO Analysis</span>
+          </div>
+        </div>
+
+        <!-- Quick Audit Form -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:32px;">
+          <form method="POST" action="/website-audit">
+            <div class="form-group">
+              <label for="auditName" style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:6px;">Your Name</label>
+              <input type="text" id="auditName" name="name" placeholder="Full name" required style="width:100%;padding:12px 14px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);box-sizing:border-box;">
+            </div>
+            <div class="form-group" style="margin-top:14px;">
+              <label for="auditEmail" style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:6px;">Work Email</label>
+              <input type="email" id="auditEmail" name="email" placeholder="you@company.com" required style="width:100%;padding:12px 14px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);box-sizing:border-box;">
+            </div>
+            <div class="form-group" style="margin-top:14px;">
+              <label for="auditUrl" style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:6px;">Current Website URL / Project Idea</label>
+              <input type="text" id="auditUrl" name="description" placeholder="https://yourwebsite.com or Describe Idea" required style="width:100%;padding:12px 14px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);box-sizing:border-box;">
+            </div>
+            <input type="hidden" name="projectType" value="website">
+            <button type="submit" class="btn btn-primary btn-block" style="width:100%;margin-top:18px;padding:14px;font-weight:700;">
+              Get My Free Website Audit →
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ 13. FINAL CONSULTATION CTA ════════════════════════ -->
+<section class="lp-section">
   <div class="lp-c" style="max-width:900px;">
     <div class="cta-box">
       <div class="cta-glow-1" aria-hidden="true"></div>
       <div class="cta-glow-2" aria-hidden="true"></div>
-      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Build?</div>
-      <h2 class="cta-title">Have an Idea?<br>Let's Build It.</h2>
-      <p class="cta-desc">Tell us what you're trying to build. We'll help you turn your idea into a reliable, scalable digital product — from first commit to production.</p>
+      <div class="lp-pill" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;" aria-hidden="true">Ready to Scale?</div>
+      <h2 class="cta-title">Let's Build Something Exceptional Together.</h2>
+      <p class="cta-desc">Whether you need a high-converting website, custom e-commerce store, or business software, StackifyX is your dedicated engineering partner across India.</p>
       <div class="cta-btns">
-        <a href="/auth/register" class="cta-btn-p" aria-label="Start your project">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Start a Project
+        <a href="/contact" class="cta-btn-p">Start a Project Consultation</a>
+        <a href="https://wa.me/918600214628" target="_blank" rel="noopener noreferrer" class="cta-btn-s">
+          WhatsApp Direct Chat
         </a>
-        <% if (locals.linkedinURL) { %>
-          <a href="<%= locals.linkedinURL %>" target="_blank" rel="noopener noreferrer" class="cta-btn-s" aria-label="Talk to our team on LinkedIn">Talk to Our Team</a>
-        <% } else { %>
-          <a href="/auth/login" class="cta-btn-s">Sign In</a>
-        <% } %>
       </div>
     </div>
   </div>
 </section>
 
 <%- include('partials/site-footer') %>
-
-<!-- Intersection Observer: fade-up animations -->
-<script>
-var testiCurrent=0;
-var testiSlides=2;
-function testiGo(idx){
-  testiCurrent=idx;
-  document.getElementById('testiTrack').style.transform='translateX(-'+(idx*100)+'%)';
-  document.querySelectorAll('.testi-dot').forEach(function(d,i){
-    d.style.background=i===idx?'var(--accent-blue)':'var(--border)';
-    d.setAttribute('aria-selected',i===idx?'true':'false');
-  });
-}
-function testiNext(){ testiGo((testiCurrent+1)%testiSlides); }
-function testiPrev(){ testiGo((testiCurrent-1+testiSlides)%testiSlides); }
-var testiTimer=setInterval(testiNext,6000);
-document.getElementById('testiWrap')&&document.getElementById('testiWrap').addEventListener('mouseenter',function(){clearInterval(testiTimer);});
-document.getElementById('testiWrap')&&document.getElementById('testiWrap').addEventListener('mouseleave',function(){testiTimer=setInterval(testiNext,6000);});
-
-(function(){
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
-    });
-  },{ threshold:0.12 });
-  document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
-
-  // Anchor smooth scroll (navbar already handles, this covers footer links)
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var href=a.getAttribute('href');
-      if(href==='#')return;
-      var t=document.querySelector(href);
-      if(t){
-        e.preventDefault();
-        var navH=document.getElementById('mainNavbar').offsetHeight;
-        window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-navH-8,behavior:'smooth'});
-      }
-    });
-  });
-})();
-</script>
 </body>
 </html>

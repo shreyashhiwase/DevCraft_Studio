@@ -5,17 +5,17 @@
 <% locals.breadcrumbs = [{ name:'Home', path:'/' }, { name:'Contact', path:'/contact' }]; %>
 <%- include('partials/page-head') %>
 <style>
-.contact-wrap { display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start; }
-.contact-info-card { background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:32px; }
-.contact-info-row { display:flex;align-items:flex-start;gap:14px;margin-bottom:22px; }
+.contact-wrap { display:grid;grid-template-columns:1fr 1.35fr;gap:40px;align-items:start; }
+.contact-info-card { background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:36px; }
+.contact-info-row { display:flex;align-items:flex-start;gap:14px;margin-bottom:24px; }
 .contact-info-row:last-child{ margin-bottom:0; }
-.contact-info-icon { width:38px;height:38px;flex-shrink:0;border-radius:10px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);display:flex;align-items:center;justify-content:center;color:var(--accent-blue); }
-.contact-info-label { font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:3px; }
-.contact-info-value { font-size:0.92rem;color:var(--text-primary);font-weight:600; }
+.contact-info-icon { width:42px;height:42px;flex-shrink:0;border-radius:12px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.25);display:flex;align-items:center;justify-content:center;color:var(--accent-blue); }
+.contact-info-label { font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:4px; }
+.contact-info-value { font-size:0.95rem;color:var(--text-primary);font-weight:600; }
 .contact-info-value a { color:inherit;text-decoration:none; }
 .contact-info-value a:hover { color:var(--accent-blue); }
-.contact-form-card { background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:36px; }
-@media(max-width:900px){ .contact-wrap{ grid-template-columns:1fr; } }
+.contact-form-card { background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:40px; }
+@media(max-width:900px){ .contact-wrap{ grid-template-columns:1fr; } .contact-form-card{ padding:28px 20px; } }
 </style>
 </head>
 <body class="lp-wrap">
@@ -26,9 +26,9 @@
   <div class="page-hero-glow" aria-hidden="true"></div>
   <div class="lp-c page-hero-inner">
     <%- include('partials/breadcrumb') %>
-    <div class="lp-pill" aria-hidden="true">Get In Touch</div>
-    <h1>Have an Idea? Let's Build It.</h1>
-    <p class="lead">Tell us what you're trying to build and our team will help you understand the next steps.</p>
+    <div class="lp-pill" aria-hidden="true">Start a Conversation</div>
+    <h1>Let's Build Something Exceptional</h1>
+    <p class="lead">Tell us what you are trying to build. We partner remotely with businesses across India to turn ideas into reliable, scalable digital products.</p>
   </div>
 </section>
 
@@ -42,25 +42,29 @@
 
       <!-- Info column -->
       <div class="contact-info-card">
-        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:22px;">Contact Information</h2>
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text-primary);margin-bottom:24px;">Direct Channels</h2>
+
+        <!-- WhatsApp Quick Connect -->
+        <div style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);border-radius:14px;padding:20px;margin-bottom:24px;">
+          <div style="font-size:0.75rem;font-weight:800;text-transform:uppercase;color:#25D366;margin-bottom:6px;display:flex;align-items:center;gap:6px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#25D366;"></span> WhatsApp Instant Chat
+          </div>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin:0 0 14px;">Connect with our engineering team directly on WhatsApp for quick scoping and fast answers.</p>
+          <a href="https://wa.me/918600214628?text=Hi%20StackifyX,%20I%20would%20like%20to%20discuss%20a%20new%20digital%20project"
+             target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+             style="display:inline-flex;align-items:center;gap:8px;background:#25D366;border-color:#25D366;color:#000;font-weight:700;padding:10px 18px;font-size:0.88rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.001c-5.523 0-10 4.477-10 10 0 1.77.464 3.489 1.343 5.003L2 22l5.13-1.326a9.96 9.96 0 004.871 1.24h.004c5.522 0 9.999-4.478 9.999-10 0-2.652-1.03-5.14-2.929-7.014A9.926 9.926 0 0012.001 2zm5.94 15.94a8.264 8.264 0 01-5.936 2.463h-.003a8.283 8.283 0 01-4.223-1.156l-.303-.18-3.043.787.813-2.965-.198-.304a8.256 8.256 0 01-1.265-4.394c0-4.57 3.72-8.29 8.294-8.29 2.216 0 4.298.863 5.865 2.431a8.235 8.235 0 012.427 5.866c0 4.57-3.72 8.29-8.29 8.29z"/></svg>
+            Chat +91 86002 14628
+          </a>
+        </div>
 
         <div class="contact-info-row">
           <div class="contact-info-icon" aria-hidden="true">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
-            <div class="contact-info-label">Email</div>
+            <div class="contact-info-label">Email Inquiries</div>
             <div class="contact-info-value"><a href="mailto:stackifyx@gmail.com">stackifyx@gmail.com</a></div>
-          </div>
-        </div>
-
-        <div class="contact-info-row">
-          <div class="contact-info-icon" aria-hidden="true">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.001c-5.523 0-10 4.477-10 10 0 1.77.464 3.489 1.343 5.003L2 22l5.13-1.326a9.96 9.96 0 004.871 1.24h.004c5.522 0 9.999-4.478 9.999-10 0-2.652-1.03-5.14-2.929-7.014A9.926 9.926 0 0012.001 2zm5.94 15.94a8.264 8.264 0 01-5.936 2.463h-.003a8.283 8.283 0 01-4.223-1.156l-.303-.18-3.043.787.813-2.965-.198-.304a8.256 8.256 0 01-1.265-4.394c0-4.57 3.72-8.29 8.294-8.29 2.216 0 4.298.863 5.865 2.431a8.235 8.235 0 012.427 5.866c0 4.57-3.72 8.29-8.29 8.29z"/></svg>
-          </div>
-          <div>
-            <div class="contact-info-label">WhatsApp</div>
-            <div class="contact-info-value"><a href="https://wa.me/918600214628" target="_blank" rel="noopener noreferrer">Chat with us →</a></div>
           </div>
         </div>
 
@@ -71,7 +75,7 @@
           </div>
           <div>
             <div class="contact-info-label">LinkedIn</div>
-            <div class="contact-info-value"><a href="<%= locals.linkedinURL %>" target="_blank" rel="noopener noreferrer">Connect with us</a></div>
+            <div class="contact-info-value"><a href="<%= locals.linkedinURL %>" target="_blank" rel="noopener noreferrer">Follow StackifyX on LinkedIn</a></div>
           </div>
         </div>
         <% } %>
@@ -81,8 +85,8 @@
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
-            <div class="contact-info-label">Location</div>
-            <div class="contact-info-value">India</div>
+            <div class="contact-info-label">Geographic Coverage</div>
+            <div class="contact-info-value">Remote Collaboration Across All Indian States</div>
           </div>
         </div>
 
@@ -92,72 +96,73 @@
           </div>
           <div>
             <div class="contact-info-label">Existing Client?</div>
-            <div class="contact-info-value"><a href="/auth/login">Sign in to your dashboard →</a></div>
+            <div class="contact-info-value"><a href="/auth/login">Sign in to your client dashboard →</a></div>
           </div>
         </div>
       </div>
 
       <!-- Form column -->
       <div class="contact-form-card">
-        <h2 style="font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;">Send a Project Inquiry</h2>
-        <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:24px;">We typically respond within one to two business days.</p>
+        <h2 style="font-family:'Manrope',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;">Project Consultation & Audit Request</h2>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:28px;">Tell us about your project requirements or existing website URL. We typically respond within 1 business day.</p>
 
         <form method="POST" action="/contact">
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your full name" required maxlength="150">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" placeholder="Full name" required maxlength="150">
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required maxlength="150">
+              <label for="email">Work Email *</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" required maxlength="150">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="phone">Phone <span style="text-transform:none;font-weight:400;">(optional)</span></label>
+              <label for="phone">Phone / WhatsApp <span style="text-transform:none;font-weight:400;">(optional)</span></label>
               <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" maxlength="30">
             </div>
             <div class="form-group">
-              <label for="company">Company <span style="text-transform:none;font-weight:400;">(optional)</span></label>
-              <input type="text" id="company" name="company" placeholder="Company name" maxlength="150">
+              <label for="company">Company or City <span style="text-transform:none;font-weight:400;">(optional)</span></label>
+              <input type="text" id="company" name="company" placeholder="e.g. Acme Tech, Mumbai" maxlength="150">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="projectType">Project Type</label>
+              <label for="projectType">Service Requirement</label>
               <select id="projectType" name="projectType">
-                <option value="website">Website</option>
-                <option value="web-application">Web Application</option>
-                <option value="mobile-app">Mobile App</option>
-                <option value="custom-software">Custom Software</option>
-                <option value="ecommerce">E-Commerce</option>
-                <option value="ai-automation">AI & Automation</option>
-                <option value="api-integration">API / Integration</option>
-                <option value="other">Other</option>
+                <option value="website">Website Development</option>
+                <option value="ecommerce">E-Commerce Store</option>
+                <option value="custom-software">Custom Software / ERP / CRM</option>
+                <option value="mobile-app">Mobile Application (iOS/Android)</option>
+                <option value="ai-automation">AI & Workflow Automation</option>
+                <option value="api-integration">API Development & Integration</option>
+                <option value="other">Free Website & SEO Audit</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="budgetRange">Budget Range</label>
+              <label for="budgetRange">Estimated Budget</label>
               <select id="budgetRange" name="budgetRange">
-                <option value="below-25k">Below ₹5,000</option>
-                <option value="25k-50k">₹5,000 – ₹10,000</option>
-                <option value="50k-1l">₹10,000 – ₹20,000</option>
-                <option value="1l-5l">₹20,000 – ₹50,000</option>
-                <option value="5l-plus">₹50,000+</option>
-                <option value="not-sure" selected>Not Sure</option>
+                <option value="below-25k">Below ₹25,000</option>
+                <option value="25k-50k">₹25,000 – ₹50,000</option>
+                <option value="50k-1l">₹50,000 – ₹1,00,000</option>
+                <option value="1l-5l">₹1,00,000 – ₹3,00,000</option>
+                <option value="5l-plus">₹3,00,000+</option>
+                <option value="not-sure" selected>Not Sure / Let's Discuss</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="description">Project Description</label>
-            <textarea id="description" name="description" rows="5" placeholder="Tell us what you're trying to build..." required maxlength="3000"></textarea>
+            <label for="description">Project Details or Existing Website URL *</label>
+            <textarea id="description" name="description" rows="5" placeholder="Describe what you want to build, key features needed, or paste your existing website URL for an audit..." required maxlength="3000"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Send Project Inquiry</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" style="font-weight:700;">
+            Submit Project Inquiry →
+          </button>
         </form>
       </div>
 

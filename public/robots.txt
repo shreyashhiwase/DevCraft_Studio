@@ -9,4 +9,4 @@ Disallow: /payments/
 Disallow: /projects/
 Disallow: /reviews/
 
-Sitemap: https://stackifyx.onrender.com/sitemap.xml
+Sitemap: https://www.stackifyx.jo3.org/sitemap.xml

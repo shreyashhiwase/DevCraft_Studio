@@ -1,323 +1,332 @@
 // data/servicesData.js
-//
 // Content source for the individual /services/:slug pages.
-// Kept as a single data file (rather than 8 near-identical .ejs files) so the
-// page structure stays consistent and easy to maintain — one template,
-// one route, one place to edit copy.
-//
-// IMPORTANT: every claim here matches capabilities already represented
-// elsewhere on the existing site (services.ejs, landing.ejs, why-us.ejs).
-// No invented stats, client counts, or unsupported technology claims.
+// Kept as a single data file so the page structure stays consistent,
+// fast to maintain, and rich in SEO metadata.
 
 const commonProcess = [
-    { n: '01', title: 'Discover', desc: 'We start by understanding your business, users and goals — not just a feature list.' },
-    { n: '02', title: 'Plan',     desc: 'We scope the work, choose the right technology and lay out milestones you can see.' },
-    { n: '03', title: 'Design',  desc: 'We design the interface and user flow before writing production code.' },
-    { n: '04', title: 'Develop', desc: 'We build the product in visible stages, with regular updates as work progresses.' },
-    { n: '05', title: 'Test',    desc: 'We test functionality, responsiveness and security before anything ships.' },
-    { n: '06', title: 'Launch & Support', desc: 'We deploy to production and stay available for fixes and improvements after launch.' },
-  ];
-  
-  const services = [
-    {
-      slug: 'web-development',
-      title: 'Web Development',
-      navLabel: 'Web Development',
-      heroTag: 'Websites & Web Apps',
-      h1: 'Business Websites & Web Applications',
-      metaDescription: 'StackifyX designs and develops business websites, corporate sites, landing pages and custom web applications built for performance, SEO and growth.',
-      intro: 'Your website is usually the first real interaction a prospective client has with your business. We build websites and web applications that load fast, work on every device, and are structured in a way that search engines and real visitors can both understand.',
-      problems: [
-        'An outdated or slow website that loses visitors before they even see your services',
-        'A site that looks broken or cramped on mobile devices',
-        'No clear path for a visitor to become a lead or a customer',
-        'A template-based site that looks like every competitor\u2019s',
-      ],
-      features: [
-        'Business & corporate websites',
-        'Landing pages built for conversion',
-        'Portfolio and multi-page marketing sites',
-        'Booking and appointment-based websites',
-        'Custom web applications and internal portals',
-        'Admin dashboards for managing content or data',
-      ],
-      technologies: ['Node.js', 'Express.js', 'MongoDB', 'EJS / React (project-dependent)', 'REST APIs'],
-      benefits: [
-        'A site built around your actual business, not a generic template',
-        'Responsive layouts that are designed for mobile, not just squeezed to fit',
-        'Clean, semantic markup that supports SEO from day one',
-        'A codebase you can maintain and extend later, not a locked page-builder',
-      ],
-      faq: [
-        { q: 'Do you build the website from scratch or use templates?', a: 'We build custom layouts around your content and brand rather than starting from a generic theme, so the result doesn\u2019t look like every other site in your industry.' },
-        { q: 'Will my website work well on mobile?', a: 'Yes. Every page is designed and tested across common mobile, tablet and desktop breakpoints, not just resized from a desktop layout.' },
-        { q: 'Can you add a blog or content section later?', a: 'Yes. We structure sites so new pages, sections or a blog can be added without rebuilding the whole site.' },
-        { q: 'Do you handle hosting and domain setup?', a: 'We can guide you through deployment and domain/SSL configuration as part of the project — see our Website Maintenance & Support service for what happens after launch.' },
-      ],
-      related: ['ecommerce-development', 'ui-ux-design', 'website-maintenance'],
-    },
-    {
-      slug: 'ecommerce-development',
-      title: 'E-Commerce Development',
-      navLabel: 'E-Commerce',
-      heroTag: 'Online Stores',
-      h1: 'E-Commerce Websites That Are Built to Convert',
-      metaDescription: 'Custom e-commerce development from StackifyX — product catalogs, shopping cart and checkout, payment integration, and order management, built around your products.',
-      intro: 'An online store is more than a product list with an "Add to Cart" button. We build e-commerce platforms where product management, checkout and order handling actually fit how your business operates, instead of forcing you into a rigid store builder.',
-      problems: [
-        'A store builder that charges recurring fees and limits customization',
-        'Checkout flows that lose customers halfway through',
-        'No easy way to manage inventory, orders or products as the catalog grows',
-        'Payment integration that feels bolted-on rather than seamless',
-      ],
-      features: [
-        'Product catalog and category management',
-        'Shopping cart and multi-step checkout',
-        'Payment gateway integration',
-        'Order management and status tracking',
-        'Customer accounts and order history',
-        'Admin dashboard for managing products and orders',
-      ],
-      technologies: ['Node.js', 'Express.js', 'MongoDB', 'Razorpay (payments)', 'REST APIs'],
-      benefits: [
-        'A store you actually own the code for — no page-builder lock-in',
-        'Payment integration handled correctly and securely',
-        'An admin panel built around how you actually manage products',
-        'Room to grow — new payment methods, shipping rules or product types can be added later',
-      ],
-      faq: [
-        { q: 'Can you integrate Razorpay or other payment gateways?', a: 'Yes, we build payment integrations for gateways such as Razorpay and configure them securely so card and API details are never exposed on the frontend.' },
-        { q: 'Can I manage products and orders myself after launch?', a: 'Yes. You get an admin dashboard to add products, update stock and manage incoming orders without needing a developer for routine changes.' },
-        { q: 'Do you support product variants like size or color?', a: 'Yes, product structure is designed around your actual catalog, including variants, categories and stock levels.' },
-        { q: 'Can the store scale as my catalog grows?', a: 'The data model and admin tools are built to handle a growing product catalog rather than a fixed number of items.' },
-      ],
-      related: ['web-development', 'custom-software-development', 'ai-automation'],
-    },
-    {
-      slug: 'custom-software-development',
-      title: 'Custom Software Development',
-      navLabel: 'Custom Software',
-      heroTag: 'Business Software',
-      h1: 'Custom Software Built Around Your Workflow',
-      metaDescription: 'StackifyX builds custom business software — management systems, CRM/ERP-style tools, inventory systems and internal dashboards — designed around your actual workflow.',
-      intro: 'Off-the-shelf software forces your business to adapt to someone else\u2019s workflow. We build custom software around how your business already operates — from client and project management tools to industry-specific systems like the healthcare and legal platforms in our own portfolio.',
-      problems: [
-        'Generic software that doesn\u2019t match how your team actually works',
-        'Spreadsheets and manual processes that don\u2019t scale',
-        'Multiple disconnected tools that don\u2019t talk to each other',
-        'No visibility into what\u2019s happening across projects, clients or inventory',
-      ],
-      features: [
-        'Business management systems',
-        'Client / project management tools',
-        'Inventory and stock management systems',
-        'Admin dashboards and internal tools',
-        'Role-based access for teams and clients',
-        'Custom workflows built around your process',
-      ],
-      technologies: ['Node.js', 'Express.js', 'MongoDB', 'Socket.IO (real-time features)', 'REST APIs'],
-      benefits: [
-        'Software shaped around your process, not the other way around',
-        'One system instead of several disconnected tools',
-        'Built-in visibility — dashboards and status tracking, not spreadsheets',
-        'A foundation that can grow new modules as your business grows',
-      ],
-      faq: [
-        { q: 'What kind of custom software do you build?', a: 'Business management tools, client/project tracking systems, inventory tools and industry-specific platforms — our own portfolio includes a healthcare management system and a legal consultation platform built this way.' },
-        { q: 'Can the software include real-time features like chat or live status?', a: 'Yes, we use Socket.IO for real-time features such as live chat and status updates where they add real value.' },
-        { q: 'Can different users have different access levels?', a: 'Yes, role-based access (for example, admin vs. staff vs. client) is a standard part of custom software builds.' },
-        { q: 'What if my requirements change after development starts?', a: 'We plan in stages with visible milestones so scope changes can be discussed and estimated before they affect the timeline, rather than discovered at the end.' },
-      ],
-      related: ['saas-development', 'ai-automation', 'website-maintenance'],
-    },
-    {
-      slug: 'mobile-app-development',
-      title: 'Mobile App Development',
-      navLabel: 'Mobile Apps',
-      heroTag: 'Android & iOS',
-      h1: 'Mobile Applications for Real Business Use Cases',
-      metaDescription: 'StackifyX builds cross-platform and native mobile applications for Android and iOS, with authentication, push notifications and API integration.',
-      intro: 'A mobile app is only worth building if it solves a real problem for your users or your business. We build cross-platform and native mobile applications that connect to the same backend and business logic as your website, so your systems stay consistent.',
-      problems: [
-        'Customers expect a mobile experience your business doesn\u2019t have yet',
-        'An existing app that\u2019s slow, outdated, or hard to maintain',
-        'No way to send updates or notifications to users directly',
-        'Mobile and web platforms that don\u2019t share the same data',
-      ],
-      features: [
-        'Cross-platform applications (single codebase for Android & iOS)',
-        'Native application development where required',
-        'User authentication and account management',
-        'Push notifications',
-        'API integration with your existing backend or services',
-        'Business and customer-facing app variants',
-      ],
-      technologies: ['REST APIs', 'Node.js / Express.js (backend)', 'MongoDB', 'Push notification services'],
-      benefits: [
-        'One backend powering both your website and mobile app, avoiding duplicate logic',
-        'An app built around your actual use case, not a generic template',
-        'Authentication and notifications handled securely from the start',
-        'A codebase your team can maintain and extend after launch',
-      ],
-      faq: [
-        { q: 'Do you build native apps or cross-platform apps?', a: 'We build cross-platform applications where a single codebase can serve both Android and iOS, and recommend native development when a project genuinely needs it.' },
-        { q: 'Can the app connect to my existing website or system?', a: 'Yes, mobile apps are built to consume the same APIs as your web platform so data stays consistent across both.' },
-        { q: 'Can you add push notifications?', a: 'Yes, push notifications are a standard feature we can include for order updates, reminders or announcements.' },
-        { q: 'Do you handle app store submission?', a: 'We prepare the build for submission; store account setup and publishing are typically handled together during the launch stage of the project.' },
-      ],
-      related: ['custom-software-development', 'ai-automation', 'ui-ux-design'],
-    },
-    {
-      slug: 'ai-automation',
-      title: 'AI & Automation',
-      navLabel: 'AI & Automation',
-      heroTag: 'Automation & AI Tools',
-      h1: 'AI Integration & Business Process Automation',
-      metaDescription: 'StackifyX integrates AI tools and builds workflow automation that reduces manual, repetitive work — from AI-powered features to automated business processes.',
-      intro: 'Not every business needs a custom AI model — most need less manual work. We integrate AI-powered features and build automation around repetitive tasks (data entry, notifications, follow-ups, document handling) so your team spends less time on busywork.',
-      problems: [
-        'Manual, repetitive tasks eating up staff time',
-        'No automatic follow-up on leads, inquiries or orders',
-        'Interest in AI features but no clear starting point',
-        'Data entered manually across multiple systems',
-      ],
-      features: [
-        'AI-powered features integrated into existing apps',
-        'Workflow and business process automation',
-        'Automated notifications and follow-ups',
-        'Document and data processing automation',
-        'API-based integration with third-party AI services',
-        'Internal tools to reduce manual, repetitive work',
-      ],
-      technologies: ['Node.js', 'REST APIs', 'Third-party AI APIs (integration-based)'],
-      benefits: [
-        'Less manual, repetitive work for your team',
-        'Automation built around a task you already do, not a speculative feature',
-        'AI integrated through APIs — no need to train or host your own models',
-        'Improvements that can be rolled out incrementally',
-      ],
-      faq: [
-        { q: 'Do you build custom AI models?', a: 'Most of our AI work is integration-based — connecting proven AI services into your product or workflow via API, rather than training models from scratch.' },
-        { q: 'What kind of tasks can be automated?', a: 'Common examples are automatic notifications, lead follow-ups, document processing and syncing data between systems — the right starting point depends on your workflow.' },
-        { q: 'Is this only for large businesses?', a: 'No. Automation is often most valuable for small teams where a few repetitive tasks take up a disproportionate amount of time.' },
-        { q: 'How do we figure out what to automate first?', a: 'We start with a short discovery conversation about your current process and identify the highest-impact, lowest-risk place to start.' },
-      ],
-      related: ['custom-software-development', 'saas-development', 'web-development'],
-    },
-    {
-      slug: 'saas-development',
-      title: 'SaaS Development',
-      navLabel: 'SaaS Development',
-      heroTag: 'Multi-User Platforms',
-      h1: 'SaaS & Subscription Platform Development',
-      metaDescription: 'StackifyX builds SaaS MVPs and multi-user subscription platforms with admin panels and API-based architecture, designed to grow with your user base.',
-      intro: 'We build multi-user, subscription-style platforms from the ground up — the same kind of architecture behind our own client dashboard product. That means authentication, role-based access, and an admin layer are treated as core requirements from day one, not bolted on later.',
-      problems: [
-        'An idea for a SaaS product with no technical roadmap',
-        'A prototype that can\u2019t handle more than a handful of users',
-        'No admin visibility into accounts, usage or billing',
-        'Uncertainty about what to build first for a minimum viable product',
-      ],
-      features: [
-        'SaaS MVP development',
-        'Multi-user applications with role-based access',
-        'Subscription and account management',
-        'Admin panels for managing users and data',
-        'API-based architecture for future integrations',
-        'Authentication (including OAuth-based login)',
-      ],
-      technologies: ['Node.js', 'Express.js', 'MongoDB', 'Passport.js (authentication)', 'Socket.IO', 'Razorpay (billing/payments)'],
-      benefits: [
-        'Architecture designed for multiple users and roles from the start',
-        'An admin layer so you can see and manage what\u2019s happening on your platform',
-        'A realistic MVP scope, so you can launch and learn without overbuilding',
-        'A foundation that can grow into a larger product over time',
-      ],
-      faq: [
-        { q: 'Can you help scope an MVP if I only have an idea?', a: 'Yes, our discovery and planning stage exists specifically to turn an idea into a scoped, buildable first version.' },
-        { q: 'Do you support subscription billing?', a: 'We integrate payment gateways such as Razorpay, which supports subscription and recurring-style payment flows.' },
-        { q: 'Can users sign in with Google?', a: 'Yes, we support OAuth-based login (such as Google) alongside standard email/password authentication.' },
-        { q: 'Will I be able to manage users after launch?', a: 'Yes, SaaS builds include an admin panel for managing users, viewing activity and handling support without touching code.' },
-      ],
-      related: ['custom-software-development', 'ai-automation', 'website-maintenance'],
-    },
-    {
-      slug: 'ui-ux-design',
-      title: 'UI/UX Design',
-      navLabel: 'UI/UX Design',
-      heroTag: 'Product & Web Design',
-      h1: 'UI/UX Design for Websites, Apps & Dashboards',
-      metaDescription: 'StackifyX designs clean, usable interfaces for websites, applications and dashboards — responsive, accessible design built before a single line of production code.',
-      intro: 'Good design isn\u2019t just visual polish — it\u2019s whether a user can actually get things done without friction. We design the interface and user flow for websites, applications and dashboards before development starts, so the build phase follows a clear plan.',
-      problems: [
-        'A product that\u2019s functional but confusing to use',
-        'Inconsistent spacing, colors and typography across pages',
-        'A design that looks fine on desktop but breaks on mobile',
-        'No clear visual hierarchy guiding users to the right action',
-      ],
-      features: [
-        'Website and marketing site UI',
-        'Application and dashboard UI',
-        'Responsive design across mobile, tablet and desktop',
-        'User flow and information architecture',
-        'Consistent design systems (spacing, color, typography)',
-        'Accessible, readable interfaces',
-      ],
-      technologies: ['HTML5', 'CSS3', 'Responsive design systems'],
-      benefits: [
-        'A consistent visual language across every page or screen',
-        'Interfaces designed mobile-first, not adapted afterward',
-        'A clear hierarchy so users know what to do next',
-        'Design decisions made before development, avoiding expensive rework',
-      ],
-      faq: [
-        { q: 'Do you design before or during development?', a: 'Design happens before the build phase so layout, flow and structure are agreed on first, which avoids expensive rework later.' },
-        { q: 'Can you redesign an existing website or app?', a: 'Yes, we can improve the design of an existing product without necessarily rebuilding the underlying functionality.' },
-        { q: 'Do you follow accessibility best practices?', a: 'Yes — sufficient color contrast, keyboard navigation and semantic structure are treated as standard requirements, not extras.' },
-        { q: 'Will the design be consistent across all pages?', a: 'Yes, we build a small design system (spacing, colors, components) up front so every page or screen feels part of the same product.' },
-      ],
-      related: ['web-development', 'mobile-app-development', 'saas-development'],
-    },
-    {
-      slug: 'website-maintenance',
-      title: 'Website Maintenance & Support',
-      navLabel: 'Maintenance & Support',
-      heroTag: 'Post-Launch Support',
-      h1: 'Website & Application Maintenance and Support',
-      metaDescription: 'Post-launch maintenance and support from StackifyX — bug fixes, performance optimization, security updates and feature updates after your site or app goes live.',
-      intro: 'Launch isn\u2019t the finish line. We provide ongoing maintenance and support after a website, application or piece of software goes live — the same client dashboard used during development stays available for support requests afterward.',
-      problems: [
-        'A developer who disappears after launch',
-        'Bugs or issues appearing with no clear way to report them',
-        'A site that gets slower or less secure over time with no updates',
-        'New feature requests with no clear process to request or track them',
-      ],
-      features: [
-        'Bug fixes and issue resolution',
-        'Performance optimization',
-        'Security updates',
-        'Feature updates and enhancements',
-        'Deployment support for updates and changes',
-        'Ongoing support requests through the client dashboard',
-      ],
-      technologies: ['Matches the technology stack of your existing project'],
-      benefits: [
-        'A clear channel for support requests instead of chasing someone over email',
-        'Ongoing attention to performance and security, not just a one-time delivery',
-        'Feature updates handled by a team that already knows your codebase',
-        'Visibility into support status through your project dashboard',
-      ],
-      faq: [
-        { q: 'Do you only support projects you originally built?', a: 'We primarily support projects we\u2019ve built, since that means we already understand the codebase; existing projects can be reviewed on a case-by-case basis.' },
-        { q: 'How do I request a fix or new feature after launch?', a: 'Registered clients can submit and track requests directly through their project dashboard.' },
-        { q: 'What counts as a bug fix vs. a new feature?', a: 'A bug fix corrects something that isn\u2019t working as intended; a new feature adds functionality that wasn\u2019t part of the original scope — we\u2019ll always clarify which applies before starting work.' },
-        { q: 'Do you handle security updates?', a: 'Yes, keeping dependencies and configurations reasonably current is part of ongoing maintenance.' },
-      ],
-      related: ['custom-software-development', 'saas-development', 'web-development'],
-    },
-  ];
-  
-  const bySlug = Object.fromEntries(services.map(s => [s.slug, s]));
-  
-  module.exports = { services, bySlug, commonProcess };
-  
+  { n: '01', title: 'Discover', desc: 'We start by understanding your business, users and commercial goals — not just a feature checklist.' },
+  { n: '02', title: 'Plan & Scope', desc: 'We define the technical architecture, choose battle-tested technologies and set clear, visible milestones.' },
+  { n: '03', title: 'UI/UX Design', desc: 'We craft intuitive, responsive interfaces and user journeys before writing production code.' },
+  { n: '04', title: 'Develop', desc: 'We engineer your product in structured sprint cycles with live staging previews.' },
+  { n: '05', title: 'Test & Secure', desc: 'We rigorously audit functionality, cross-device responsiveness, security and performance.' },
+  { n: '06', title: 'Launch & Support', desc: 'We deploy to production, verify search indexing and provide post-launch warranty support.' },
+];
+
+const services = [
+  {
+    slug: 'website-development',
+    title: 'Website Development',
+    navLabel: 'Website Development',
+    heroTag: 'High-Performance Websites',
+    h1: 'Website Development Company in India',
+    metaDescription: 'StackifyX is a premier website development company in India. We build fast, mobile-optimized, conversion-focused websites and web apps for businesses across India.',
+    intro: 'Your website is the digital front door to your business. We build modern, high-speed websites and web applications engineered to rank on search engines, engage visitors on mobile devices, and convert casual traffic into qualified inquiries and paying customers.',
+    seoKeywords: [
+      'Website Development Company in India',
+      'Professional Website Development Services',
+      'Business Website Development',
+      'Web Design Company India',
+      'Custom Web Development Services'
+    ],
+    problems: [
+      'An outdated, sluggish website that loses potential clients within the first 3 seconds',
+      'Poor mobile experience that breaks across modern phone and tablet screen sizes',
+      'Low search engine visibility with zero organic customer inquiries from Google',
+      'Generic cookie-cutter templates that look identical to your competitors',
+      'Lack of clear conversion funnels or direct WhatsApp & lead capture mechanisms'
+    ],
+    features: [
+      'Modern, custom business & corporate websites',
+      'High-conversion landing pages for marketing campaigns',
+      'Multi-page interactive marketing platforms',
+      'Direct WhatsApp and appointment booking integrations',
+      'Full technical SEO and Schema.org structured markup',
+      'Lightweight, responsive codebase with fast Core Web Vitals',
+      'Admin dashboard for easy content and lead management'
+    ],
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'HTML5 / Modern CSS', 'REST APIs', 'Cloudflare / Cloud Hosting'],
+    benefits: [
+      'Full source code ownership — no vendor lock-in or recurring page-builder fees',
+      'Designed mobile-first for the 80%+ of Indian traffic on mobile devices',
+      'Fast loading speed that boosts Google rankings and reduces bounce rates',
+      'Direct, transparent remote collaboration with experienced engineers'
+    ],
+    faq: [
+      { q: 'Do you use ready-made templates or build custom websites?', a: 'We design and code custom websites specifically tailored to your brand, industry, and conversion goals. This ensures distinctive branding, clean code, and superior loading speed.' },
+      { q: 'Will my website rank on Google in India?', a: 'Yes. Every website we build includes complete technical SEO from day one: semantic HTML5, Schema.org markup, meta tags, XML sitemaps, image optimization, and mobile-first responsiveness.' },
+      { q: 'Can you integrate WhatsApp and payment buttons on our website?', a: 'Yes. We seamlessly integrate instant WhatsApp chat buttons, custom contact forms, and Indian payment gateways like Razorpay for instant customer action.' },
+      { q: 'How long does it take to develop a professional business website?', a: 'A standard professional business website typically takes 2 to 3 weeks, while larger portal builds take 4 to 6 weeks depending on requirements.' }
+    ],
+    related: ['ecommerce-development', 'custom-software-development', 'api-development']
+  },
+  {
+    slug: 'ecommerce-development',
+    title: 'E-Commerce Development',
+    navLabel: 'E-Commerce',
+    heroTag: 'Conversion-Focused Stores',
+    h1: 'E-Commerce Website Development Company in India',
+    metaDescription: 'Custom e-commerce website development in India. StackifyX builds secure, high-conversion online stores with Razorpay, inventory tracking & pan-India courier sync.',
+    intro: 'An online store must be more than a digital catalog — it must be an automated sales machine. We engineer bespoke e-commerce platforms tailored to Indian buying habits, featuring fast checkout, UPI and card payments, automated inventory management, and smooth order fulfillment.',
+    seoKeywords: [
+      'E-commerce Website Development India',
+      'Online Store Development Company',
+      'Custom E-commerce Solutions',
+      'E-commerce Web Development Services',
+      'B2B E-commerce Portal Development'
+    ],
+    problems: [
+      'High monthly subscription fees and transaction cuts from proprietary store builders',
+      'Complex multi-step checkout flows leading to high shopping cart abandonment',
+      'Clunky inventory and variant management that limits product scaling',
+      'Fragile payment gateway integrations that fail during peak festive traffic'
+    ],
+    features: [
+      'Intuitive product catalog with categories, filters and search',
+      'High-speed, friction-free checkout optimized for mobile shoppers',
+      'Seamless Indian payment gateway integration (Razorpay, UPI, Cards, NetBanking)',
+      'Automated order tracking, customer accounts, and email/SMS alerts',
+      'Comprehensive admin portal for managing products, inventory, and promotions',
+      'Coupons, discounts, and festive offer management system'
+    ],
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'Razorpay Payments', 'REST APIs', 'AWS / Cloudflare'],
+    benefits: [
+      'You own the platform 100% with zero recurring developer license penalties',
+      'Flawless UPI payment flows that convert Indian shoppers rapidly',
+      'Scalable architecture capable of handling thousands of simultaneous visitors',
+      'Custom features like B2B wholesale pricing, custom bulk orders, or sample requests'
+    ],
+    faq: [
+      { q: 'Can you integrate UPI and Indian payment gateways?', a: 'Yes. We specialize in Razorpay integrations providing smooth 1-click UPI payments (Google Pay, PhonePe, Paytm), net banking, debit/credit cards, and EMI options.' },
+      { q: 'Can I easily add new products and manage inventory myself?', a: 'Yes. You receive an intuitive administrative dashboard where non-technical staff can add products, update prices, adjust stock levels, and fulfill orders.' },
+      { q: 'How do you handle shipping and courier tracking?', a: 'We can integrate shipping APIs (such as Shiprocket, Delhivery, or custom courier webhooks) for automated rate calculation and tracking numbers.' }
+    ],
+    related: ['website-development', 'custom-software-development', 'api-development']
+  },
+  {
+    slug: 'custom-software-development',
+    title: 'Custom Software Development',
+    navLabel: 'Custom Software',
+    heroTag: 'Tailored Business Systems',
+    h1: 'Custom Software Development Company in India',
+    metaDescription: 'Custom software development company in India. StackifyX designs and builds ERP, CRM, business management software & automated platforms for growing companies.',
+    intro: 'Off-the-shelf software forces your business into someone else\'s rigid box. StackifyX builds tailored software systems that mirror how your business actually runs — eliminating spreadsheet chaos, connecting departments, and giving leadership real-time operational visibility.',
+    seoKeywords: [
+      'Custom Software Development Company India',
+      'Business Software Development',
+      'ERP and CRM Development India',
+      'Enterprise Software Solutions',
+      'Custom Web Application Development'
+    ],
+    problems: [
+      'Disjointed spreadsheets and manual record-keeping that lead to expensive errors',
+      'Expensive per-user monthly SaaS fees that eat into operational margins',
+      'Commercial off-the-shelf tools that lack critical features unique to your business',
+      'Data silos between sales, warehouse, billing, and customer service teams'
+    ],
+    features: [
+      'Bespoke Business Management Systems (BMS)',
+      'Tailored CRM & Sales Pipeline Management portals',
+      'Custom ERP, Inventory & Procurement platforms',
+      'Role-based access control (Admin, Manager, Staff, Client)',
+      'Real-time analytics dashboards and automated reporting',
+      'Real-time communication and notification engines via WebSockets'
+    ],
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'RESTful APIs', 'Modern JavaScript'],
+    benefits: [
+      'Software sculpted 100% around your exact business logic and workflow',
+      'Unlimited internal users without costly per-seat monthly subscription licenses',
+      'Centralized single source of truth for your business data and analytics',
+      'Modular architecture that expands as your company grows into new verticals'
+    ],
+    faq: [
+      { q: 'What types of custom software do you build?', a: 'We build operations management systems, custom CRMs, inventory and billing tools, client management portals, and industry-specific solutions (such as clinic and legal management platforms).' },
+      { q: 'Can custom software integrate with our existing accounting or billing software?', a: 'Yes. We build custom API connectors to sync data seamlessly between your new software and existing systems like Tally, Zoho, or banking APIs.' },
+      { q: 'How do you ensure data security in custom software?', a: 'We enforce strict role-based access control, encrypted sessions, secure password hashing (bcrypt), sanitized database inputs, and regular automated database backups.' }
+    ],
+    related: ['website-development', 'api-development', 'ai-business-automation']
+  },
+  {
+    slug: 'mobile-app-development',
+    title: 'Mobile App Development',
+    navLabel: 'Mobile Apps',
+    heroTag: 'iOS & Android Applications',
+    h1: 'Mobile App Development Company in India',
+    metaDescription: 'Mobile app development company in India. StackifyX builds high-performance cross-platform Android and iOS applications with real-time features and secure APIs.',
+    intro: 'Mobile apps connect your business directly to your customers\' pockets. We engineer high-performance cross-platform mobile applications for Android and iOS that share unified backend data with your web platforms, giving users a smooth, responsive, and reliable digital experience.',
+    seoKeywords: [
+      'Mobile App Development Company India',
+      'Android and iOS App Development',
+      'Cross-Platform Mobile App Development',
+      'Custom Mobile Application Services',
+      'Business Mobile Apps India'
+    ],
+    problems: [
+      'Customers expect a convenient mobile app that your business currently lacks',
+      'High cost and maintenance overhead of building separate native iOS and Android apps',
+      'Laggy user interfaces and poor offline capabilities that frustrate users',
+      'Mobile apps that fail to sync real-time data with your central database'
+    ],
+    features: [
+      'Cross-platform mobile applications (single codebase for iOS & Android)',
+      'Secure customer authentication (Google OAuth, Phone OTP, Email)',
+      'Instant push notifications for offers, reminders, and updates',
+      'Integrated payment gateways supporting 1-tap UPI and card checkout',
+      'Offline data caching and smooth synchronization upon reconnection',
+      'Robust backend API architecture connected to your web database'
+    ],
+    technologies: ['React Native / Flutter Ecosystem', 'Node.js Backend', 'MongoDB', 'Firebase Push Notifications', 'REST APIs'],
+    benefits: [
+      'Single codebase reduces initial development cost and ongoing maintenance by 40%',
+      'Direct customer retention through timely, targeted push notifications',
+      'Unified data across website, mobile app, and admin dashboard',
+      'Full guidance through Google Play Store and Apple App Store release processes'
+    ],
+    faq: [
+      { q: 'Do you build apps for both Android and iPhone?', a: 'Yes. We develop cross-platform mobile applications that run smoothly on both Android and iOS devices, ensuring broad market reach at optimal cost.' },
+      { q: 'Can the mobile app connect to our existing website database?', a: 'Yes. We build secure REST APIs so your website, mobile app, and administrative dashboard share the same real-time database.' },
+      { q: 'Do you assist with publishing on Google Play Store and Apple App Store?', a: 'Yes. We guide you through account setup, build generation, screenshot preparation, and app store compliance submission.' }
+    ],
+    related: ['website-development', 'custom-software-development', 'api-development']
+  },
+  {
+    slug: 'ai-business-automation',
+    title: 'AI & Business Automation',
+    navLabel: 'AI & Automation',
+    heroTag: 'Smart Automation & AI',
+    intro: 'You don\'t need expensive speculative AI models — you need less repetitive busywork. We integrate practical AI capabilities and automated workflows into your existing business systems so your team can focus on closing deals, serving clients, and driving revenue.',
+    h1: 'AI & Business Automation Services in India',
+    metaDescription: 'AI and business automation services in India. StackifyX helps businesses automate repetitive workflows, customer follow-ups & data processing with practical AI tools.',
+    seoKeywords: [
+      'AI & Business Automation India',
+      'Business Process Automation India',
+      'AI Workflow Automation',
+      'Automated Lead Qualification',
+      'Custom AI Integration Services'
+    ],
+    problems: [
+      'Hours lost each week manually entering data between spreadsheets and software',
+      'Slow response times to new leads resulting in lost sales to competitors',
+      'Repetitive customer inquiries taking up valuable customer support time',
+      'Desire to adopt AI tools without knowing where to achieve real commercial ROI'
+    ],
+    features: [
+      'Automated lead intake and instant WhatsApp/Email follow-up sequences',
+      'Intelligent document and invoice data extraction',
+      'AI-powered customer inquiry assistants and triage bots',
+      'Automated multi-system data synchronization (CRM to Billing to Sheets)',
+      'Custom notification triggers for operational milestones',
+      'API-based integration with OpenAI, Gemini, and specialized AI models'
+    ],
+    technologies: ['Node.js', 'REST APIs', 'OpenAI / Gemini APIs', 'Webhook Automation', 'MongoDB'],
+    benefits: [
+      'Reclaim 10+ hours per employee every week by automating routine data entry',
+      'Instant lead response within seconds, dramatically boosting conversion rates',
+      'Zero expensive internal AI infrastructure — pay only for what you use via secure APIs',
+      'Incremental deployment: automate one high-impact workflow first, then expand'
+    ],
+    faq: [
+      { q: 'What business processes can be automated easily?', a: 'The highest-ROI starting points are automated lead routing, instant WhatsApp inquiry responses, invoice processing, order notification triggers, and syncing data between different tools.' },
+      { q: 'Do we need a massive dataset or machine learning team?', a: 'Not at all. We leverage proven, enterprise-grade AI APIs (such as OpenAI and Google Gemini) and connect them directly into your existing business workflow.' },
+      { q: 'Is automation suitable for small businesses?', a: 'Yes! Small teams benefit the most because automation eliminates the need to hire additional administrative staff for repetitive tasks.' }
+    ],
+    related: ['custom-software-development', 'api-development', 'website-development']
+  },
+  {
+    slug: 'api-development',
+    title: 'API Development & Integration',
+    navLabel: 'API Integration',
+    heroTag: 'Seamless System Connectors',
+    h1: 'API Development & Integration Services in India',
+    metaDescription: 'Expert API development and third-party integration services in India. StackifyX builds secure RESTful APIs, payment integrations, WhatsApp APIs & webhook systems.',
+    intro: 'Modern business requires interconnected systems. We design, build, and integrate secure, high-performance REST APIs that bridge your web platforms, mobile apps, payment gateways, ERPs, CRMs, and third-party services into a unified digital infrastructure.',
+    seoKeywords: [
+      'API Development Company India',
+      'REST API Integration Services',
+      'Payment Gateway Integration India',
+      'WhatsApp Business API Integration',
+      'Custom API Development'
+    ],
+    problems: [
+      'Valuable business data trapped in disconnected legacy tools and spreadsheets',
+      'Manual copy-pasting of customer data between website, CRM, and accounting software',
+      'Fragile, undocumented APIs that break during updates or traffic spikes',
+      'Inability to partner with external platforms due to lacking an API layer'
+    ],
+    features: [
+      'Custom RESTful API design, development and documentation',
+      'Payment gateway integrations (Razorpay, Stripe, Cashfree)',
+      'WhatsApp Business API and SMS gateway integrations',
+      'Third-party cloud software integrations (CRMs, ERPs, Accounting, Logistics)',
+      'Secure API authentication (OAuth2, JWT, API Key tokens)',
+      'Real-time Webhook receivers and automated event dispatchers'
+    ],
+    technologies: ['Node.js', 'Express.js', 'REST Architecture', 'JSON', 'JWT / OAuth', 'MongoDB'],
+    benefits: [
+      'Eliminate manual data transfer errors between business tools',
+      'Enable your product to launch mobile apps and partner integrations effortlessly',
+      'Thoroughly documented endpoints with Swagger / Postman documentation',
+      'High security with rate limiting, payload validation, and SSL encryption'
+    ],
+    faq: [
+      { q: 'What is API integration and why does my business need it?', a: 'An API acts as a digital bridge between two software systems. For example, connecting your website with your billing software ensures that an online order automatically creates an invoice without manual data entry.' },
+      { q: 'Can you integrate the official WhatsApp Business API?', a: 'Yes. We integrate WhatsApp Business APIs for automated order confirmations, inquiry responses, appointment reminders, and support routing.' },
+      { q: 'Do you provide documentation for custom APIs you build?', a: 'Yes. Every API project includes clear, structured documentation for endpoints, request payloads, authentication, and error handling.' }
+    ],
+    related: ['custom-software-development', 'website-development', 'ecommerce-development']
+  },
+
+  // Retain legacy slugs and specialized services for backwards compatibility
+  {
+    slug: 'saas-development',
+    title: 'SaaS Platform Development',
+    navLabel: 'SaaS Platforms',
+    heroTag: 'Multi-Tenant Cloud Software',
+    h1: 'SaaS Platform Development Company in India',
+    metaDescription: 'StackifyX builds scalable SaaS MVPs and subscription software platforms with authentication, billing & multi-tenant architectures.',
+    intro: 'Turn your software product idea into a commercial SaaS reality. We build multi-user platforms with role-based permissions, automated subscription billing, and administrative dashboards.',
+    problems: ['Unclear technical roadmap for SaaS MVP', 'Architectures that cannot scale past 50 users', 'No admin portal to manage subscribers'],
+    features: ['Multi-tenant database design', 'Subscription & recurring billing', 'Role-based access', 'Interactive analytics dashboards'],
+    technologies: ['Node.js', 'MongoDB', 'Razorpay Subscriptions', 'Socket.IO'],
+    benefits: ['Scalable architecture from day one', 'Built-in administrative controls', 'Fast time to market'],
+    faq: [{ q: 'Can you build a multi-tenant SaaS MVP?', a: 'Yes, we specialize in building scalable multi-user SaaS architectures.' }],
+    related: ['custom-software-development', 'website-development', 'api-development']
+  },
+  {
+    slug: 'ui-ux-design',
+    title: 'UI/UX Design Services',
+    navLabel: 'UI/UX Design',
+    heroTag: 'Intuitive Interfaces',
+    h1: 'UI/UX Design Services in India',
+    metaDescription: 'Professional UI/UX design for web applications, mobile apps & corporate websites. Clean, accessible, and user-centric design systems.',
+    intro: 'Great software starts with clear user flows. We design modern, high-contrast, accessible interfaces for digital products before writing production code.',
+    problems: ['Cluttered interfaces that confuse users', 'High drop-off rates on sign-up flows', 'Inconsistent styling across pages'],
+    features: ['Responsive UI design', 'Interactive clickable prototypes', 'Design systems and style guides', 'Mobile-first UX workflows'],
+    technologies: ['Figma', 'Modern CSS', 'Design Systems'],
+    benefits: ['Clear user pathways that improve conversion', 'Reduced development rework', 'Consistent brand presentation'],
+    faq: [{ q: 'Do you provide design before development?', a: 'Yes, we finalize all wireframes and visual designs before coding.' }],
+    related: ['website-development', 'mobile-app-development', 'custom-software-development']
+  },
+  {
+    slug: 'website-maintenance',
+    title: 'Website Maintenance & Support',
+    navLabel: 'Maintenance & Support',
+    heroTag: 'Continuous Care',
+    h1: 'Website Maintenance & Support Services',
+    metaDescription: 'Reliable website maintenance and support services in India. Security updates, performance tuning, bug fixes & feature enhancements.',
+    intro: 'Keep your digital products fast, secure, and always online with our dedicated website maintenance and post-launch support services.',
+    problems: ['Unresponsive developers after project handover', 'Outdated dependencies causing security risks', 'Slow page speeds over time'],
+    features: ['Routine security audits', 'Performance & speed optimization', 'Scheduled database backups', 'Feature additions and copy updates'],
+    technologies: ['Node.js', 'MongoDB', 'Cloud Hosting', 'SSL/Security'],
+    benefits: ['Peace of mind knowing engineers are on call', 'Continuous high search engine rankings', 'Zero unexpected downtime'],
+    faq: [{ q: 'Can you maintain a website not built by StackifyX?', a: 'We can evaluate and maintain existing Node.js or modern web projects on a case-by-case basis.' }],
+    related: ['website-development', 'custom-software-development']
+  }
+];
+
+const bySlug = Object.fromEntries(services.map(s => [s.slug, s]));
+
+// Backwards-compatible aliases
+bySlug['web-development'] = bySlug['website-development'];
+bySlug['ai-automation'] = bySlug['ai-business-automation'];
+
+module.exports = { services, bySlug, commonProcess };
