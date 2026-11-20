@@ -3,6 +3,7 @@
   const _path = locals.canonicalPath || '';
   const _url  = _base + (_path.startsWith('/') ? _path : ('/' + _path));
   const _desc = locals.metaDescription || 'StackifyX builds high-performance websites, e-commerce stores, mobile applications and custom software for businesses across India.';
+  const _title = (typeof title !== 'undefined' ? title : (locals.title || locals.pageTitle)) || 'StackifyX | India-Wide Software Development Company';
 %>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
 <script>if(localStorage.getItem('devcraft-theme')==='light')document.documentElement.classList.add('light');</script>
 
 <!-- Primary SEO Meta Tags -->
-<title><%= title %></title>
+<title><%= _title %></title>
 <meta name="description" content="<%= _desc %>">
 <link rel="canonical" href="<%= _url %>">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -18,7 +19,7 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type"        content="website">
 <meta property="og:url"         content="<%= _url %>">
-<meta property="og:title"       content="<%= title %>">
+<meta property="og:title"       content="<%= _title %>">
 <meta property="og:description" content="<%= _desc %>">
 <meta property="og:image"       content="<%= _base %>/stackifyx-logo.jpg">
 <meta property="og:site_name"   content="StackifyX">
@@ -27,7 +28,7 @@
 <!-- Twitter Cards -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:url"         content="<%= _url %>">
-<meta name="twitter:title"       content="<%= title %>">
+<meta name="twitter:title"       content="<%= _title %>">
 <meta name="twitter:description" content="<%= _desc %>">
 <meta name="twitter:image"       content="<%= _base %>/stackifyx-logo.jpg">
 

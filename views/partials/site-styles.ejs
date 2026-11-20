@@ -298,27 +298,151 @@
   .cta-btn-s:hover { background:rgba(255,255,255,0.2);color:#fff; }
   
   /* ── FOOTER ────────────────────────────────────────────── */
-  .lp-footer { background:#0a0e17;border-top:1px solid rgba(255,255,255,0.06);padding:72px 0 32px; }
-  .foot-grid { display:grid;grid-template-columns:1.4fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 1fr;gap:28px;margin-bottom:56px; }
-  .foot-logo-row { display:flex;align-items:center;gap:10px;margin-bottom:12px; }
-  .foot-brand-name { font-family:'Manrope',sans-serif;font-size:1.1rem;font-weight:800;color:#f8fafc; }
-  .foot-brand-accent { color:#63b3ed; }
-  .foot-desc { font-size:0.84rem;color:#64748b;line-height:1.75;margin-bottom:22px;max-width:230px; }
-  .foot-socials { display:flex;gap:8px; }
+  .lp-footer {
+    background: var(--bg-primary, #050508);
+    border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+    padding: 80px 0 36px;
+    position: relative;
+    z-index: 10;
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.1fr 1fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+  .foot-brand-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .foot-logo-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    text-decoration: none;
+  }
+  .foot-brand-name {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary, #F8FAFC);
+  }
+  .foot-brand-accent {
+    color: var(--accent-blue, #3b82f6);
+  }
+  .foot-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted, #94a3b8);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 320px;
+  }
+  .foot-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   .foot-social {
-    width:34px;height:34px;border-radius:9px;border:1px solid rgba(255,255,255,0.08);
-    background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;
-    color:#64748b;text-decoration:none;transition:background 0.15s,border-color 0.15s,color 0.15s!important;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--border, rgba(255,255,255,0.08));
+    background: var(--bg-card, #111827);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary, #94a3b8);
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
-  .foot-social:hover { background:rgba(37,99,235,0.2);border-color:rgba(37,99,235,0.4);color:#93c5fd; }
-  .foot-col-title { font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:#94a3b8;margin-bottom:18px; }
-  .foot-link { display:flex;align-items:center;gap:6px;font-size:0.84rem;color:#64748b;text-decoration:none;padding:4px 0;transition:color 0.15s!important; }
-  .foot-link:hover { color:#e2e8f0; }
+  .foot-social:hover {
+    background: rgba(37,99,235,0.15);
+    border-color: var(--accent-blue, #3b82f6);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .foot-social-wa:hover {
+    background: rgba(37,211,102,0.15);
+    border-color: #25D366;
+    color: #25D366;
+  }
+  .foot-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .foot-col-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary, #F8FAFC);
+    margin-bottom: 18px;
+  }
+  .foot-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .foot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.86rem;
+    color: var(--text-secondary, #94a3b8);
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.15s ease, transform 0.15s ease;
+  }
+  .foot-link:hover {
+    color: #fff;
+    transform: translateX(2px);
+  }
+  .foot-link svg {
+    flex-shrink: 0;
+  }
   .foot-bottom {
-    padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-  .foot-bottom p { font-size:0.78rem;color:#475569; }
+  .foot-bottom-left {
+    font-size: 0.82rem;
+    color: var(--text-muted, #64748b);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .foot-bottom-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 0.82rem;
+  }
+  .foot-bottom-right a {
+    color: var(--text-muted, #64748b);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .foot-bottom-right a:hover {
+    color: var(--text-primary, #F8FAFC);
+  }
+  .foot-bottom-right a.foot-cta-link {
+    color: var(--accent-blue, #3b82f6);
+    font-weight: 700;
+  }
+  .foot-bottom-right a.foot-cta-link:hover {
+    color: #60a5fa;
+  }
   
   /* ── WORK PAGE FILTERS ─────────────────────────────────── */
   .work-filters { display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:44px; }
@@ -407,7 +531,8 @@
     .why-grid    { grid-template-columns:repeat(2,1fr); }
     .about-grid  { grid-template-columns:1fr; }
     .ind-grid    { grid-template-columns:repeat(2,1fr); }
-    .foot-grid   { grid-template-columns:repeat(2,1fr); }
+    .foot-grid   { grid-template-columns:repeat(2,1fr); gap:36px; }
+    .foot-brand-col { grid-column:1 / -1; max-width:520px; }
     .cred-grid   { grid-template-columns:repeat(2,1fr); }
     .dm-stats    { grid-template-columns:repeat(2,1fr); }
     .dm-cols     { grid-template-columns:1fr; }
@@ -418,7 +543,11 @@
     .port-grid  { grid-template-columns:1fr; }
     .why-grid   { grid-template-columns:1fr; }
     .ind-grid   { grid-template-columns:repeat(2,1fr); }
-    .foot-grid  { grid-template-columns:1fr 1fr; }
+    .foot-grid  { grid-template-columns:1fr; gap:32px; }
+    .foot-brand-col { grid-column:auto; }
+    .foot-bottom { flex-direction:column; align-items:flex-start; gap:16px; }
+    .foot-bottom-left, .foot-bottom-right { width:100%; }
+    .foot-bottom-right { gap:14px; }
     .cta-box    { padding:52px 24px; }
     .cta-btns   { flex-direction:column;align-items:center; }
   }
