@@ -14,9 +14,10 @@
     <div style="display:flex;align-items:center;gap:0;">
       <div class="nav-links" id="navLinks">
 
-        <% if (currentUser) { %>
+        <% const _user = (typeof currentUser !== 'undefined' ? currentUser : locals.currentUser) || null; %>
+        <% if (_user) { %>
           <div class="nav-desktop-links">
-            <% if (currentUser.role === 'admin') { %>
+            <% if (_user.role === 'admin') { %>
               <a href="/admin/dashboard" class="nav-link">Dashboard</a>
               <a href="/admin/inquiries"  class="nav-link">Inquiries</a>
               <a href="/admin/projects"   class="nav-link">Projects</a>
@@ -29,12 +30,12 @@
             <% } %>
           </div>
           <div class="nav-user">
-            <div class="user-avatar" id="userAvatarBtn"><%= currentUser.name.charAt(0).toUpperCase() %></div>
+            <div class="user-avatar" id="userAvatarBtn"><%= _user.name.charAt(0).toUpperCase() %></div>
             <div class="user-dropdown" id="userDropdown">
               <div class="user-dropdown-inner">
                 <div class="dropdown-header">
-                  <strong><%= currentUser.name %></strong>
-                  <span class="user-role-badge <%= currentUser.role %>"><%= currentUser.role %></span>
+                  <strong><%= _user.name %></strong>
+                  <span class="user-role-badge <%= _user.role %>"><%= _user.role %></span>
                 </div>
                 <div class="dropdown-divider"></div>
                 <a href="/auth/logout" class="dropdown-item logout">Sign Out →</a>
@@ -42,7 +43,7 @@
             </div>
           </div>
           <div class="mobile-nav-menu">
-            <% if (currentUser.role === 'admin') { %>
+            <% if (_user.role === 'admin') { %>
               <a href="/admin/dashboard" class="mobile-nav-link">Dashboard</a>
               <a href="/admin/inquiries"  class="mobile-nav-link">Inquiries</a>
               <a href="/admin/projects"   class="mobile-nav-link">Projects</a>
@@ -57,10 +58,10 @@
             <% } %>
             <div class="mobile-user-section">
               <div class="mobile-user-info">
-                <div class="mobile-user-avatar"><%= currentUser.name.charAt(0).toUpperCase() %></div>
+                <div class="mobile-user-avatar"><%= _user.name.charAt(0).toUpperCase() %></div>
                 <div>
-                  <div class="mobile-user-name"><%= currentUser.name %></div>
-                  <div class="mobile-user-email"><%= currentUser.email %></div>
+                  <div class="mobile-user-name"><%= _user.name %></div>
+                  <div class="mobile-user-email"><%= _user.email %></div>
                 </div>
               </div>
               <a href="/auth/logout" class="mobile-signout-btn">Sign Out →</a>

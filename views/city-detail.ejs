@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<% locals.canonicalPath = '/' + city.slug; %>
+<% locals.canonicalPath = '/locations/' + city.slug; %>
 <% locals.breadcrumbs = [
   { name: 'Home', path: '/' },
   { name: 'Locations', path: '/locations' },
-  { name: city.cityName, path: '/' + city.slug }
+  { name: city.cityName, path: '/locations/' + city.slug }
 ]; %>
 <%- include('partials/page-head') %>
 
@@ -192,7 +192,7 @@
     </div>
     <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
       <% (nearbyCities || []).forEach(nc => { %>
-        <a href="/<%= nc.slug %>" style="padding:10px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:100px; color:var(--text-secondary); text-decoration:none; font-size:0.88rem; font-weight:600; transition:all 0.2s ease;"
+        <a href="/locations/<%= nc.slug %>" style="padding:10px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:100px; color:var(--text-secondary); text-decoration:none; font-size:0.88rem; font-weight:600; transition:all 0.2s ease;"
            onmouseover="this.style.borderColor='var(--accent-blue)';this.style.color='#fff';"
            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)';">
           <%= nc.cityName %> Website Development →

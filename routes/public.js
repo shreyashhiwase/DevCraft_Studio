@@ -59,12 +59,15 @@ router.get('/locations', (req, res) => {
   });
 });
 
-router.get('/website-development-company-in-:city', (req, res, next) => {
-  const fullSlug = `website-development-company-in-${req.params.city.toLowerCase()}`;
-  const city = cityBySlug[fullSlug];
+function handleCityRoute(req, res, next, rawSlug) {
+  let targetSlug = rawSlug.toLowerCase();
+  if (!targetSlug.startsWith('website-development-company-in-')) {
+    targetSlug = `website-development-company-in-${targetSlug}`;
+  }
+  const city = cityBySlug[targetSlug];
   if (!city) return next();
 
-  // Find other cities in the same state group or popular cities for internal linking
+  // Find other cities for internal linking
   const nearbyCities = cities
     .filter(c => c.slug !== city.slug)
     .slice(0, 6);
@@ -76,12 +79,20 @@ router.get('/website-development-company-in-:city', (req, res, next) => {
     title: city.metaTitle,
     metaDescription: city.metaDescription,
     navActive: 'locations',
-    canonicalPath: `/${city.slug}`,
+    canonicalPath: `/locations/${city.slug}`,
     city,
     nearbyCities,
     featuredServices,
     commonProcess,
   });
+}
+
+router.get('/locations/:slug', (req, res, next) => {
+  handleCityRoute(req, res, next, req.params.slug);
+});
+
+router.get('/website-development-company-in-:city', (req, res, next) => {
+  handleCityRoute(req, res, next, `website-development-company-in-${req.params.city}`);
 });
 
 // ─── INDUSTRIES ───────────────────────────────────────────────────────────────
@@ -144,17 +155,17 @@ router.get('/blog/:slug', (req, res, next) => {
 });
 
 // ─── PORTFOLIO / WORK ─────────────────────────────────────────────────────────
-router.get('/work', (req, res) => {
+function renderWorkPage(req, res) {
   res.render('work', {
     title: 'Our Work & Case Studies — StackifyX Software Development',
-    metaDescription: 'Explore real platforms, websites and custom software engineered by StackifyX — including the StackifyX Platform, Healthcare Platform, and TRUSTLEX.AJ.',
+    metaDescription: 'Explore real platforms, websites and custom software engineered by StackifyX — including Open Challenge, StackifyX Platform, Healthcare Platform, and TRUSTLEX.AJ.',
     navActive: 'work',
     canonicalPath: '/work',
     caseStudies,
   });
-});
+}
 
-router.get('/work/:slug', (req, res, next) => {
+function renderCaseStudyPage(req, res, next) {
   const study = caseStudyBySlug[req.params.slug];
   if (!study) return next();
 
@@ -172,7 +183,12 @@ router.get('/work/:slug', (req, res, next) => {
     relatedServices,
     relatedIndustry,
   });
-});
+}
+
+router.get('/work', renderWorkPage);
+router.get('/portfolio', renderWorkPage);
+router.get('/work/:slug', renderCaseStudyPage);
+router.get('/portfolio/:slug', renderCaseStudyPage);
 
 // ─── WHY US ───────────────────────────────────────────────────────────────────
 router.get('/why-us', (req, res) => {

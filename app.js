@@ -107,7 +107,7 @@ app.get('/sitemap.xml', (req, res) => {
     `  <url><loc>${base}/services/${s.slug}</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>`
   ).join('\n');
   const cityUrls = cities.map(c =>
-    `  <url><loc>${base}/${c.slug}</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>`
+    `  <url><loc>${base}/locations/${c.slug}</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>`
   ).join('\n');
   const industryUrls = industries.map(i =>
     `  <url><loc>${base}/industries/${i.slug}</loc><lastmod>${now}</lastmod><priority>0.75</priority></url>`
@@ -130,6 +130,7 @@ ${cityUrls}
   <url><loc>${base}/industries</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
 ${industryUrls}
   <url><loc>${base}/work</loc><lastmod>${now}</lastmod><priority>0.9</priority></url>
+  <url><loc>${base}/portfolio</loc><lastmod>${now}</lastmod><priority>0.85</priority></url>
 ${caseStudyUrls}
   <url><loc>${base}/why-us</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>
   <url><loc>${base}/about</loc><lastmod>${now}</lastmod><priority>0.8</priority></url>

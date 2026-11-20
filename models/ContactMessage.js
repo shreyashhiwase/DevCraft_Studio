@@ -30,6 +30,16 @@ const ContactMessageSchema = new mongoose.Schema({
     trim: true,
     maxlength: 150,
   },
+  city: {
+    type: String,
+    trim: true,
+    maxlength: 100,
+  },
+  preferredContact: {
+    type: String,
+    enum: ['email', 'whatsapp', 'phone', 'any'],
+    default: 'any',
+  },
   projectType: {
     type: String,
     enum: ['website', 'web-application', 'mobile-app', 'custom-software', 'ecommerce', 'ai-automation', 'api-integration', 'other'],

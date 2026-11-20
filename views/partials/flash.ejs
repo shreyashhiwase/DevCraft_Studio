@@ -1,15 +1,17 @@
 <%# views/partials/flash.ejs %>
-<% if (successMsg && successMsg.length > 0) { %>
+<% const _success = (typeof successMsg !== 'undefined' ? successMsg : locals.successMsg) || []; %>
+<% const _error = (typeof errorMsg !== 'undefined' ? errorMsg : locals.errorMsg) || []; %>
+<% if (_success && _success.length > 0) { %>
   <div class="alert alert-success" id="flashAlert">
     <span class="alert-icon">✓</span>
-    <span><%= successMsg[0] %></span>
+    <span><%= _success[0] %></span>
     <button class="alert-close" onclick="this.parentElement.remove()">×</button>
   </div>
 <% } %>
-<% if (errorMsg && errorMsg.length > 0) { %>
+<% if (_error && _error.length > 0) { %>
   <div class="alert alert-error" id="flashAlert">
     <span class="alert-icon">!</span>
-    <span><%= errorMsg[0] %></span>
+    <span><%= _error[0] %></span>
     <button class="alert-close" onclick="this.parentElement.remove()">×</button>
   </div>
 <% } %>

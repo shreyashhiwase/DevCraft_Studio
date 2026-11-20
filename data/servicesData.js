@@ -1,15 +1,13 @@
 // data/servicesData.js
 // Content source for the individual /services/:slug pages.
-// Kept as a single data file so the page structure stays consistent,
-// fast to maintain, and rich in SEO metadata.
 
 const commonProcess = [
-  { n: '01', title: 'Discover', desc: 'We start by understanding your business, users and commercial goals — not just a feature checklist.' },
-  { n: '02', title: 'Plan & Scope', desc: 'We define the technical architecture, choose battle-tested technologies and set clear, visible milestones.' },
-  { n: '03', title: 'UI/UX Design', desc: 'We craft intuitive, responsive interfaces and user journeys before writing production code.' },
-  { n: '04', title: 'Develop', desc: 'We engineer your product in structured sprint cycles with live staging previews.' },
-  { n: '05', title: 'Test & Secure', desc: 'We rigorously audit functionality, cross-device responsiveness, security and performance.' },
-  { n: '06', title: 'Launch & Support', desc: 'We deploy to production, verify search indexing and provide post-launch warranty support.' },
+  { n: '01', title: 'Discovery & Planning', desc: 'We start by understanding your business, users and commercial goals — not just a feature checklist.' },
+  { n: '02', title: 'UI/UX Design', desc: 'We craft intuitive, responsive interfaces and user journeys before writing production code.' },
+  { n: '03', title: 'Development', desc: 'We engineer your product in structured sprint cycles with clean, modular, scalable code.' },
+  { n: '04', title: 'Testing & Quality Assurance', desc: 'We rigorously audit cross-device responsiveness, security, Core Web Vitals speed and functionality.' },
+  { n: '05', title: 'Deployment & Launch', desc: 'We deploy to production, verify Google indexing and configure SSL, analytics and domain records.' },
+  { n: '06', title: 'Maintenance & Support', desc: 'We provide ongoing technical support, security patches, and iterative improvements after launch.' },
 ];
 
 const services = [
@@ -44,7 +42,7 @@ const services = [
       'Lightweight, responsive codebase with fast Core Web Vitals',
       'Admin dashboard for easy content and lead management'
     ],
-    technologies: ['Node.js', 'Express.js', 'MongoDB', 'HTML5 / Modern CSS', 'REST APIs', 'Cloudflare / Cloud Hosting'],
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'HTML5 / Modern CSS', 'REST APIs', 'Cloudflare CDN'],
     benefits: [
       'Full source code ownership — no vendor lock-in or recurring page-builder fees',
       'Designed mobile-first for the 80%+ of Indian traffic on mobile devices',
@@ -57,7 +55,7 @@ const services = [
       { q: 'Can you integrate WhatsApp and payment buttons on our website?', a: 'Yes. We seamlessly integrate instant WhatsApp chat buttons, custom contact forms, and Indian payment gateways like Razorpay for instant customer action.' },
       { q: 'How long does it take to develop a professional business website?', a: 'A standard professional business website typically takes 2 to 3 weeks, while larger portal builds take 4 to 6 weeks depending on requirements.' }
     ],
-    related: ['ecommerce-development', 'custom-software-development', 'api-development']
+    related: ['ecommerce-development', 'web-application-development', 'seo-services']
   },
   {
     slug: 'ecommerce-development',
@@ -88,7 +86,7 @@ const services = [
       'Comprehensive admin portal for managing products, inventory, and promotions',
       'Coupons, discounts, and festive offer management system'
     ],
-    technologies: ['Node.js', 'Express.js', 'MongoDB', 'Razorpay Payments', 'REST APIs', 'AWS / Cloudflare'],
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'Razorpay Payments', 'REST APIs', 'Cloudflare CDN'],
     benefits: [
       'You own the platform 100% with zero recurring developer license penalties',
       'Flawless UPI payment flows that convert Indian shoppers rapidly',
@@ -101,6 +99,49 @@ const services = [
       { q: 'How do you handle shipping and courier tracking?', a: 'We can integrate shipping APIs (such as Shiprocket, Delhivery, or custom courier webhooks) for automated rate calculation and tracking numbers.' }
     ],
     related: ['website-development', 'custom-software-development', 'api-development']
+  },
+  {
+    slug: 'web-application-development',
+    title: 'Web Application Development',
+    navLabel: 'Web Applications',
+    heroTag: 'Scalable Cloud Apps',
+    h1: 'Web Application Development Company in India',
+    metaDescription: 'Custom web application development services in India. StackifyX builds secure, scalable, and responsive cloud applications, portals, and SaaS platforms.',
+    intro: 'When your business needs more than a static website, custom web applications automate internal processes, connect team members, and deliver digital services to your customers. We engineer robust, cloud-ready web applications built on secure architectures with real-time capabilities.',
+    seoKeywords: [
+      'Web Application Development Company in India',
+      'Custom Web App Development',
+      'Enterprise Web Application Services',
+      'Cloud Web App Development',
+      'SaaS Web Application India'
+    ],
+    problems: [
+      'Siloed desktop software that cannot be accessed by remote or field staff',
+      'Manual spreadsheets prone to accidental data loss and version confusion',
+      'Off-the-shelf tools that lack critical features specific to your business workflow',
+      'Security risks and lack of granular role-based access for different team tiers'
+    ],
+    features: [
+      'Custom cloud-based business web applications',
+      'Multi-tier role-based access control (Admin, Manager, Staff, Client)',
+      'Interactive dashboards with real-time data visualization',
+      'Real-time communication engines via WebSockets / Socket.IO',
+      'Secure database architectures (MongoDB / Relational)',
+      'RESTful API layer for seamless mobile app and third-party integrations'
+    ],
+    technologies: ['Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'Passport.js', 'HTML5 / Modern JavaScript'],
+    benefits: [
+      'Accessible anywhere from any device with a secure modern browser',
+      'Eliminate recurring per-user monthly SaaS subscription costs',
+      'Custom-tailored to your exact business rules and operational workflows',
+      'High security with encrypted session cookies, CSRF protection, and sanitized inputs'
+    ],
+    faq: [
+      { q: 'What is the difference between a website and a web application?', a: 'A website is primarily informational (content, articles, contact forms), while a web application is interactive software that users log into to perform tasks, manipulate data, generate reports, or collaborate in real time.' },
+      { q: 'Can a web application be converted into a mobile app later?', a: 'Yes. Because we build modular backend REST APIs, your mobile application (iOS/Android) can effortlessly plug into the exact same database and business logic.' },
+      { q: 'How do you handle web application security?', a: 'We follow industry best practices: bcrypt password hashing, session store encryption, parameter validation, rate limiting, and automated database backups.' }
+    ],
+    related: ['custom-software-development', 'website-development', 'api-development']
   },
   {
     slug: 'custom-software-development',
@@ -143,7 +184,50 @@ const services = [
       { q: 'Can custom software integrate with our existing accounting or billing software?', a: 'Yes. We build custom API connectors to sync data seamlessly between your new software and existing systems like Tally, Zoho, or banking APIs.' },
       { q: 'How do you ensure data security in custom software?', a: 'We enforce strict role-based access control, encrypted sessions, secure password hashing (bcrypt), sanitized database inputs, and regular automated database backups.' }
     ],
-    related: ['website-development', 'api-development', 'ai-business-automation']
+    related: ['web-application-development', 'website-development', 'api-development']
+  },
+  {
+    slug: 'seo-services',
+    title: 'Search Engine Optimization (SEO)',
+    navLabel: 'SEO Services',
+    heroTag: 'Organic Search Growth',
+    h1: 'SEO Services Company in India',
+    metaDescription: 'Professional SEO services in India. StackifyX helps businesses achieve top Google rankings through technical SEO, Core Web Vitals optimization & targeted content architecture.',
+    intro: 'A beautiful website is an invisible asset if your prospective clients cannot find it on Google. We deliver white-hat, technical and on-page SEO services that help Indian businesses rank for high-intent commercial keywords, capture local searches, and drive organic inbound inquiries without relying exclusively on paid ads.',
+    seoKeywords: [
+      'SEO Services in India',
+      'Search Engine Optimization Company India',
+      'Technical SEO Services',
+      'Local SEO Services India',
+      'Website SEO Optimization'
+    ],
+    problems: [
+      'Website is buried on page 3 or 4 of Google with near-zero organic search visits',
+      'Slow mobile load speeds causing Google to penalize your Core Web Vitals score',
+      'Missing or malformed Schema.org structured data preventing search rich snippets',
+      'Spending heavily on Google Ads every month because organic rankings are non-existent'
+    ],
+    features: [
+      'Comprehensive technical SEO audits and code-level fixes',
+      'Core Web Vitals speed optimization (LCP, INP, CLS)',
+      'Schema.org structured data implementation (Organization, Service, FAQPage, BreadcrumbList)',
+      'Keyword research and commercial search-intent architecture',
+      'On-page content optimization (H1/H2 hierarchy, semantic tags, internal links)',
+      'Google Search Console and Google Analytics 4 configuration & monitoring'
+    ],
+    technologies: ['Schema.org JSON-LD', 'Google Search Console', 'Google Analytics 4', 'Lighthouse / PageSpeed Insights', 'Semantic HTML5'],
+    benefits: [
+      'Sustainable, compounding organic search traffic that reduces paid advertising spend',
+      'Capture ready-to-buy customers actively searching for your services across India',
+      'Enhanced mobile experience and fast loading speeds that reduce visitor bounce rates',
+      'Transparent reporting on search impressions, keyword positions, and organic leads'
+    ],
+    faq: [
+      { q: 'How long does it take to see results from SEO in India?', a: 'Technical SEO fixes (indexing, schema, crawlability, speed) take effect within weeks. Meaningful organic ranking growth on competitive keywords typically takes 2 to 4 months of consistent optimization.' },
+      { q: 'Do you guarantee #1 ranking on Google?', a: 'No ethical SEO professional guarantees #1 rankings, as Google\'s algorithms constantly evolve. We guarantee rigorous adherence to Google Search Essentials, clean code, semantic markup, and measurable ranking and traffic improvements.' },
+      { q: 'Can you optimize our existing website without rebuilding it?', a: 'Yes. We can conduct a technical SEO audit on your current website and implement on-page meta tags, speed optimizations, and schema markup directly.' }
+    ],
+    related: ['website-development', 'website-redesign', 'web-application-development']
   },
   {
     slug: 'mobile-app-development',
@@ -174,7 +258,7 @@ const services = [
       'Offline data caching and smooth synchronization upon reconnection',
       'Robust backend API architecture connected to your web database'
     ],
-    technologies: ['React Native / Flutter Ecosystem', 'Node.js Backend', 'MongoDB', 'Firebase Push Notifications', 'REST APIs'],
+    technologies: ['React Native / Modern Mobile Stacks', 'Node.js Backend', 'MongoDB', 'Push Notifications', 'REST APIs'],
     benefits: [
       'Single codebase reduces initial development cost and ongoing maintenance by 40%',
       'Direct customer retention through timely, targeted push notifications',
@@ -186,8 +270,53 @@ const services = [
       { q: 'Can the mobile app connect to our existing website database?', a: 'Yes. We build secure REST APIs so your website, mobile app, and administrative dashboard share the same real-time database.' },
       { q: 'Do you assist with publishing on Google Play Store and Apple App Store?', a: 'Yes. We guide you through account setup, build generation, screenshot preparation, and app store compliance submission.' }
     ],
-    related: ['website-development', 'custom-software-development', 'api-development']
+    related: ['website-development', 'web-application-development', 'api-development']
   },
+  {
+    slug: 'website-redesign',
+    title: 'Website Redesign Services',
+    navLabel: 'Website Redesign',
+    heroTag: 'Modernize & Convert',
+    h1: 'Website Redesign Services in India',
+    metaDescription: 'Professional website redesign services in India. StackifyX transforms outdated, slow websites into modern, high-converting, mobile-first digital assets.',
+    intro: 'If your existing website looks dated, loads slowly on smartphones, or fails to generate business inquiries, it is actively costing you revenue. We revitalize legacy websites with modern visual design, lightning-fast Core Web Vitals performance, technical SEO, and clear conversion pathways.',
+    seoKeywords: [
+      'Website Redesign Services in India',
+      'Website Revamp Company',
+      'Modernize Outdated Website',
+      'Corporate Website Redesign',
+      'Website Performance Optimization'
+    ],
+    problems: [
+      'Visitors bounce immediately because the site looks outdated compared to modern competitors',
+      'Mobile layout is cramped or broken, forcing users to pinch and zoom to read text',
+      'Slow loading times resulting in poor Google search rankings and lost customers',
+      'Old platform or theme is hard to update without breaking layout or styles'
+    ],
+    features: [
+      'Complete UI/UX overhaul with modern typography, dark/light themes, and clean spacing',
+      'Mobile-first responsive redesign across smartphones, tablets, laptops, and desktops',
+      'Speed and Core Web Vitals optimization achieving 90+ Lighthouse performance scores',
+      'SEO preservation with 301 redirects to ensure you never lose existing Google rankings',
+      'Direct WhatsApp chat and modern lead capture forms integration',
+      'Migration away from bloated page builders to clean, maintainable code'
+    ],
+    technologies: ['Node.js', 'Express.js', 'Modern HTML5/CSS3', 'SEO 301 Redirect Architecture', 'Cloudflare CDN'],
+    benefits: [
+      'Immediate boost in brand credibility and visitor trust from the first second',
+      'Substantial increase in mobile conversion rates and contact inquiries',
+      'Preserve and strengthen your hard-earned Google search rankings with 301 mapping',
+      'A future-proof digital asset you own completely with zero vendor lock-in'
+    ],
+    faq: [
+      { q: 'Will a website redesign hurt my existing Google rankings?', a: 'Not when done correctly. We audit your existing ranking URLs and configure permanent 301 redirects, updated sitemaps, and optimized meta tags so your search equity is preserved and enhanced.' },
+      { q: 'Can you keep our existing content and domain during redesign?', a: 'Yes. We can migrate all your existing text, images, and blog posts to the new design, keeping your established domain and email services completely uninterrupted.' },
+      { q: 'How long does a website redesign typically take?', a: 'A full redesign usually takes between 2 to 4 weeks depending on the number of pages and custom functionality required.' }
+    ],
+    related: ['website-development', 'seo-services', 'ecommerce-development']
+  },
+
+  // Specialized & legacy services
   {
     slug: 'ai-business-automation',
     title: 'AI & Business Automation',
@@ -196,39 +325,12 @@ const services = [
     intro: 'You don\'t need expensive speculative AI models — you need less repetitive busywork. We integrate practical AI capabilities and automated workflows into your existing business systems so your team can focus on closing deals, serving clients, and driving revenue.',
     h1: 'AI & Business Automation Services in India',
     metaDescription: 'AI and business automation services in India. StackifyX helps businesses automate repetitive workflows, customer follow-ups & data processing with practical AI tools.',
-    seoKeywords: [
-      'AI & Business Automation India',
-      'Business Process Automation India',
-      'AI Workflow Automation',
-      'Automated Lead Qualification',
-      'Custom AI Integration Services'
-    ],
-    problems: [
-      'Hours lost each week manually entering data between spreadsheets and software',
-      'Slow response times to new leads resulting in lost sales to competitors',
-      'Repetitive customer inquiries taking up valuable customer support time',
-      'Desire to adopt AI tools without knowing where to achieve real commercial ROI'
-    ],
-    features: [
-      'Automated lead intake and instant WhatsApp/Email follow-up sequences',
-      'Intelligent document and invoice data extraction',
-      'AI-powered customer inquiry assistants and triage bots',
-      'Automated multi-system data synchronization (CRM to Billing to Sheets)',
-      'Custom notification triggers for operational milestones',
-      'API-based integration with OpenAI, Gemini, and specialized AI models'
-    ],
-    technologies: ['Node.js', 'REST APIs', 'OpenAI / Gemini APIs', 'Webhook Automation', 'MongoDB'],
-    benefits: [
-      'Reclaim 10+ hours per employee every week by automating routine data entry',
-      'Instant lead response within seconds, dramatically boosting conversion rates',
-      'Zero expensive internal AI infrastructure — pay only for what you use via secure APIs',
-      'Incremental deployment: automate one high-impact workflow first, then expand'
-    ],
-    faq: [
-      { q: 'What business processes can be automated easily?', a: 'The highest-ROI starting points are automated lead routing, instant WhatsApp inquiry responses, invoice processing, order notification triggers, and syncing data between different tools.' },
-      { q: 'Do we need a massive dataset or machine learning team?', a: 'Not at all. We leverage proven, enterprise-grade AI APIs (such as OpenAI and Google Gemini) and connect them directly into your existing business workflow.' },
-      { q: 'Is automation suitable for small businesses?', a: 'Yes! Small teams benefit the most because automation eliminates the need to hire additional administrative staff for repetitive tasks.' }
-    ],
+    seoKeywords: ['AI & Business Automation India', 'Business Process Automation India', 'AI Workflow Automation'],
+    problems: ['Manual data entry between spreadsheets and software', 'Slow response times to new customer leads', 'Repetitive customer support inquiries'],
+    features: ['Automated lead intake and instant WhatsApp/Email follow-up sequences', 'Intelligent document and invoice data extraction', 'API integration with OpenAI & Gemini'],
+    technologies: ['Node.js', 'REST APIs', 'OpenAI / Gemini APIs', 'MongoDB'],
+    benefits: ['Reclaim 10+ hours per employee every week', 'Instant lead response within seconds', 'Zero expensive internal AI infra'],
+    faq: [{ q: 'What can be automated?', a: 'Lead follow-ups, document extraction, invoice generation, and multi-system data sync.' }],
     related: ['custom-software-development', 'api-development', 'website-development']
   },
   {
@@ -239,43 +341,14 @@ const services = [
     h1: 'API Development & Integration Services in India',
     metaDescription: 'Expert API development and third-party integration services in India. StackifyX builds secure RESTful APIs, payment integrations, WhatsApp APIs & webhook systems.',
     intro: 'Modern business requires interconnected systems. We design, build, and integrate secure, high-performance REST APIs that bridge your web platforms, mobile apps, payment gateways, ERPs, CRMs, and third-party services into a unified digital infrastructure.',
-    seoKeywords: [
-      'API Development Company India',
-      'REST API Integration Services',
-      'Payment Gateway Integration India',
-      'WhatsApp Business API Integration',
-      'Custom API Development'
-    ],
-    problems: [
-      'Valuable business data trapped in disconnected legacy tools and spreadsheets',
-      'Manual copy-pasting of customer data between website, CRM, and accounting software',
-      'Fragile, undocumented APIs that break during updates or traffic spikes',
-      'Inability to partner with external platforms due to lacking an API layer'
-    ],
-    features: [
-      'Custom RESTful API design, development and documentation',
-      'Payment gateway integrations (Razorpay, Stripe, Cashfree)',
-      'WhatsApp Business API and SMS gateway integrations',
-      'Third-party cloud software integrations (CRMs, ERPs, Accounting, Logistics)',
-      'Secure API authentication (OAuth2, JWT, API Key tokens)',
-      'Real-time Webhook receivers and automated event dispatchers'
-    ],
+    seoKeywords: ['API Development Company India', 'REST API Integration Services', 'Payment Gateway Integration India'],
+    problems: ['Valuable business data trapped in disconnected legacy tools', 'Manual copy-pasting of customer data between systems', 'Fragile, undocumented APIs'],
+    features: ['Custom RESTful API design', 'Payment gateway webhooks (Razorpay)', 'WhatsApp Business API setup', 'Secure token-based auth'],
     technologies: ['Node.js', 'Express.js', 'REST Architecture', 'JSON', 'JWT / OAuth', 'MongoDB'],
-    benefits: [
-      'Eliminate manual data transfer errors between business tools',
-      'Enable your product to launch mobile apps and partner integrations effortlessly',
-      'Thoroughly documented endpoints with Swagger / Postman documentation',
-      'High security with rate limiting, payload validation, and SSL encryption'
-    ],
-    faq: [
-      { q: 'What is API integration and why does my business need it?', a: 'An API acts as a digital bridge between two software systems. For example, connecting your website with your billing software ensures that an online order automatically creates an invoice without manual data entry.' },
-      { q: 'Can you integrate the official WhatsApp Business API?', a: 'Yes. We integrate WhatsApp Business APIs for automated order confirmations, inquiry responses, appointment reminders, and support routing.' },
-      { q: 'Do you provide documentation for custom APIs you build?', a: 'Yes. Every API project includes clear, structured documentation for endpoints, request payloads, authentication, and error handling.' }
-    ],
-    related: ['custom-software-development', 'website-development', 'ecommerce-development']
+    benefits: ['Eliminate manual data transfer errors', 'Enable partner integrations effortlessly', 'Documented endpoints with Postman'],
+    faq: [{ q: 'What is API integration?', a: 'An API acts as a secure digital bridge allowing different software applications to talk and share data automatically.' }],
+    related: ['web-application-development', 'custom-software-development', 'ecommerce-development']
   },
-
-  // Retain legacy slugs and specialized services for backwards compatibility
   {
     slug: 'saas-development',
     title: 'SaaS Platform Development',
@@ -289,7 +362,7 @@ const services = [
     technologies: ['Node.js', 'MongoDB', 'Razorpay Subscriptions', 'Socket.IO'],
     benefits: ['Scalable architecture from day one', 'Built-in administrative controls', 'Fast time to market'],
     faq: [{ q: 'Can you build a multi-tenant SaaS MVP?', a: 'Yes, we specialize in building scalable multi-user SaaS architectures.' }],
-    related: ['custom-software-development', 'website-development', 'api-development']
+    related: ['web-application-development', 'custom-software-development', 'api-development']
   },
   {
     slug: 'ui-ux-design',
@@ -304,7 +377,7 @@ const services = [
     technologies: ['Figma', 'Modern CSS', 'Design Systems'],
     benefits: ['Clear user pathways that improve conversion', 'Reduced development rework', 'Consistent brand presentation'],
     faq: [{ q: 'Do you provide design before development?', a: 'Yes, we finalize all wireframes and visual designs before coding.' }],
-    related: ['website-development', 'mobile-app-development', 'custom-software-development']
+    related: ['website-development', 'mobile-app-development', 'website-redesign']
   },
   {
     slug: 'website-maintenance',
@@ -319,7 +392,7 @@ const services = [
     technologies: ['Node.js', 'MongoDB', 'Cloud Hosting', 'SSL/Security'],
     benefits: ['Peace of mind knowing engineers are on call', 'Continuous high search engine rankings', 'Zero unexpected downtime'],
     faq: [{ q: 'Can you maintain a website not built by StackifyX?', a: 'We can evaluate and maintain existing Node.js or modern web projects on a case-by-case basis.' }],
-    related: ['website-development', 'custom-software-development']
+    related: ['website-development', 'website-redesign', 'custom-software-development']
   }
 ];
 

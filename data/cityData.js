@@ -426,6 +426,43 @@ const cities = [
         a: 'Simply reach out via our contact form or WhatsApp. We will schedule a discovery call, scope your project requirements, and provide a clear milestone roadmap.'
       }
     ]
+  },
+  {
+    slug: 'website-development-company-in-lucknow',
+    cityName: 'Lucknow',
+    state: 'Uttar Pradesh',
+    stateGroup: 'North India',
+    metaTitle: 'Website Development Company in Lucknow | StackifyX Digital Solutions',
+    metaDescription: 'Top website development company in Lucknow. StackifyX builds modern websites, e-commerce platforms, coaching portals & custom software for Lucknow businesses.',
+    h1: 'Website Development Company in Lucknow',
+    heroTag: 'Lucknow & UP Enterprise & Commercial Growth',
+    intro: 'Looking for a professional website development company in Lucknow? StackifyX builds high-converting business websites, custom web applications, e-commerce stores, and coaching portals for businesses across Lucknow, Gomti Nagar, Hazratganj, and Kanpur Road. We collaborate remotely with structured milestone delivery.',
+    businessContext: 'As the capital of Uttar Pradesh and a rapidly expanding economic and educational hub, Lucknow is home to thriving retail, healthcare, competitive exam coaching institutes, real estate developments, and Chikankari handicraft exports. A modern, high-speed website helps Lucknow businesses build immediate trust and reach customers statewide and across India.',
+    keyIndustries: [
+      { name: 'Education & Coaching Institutes', desc: 'Admission inquiry funnels, batch schedules, faculty showcases, and test portal integrations for civil services and medical academies.' },
+      { name: 'Chikankari & Handicraft E-Commerce', desc: 'Direct-to-consumer online boutiques with pan-India courier delivery, Razorpay UPI checkout, and international order inquiries.' },
+      { name: 'Healthcare & Specialty Hospitals', desc: 'Doctor appointment scheduling, patient guidance pages, and OPD consultation booking systems for Gomti Nagar and Hazratganj clinics.' },
+      { name: 'Real Estate & Commercial Development', desc: 'Interactive project brochures, site visit booking funnels, and CRM lead capture for upcoming residential townships.' }
+    ],
+    whyRemote: 'We bring metropolitan full-stack software development directly to Lucknow founders and enterprises. You get direct access to experienced engineers, transparent milestone tracking on our client platform, and zero agency markup.',
+    faqs: [
+      {
+        q: 'Can you build an online shopping store for our Lucknow Chikankari clothing brand?',
+        a: 'Yes! We develop mobile-first e-commerce platforms with fast product filtering, cart checkout, Razorpay/UPI integration, and automated courier tracking for pan-India orders.'
+      },
+      {
+        q: 'Do you build websites for coaching centers and educational institutions in Lucknow?',
+        a: 'Yes. We build high-converting inquiry websites for coaching institutes featuring course catalogs, student lead capture, faculty profiles, and WhatsApp integration.'
+      },
+      {
+        q: 'How does remote collaboration work with our team in Lucknow?',
+        a: 'We collaborate via structured weekly sprints, video milestone walkthroughs, direct WhatsApp support, and our client dashboard where you can track progress and test live staging previews.'
+      },
+      {
+        q: 'How long does website development take in Lucknow?',
+        a: 'A standard business website is typically delivered within 2 to 3 weeks, while custom software or e-commerce platforms take 4 to 6 weeks depending on scope.'
+      }
+    ]
   }
 ];
 

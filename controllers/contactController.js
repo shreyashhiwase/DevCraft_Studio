@@ -4,7 +4,7 @@ const { sendContactNotification } = require('../utils/email');
 
 const submitContact = async (req, res) => {
   try {
-    const { name, email, phone, company, projectType, budgetRange, description } = req.body;
+    const { name, email, phone, company, city, preferredContact, projectType, budgetRange, description } = req.body;
 
     if (!name || !email || !description) {
       req.flash('error', 'Please fill in your name, email and project description.');
@@ -12,7 +12,7 @@ const submitContact = async (req, res) => {
     }
 
     const msg = await ContactMessage.create({
-      name, email, phone, company, projectType, budgetRange, description,
+      name, email, phone, company, city, preferredContact, projectType, budgetRange, description,
     });
 
     // Best-effort notification email — never block the user's confirmation
